@@ -1,0 +1,16 @@
+{
+	"name": "CrimeLoc",
+	"version": "0.0.1",
+	"description": "Interact with a database of crime on Duke Campus",
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"express": "4.12.x",
+		"cfenv": "1.0.x"
+	},
+	"repository": {},
+	"engines": {
+		"node": "0.12.x"
+	} 
+}
