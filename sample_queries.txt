@@ -1,0 +1,9 @@
+SELECT * FROM Crime WHERE Building = “$USER_INPUT”;
+
+SELECT * FROM Crime WHERE Building.Type = “$USER_INPUT”;
+
+SELECT * FROM Crime WHERE Building.Campus = “$USER_INPUT”;
+
+SELECT * FROM Crime WHERE Type = “$USER_INPUT”;
+
+SELECT * FROM Crime WHERE Date < “$USER_INPUT” & Date > “$USER_INPUT”;
