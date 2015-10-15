@@ -1,4 +1,0 @@
-Relational Schema (keys are underlined)
-
-Crime (Crime_ID, Type, Date, Building, Inside/Outside)
-Building (key: Name, Type, Campus)
