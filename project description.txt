@@ -1,9 +1,9 @@
 Brief description of our project:
-We are doing a standard project and creating a web app that will use data from the Duke police to allow users to interact with a database of crimes and locations reported on Duke’s campus. Duke Police provide weekly status reports on crime in the Durham area at this website: http://police.duke.edu/news_stats/summaries/index.php. We would like to use a map on the web app to let users visually interpret the data, and we are considering using http://maplacejs.com/ to help integrate this feature. If we are feeling extremely ambitious, we would love to include a feature to compute comparative statistics among different areas on campus.
+We are doing a standard project and creating a web app that will use data from the Duke police to allow users to interact with a database of crimes and locations reported on Duke’s campus. Duke Police provide weekly status reports on crime in the Durham area at this website: http://police.duke.edu/news_stats/summaries/index.php. We would like to use a map on the web app to let users visually interpret the data, and we are considering using http://maplacejs.com/ to help integrate this feature. If we are feeling ambitious, we would love to include a feature to compute comparative statistics among different areas on campus.
 
 
 Plan for populating the database:
-We plan to scrape pertinent information from the individual weekly reports to build our database. In order to do this more efficiently in the future, we may set up a cron job to pull new reports and add them to the database as they appear on the host website under the ‘Current Week’ header.
+We plan to scrape pertinent information from the individual weekly reports to build our database. In order to do this more efficiently in the future, we may set up a cron job to pull new reports and add them to the database as they appear on the host website under the ‘Current Week’ header. Furthermore, fields in the Building table such as 'address', 'type', and 'campus', will not be populated by the scrape calls, and will be populated by creating our own table from scratch that provides these categories of information about all buildings on duke's campus, and using this table to fill in said information in the Building table.
 
 
 List of assumptions about data being modeled:
