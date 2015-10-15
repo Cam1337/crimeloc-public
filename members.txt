@@ -1,6 +1,6 @@
 Team members and description of progress each made:
 
 Sam Doyle: designed E/R diagram, contributed to project description, modified table declarations in project description, started client/server code for basic NodeJS app, implemented table creations, sample data in SQL.
-Eli Williams: wrote table declarations, modified project description
+Eli Williams: wrote table declarations, modified project description, wrote sample SQL queries
 Cam Wrigley: researched http scraping,
 Casey Tissue: wrote project description,
