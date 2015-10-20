@@ -34,7 +34,12 @@ var app = express();
 
 //handler for client-side ajax GET request
 app.get('/query',function(req, res){
-	res.send("lakjwefsd");
+	console.log(req.query);
+	var building = req.query.building
+	var crime = req.query.crime
+	var date = req.query.date
+	var campus = req.query.campus
+	res.send(req.query);
 });
 
 

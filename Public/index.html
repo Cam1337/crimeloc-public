@@ -6,14 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="stylesheets/css/foundation.css">
-  <script src="//code.jquery.com/jquery-1.9.0.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   </head>
 
   <body>
     <div class="row" align = "center">
       <h1>Welcome to CrimeLoc!</h1>
     </div>
-
     <div class="row" align="center">
       <div class="large-12 columns">
       <label>Search Parameters (specify as many or as few as desired)
@@ -49,11 +48,11 @@
       <div class="large-3 columns">
         <label>Campus
           <form id="campus">
-            <input value="west" type="radio" name="campus" id="west"><label for="west">West</label>
+            <input value="west" type="checkbox" name="campus" id="west"><label for="west">West</label>
             </input>
-            <input value="east" type="radio" name="campus" id="east"><label for="east">East</label>
+            <input value="east" type="checkbox" name="campus" id="east"><label for="east">East</label>
             </input>
-            <input value="central" type="radio" name="campus" id="central"><label for="central">Central</label>
+            <input value="central" type="checkbox" name="campus" id="central"><label for="central">Central</label>
             </input>
           </form>
         </label>
@@ -84,17 +83,20 @@
       var date = document.getElementById("date").value;
       var time1 = document.getElementById("time1").value;
       var time2 = document.getElementById("time2").value;
-      var campus = $('input[name=campus]:checked', '#campus').val();
-      console.log(building + ', ' + crime + ', ' + date + ', ' + time1 + ', ' + time2 + ', ' + campus);
+      var campus = [];
+      $('#campus input:checked').each(function() {
+        campus.push($(this).attr('value'));
+      });
+      var header = '?building=' + building + '&crime=' + crime + '&date=' + date + '&time1= ' + time1 + '&time2=' + time2 + '&campus=' + JSON.stringify(campus);
       //Make ajax call here
       $.ajax({
-        url: "./query",
-        type: "GET",
-        dataType:"JSON"
-      }
-        ).then(function(err, res){
-          if(err){
-            console.log(err);
+        url: "./query" + header,
+        type: "GET"
+      }).done(function(data){
+          if(data.error){
+            console.log(data.error);
+          } else{
+            console.log(JSON.stringify(data));
           }
         });
     });
