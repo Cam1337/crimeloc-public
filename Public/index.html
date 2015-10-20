@@ -6,18 +6,132 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="stylesheets/css/foundation.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js">
-    </script>
+  <script src="//code.jquery.com/jquery-1.9.0.min.js"></script>
   </head>
+
   <body>
-    <div class="row">
+    <div class="row" align = "center">
       <h1>Welcome to CrimeLoc!</h1>
     </div>
+
+    <div class="row" align="center">
+      <div class="large-12 columns">
+      <label>Search Parameters (specify as many or as few as desired)
+      </label>
+      </div>
+      <div class="large-2 columns">
+        <label> Building type
+          <input id="building" type="text"></input>
+        </label>
+      </div>
+      <div class="large-2 columns">
+        <label> Crime type
+          <input id="crime" type="text"></input>
+        </label>
+      </div>
+      <div class="large-2 columns">
+        <label> Date
+          <input id="date" type="text"></input>
+        </label>
+      </div>
+      <div class="large-3 columns">
+        <label> Time
+          <br>
+          <label>From
+            <input id="time1" type="text"></input>
+          </label>
+          <br>
+          <label>To
+            <input id="time2" type="text"></input>
+          </label>
+        </label>
+      </div>
+      <div class="large-3 columns">
+        <label>Campus
+          <form id="campus">
+            <input value="west" type="radio" name="campus" id="west"><label for="west">West</label>
+            </input>
+            <input value="east" type="radio" name="campus" id="east"><label for="east">East</label>
+            </input>
+            <input value="central" type="radio" name="campus" id="central"><label for="central">Central</label>
+            </input>
+          </form>
+        </label>
+        <a id="clear">Clear</a>
+      </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <br>
+        <button id="update_map">Show crimes</button>
+      </div>
+    </div>
+    </div>
+
+    <div class="row" align="center" id="gmap" style="width: 600px; height: 400px;">
+    </div>
+    <div id="controls"></div>
+
+
   </body>
-</head>
+
   <script>
   $('document').ready(function () {
+
+    //action taken when "show crimes" button pressed
+    $("#update_map").click(function() {
+      var building = document.getElementById("building").value;
+      var crime = document.getElementById("crime").value;
+      var date = document.getElementById("date").value;
+      var time1 = document.getElementById("time1").value;
+      var time2 = document.getElementById("time2").value;
+      var campus = $('input[name=campus]:checked', '#campus').val();
+      console.log(building + ', ' + crime + ', ' + date + ', ' + time1 + ', ' + time2 + ', ' + campus);
+      //Make ajax call here
+      $.ajax({
+        url: "./query",
+        type: "GET",
+        dataType:"JSON"
+      }
+        ).then(function(err, res){
+          if(err){
+            console.log(err);
+          }
+        });
+    });
+
+
+    //action taken to clear campus specification
+    $("#clear").click(function() {
+      document.getElementById("west").checked=false;
+      document.getElementById("east").checked=false;
+      document.getElementById("central").checked=false;
+    });
+
+
+
     //CODE HERE
+
+
   });
   </script>
-</html>
+
+  <script src="//maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.7"></script>
+  <script src="maplace-0.1.3.js"></script>
+  <script type="text/javascript">
+  $(function() {
+      new Maplace({
+    locations: [{
+       lat: 36.0011,
+       lon: -78.9389,
+       zoom: 14
+   }]
+      }).Load();
+  });
+  </script>
+  </head>
+
+  </html>
+
+
+
+

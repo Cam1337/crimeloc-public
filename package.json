@@ -6,6 +6,8 @@
 		"start": "node app.js"
 	},
 	"dependencies": {
+		"htmlparser": "*",
+		"superagent": "1.4.x",
 		"express": "4.12.x",
 		"cfenv": "1.0.x"
 	},

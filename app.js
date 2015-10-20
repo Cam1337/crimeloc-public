@@ -5,6 +5,40 @@ var cfenv = require('cfenv');
 // create a new express server
 var app = express();
 
+
+
+//attempt at retrieving data for database
+// var data = '';
+// var htmlparser = require('htmlparser');
+// var superagent = require('superagent');
+
+// var handler = new htmlparser.DefaultHandler(function(err, dom){
+// 	if(err){
+// 		console.log(err);
+// 	} else{
+// 		data = dom;
+// 	}
+// });
+
+// superagent.get('http://police.duke.edu/news_stats/summaries/weekly/081615.html', function(err, res){
+// 	if(err){
+// 		console.log(err);
+// 	} else{
+// 		var dat = res.text;
+// 		// console.log(dat);
+// 		var parser = new htmlparser.Parser(handler);
+// 		parser.parseComplete(dat);
+// 		console.log(data[2]);
+// 	}
+// });
+
+//handler for client-side ajax GET request
+app.get('/query',function(req, res){
+	res.send("lakjwefsd");
+});
+
+
+
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
 
