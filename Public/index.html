@@ -18,30 +18,46 @@
       <label>Search Parameters (specify as many or as few as desired)
       </label>
       </div>
+
+
+
+
+
+
       <div class="large-2 columns">
         <label> Building type
-          <input id="building" type="text"></input>
+          <form id="Building Type">
+          <select name="Building Type" multiple>
+            <option value="Dorm">Dorm</option>
+            <option value="Academic Building">Academic Building</option>
+          </select>
+        </form>
+          <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
+
         </label>
       </div>
       <div class="large-2 columns">
         <label> Crime type
-          <input id="crime" type="text"></input>
+          <form id="crime">
+          <div class="row"><input value="larceny" type="checkbox" name="larceny" id="larceny"> <labe for="larceny">Larceny</label></input></div>
+          <div class="row"><input value="robbery" type="checkbox" name="robbery" id="robbery"> <labe for="robbery">Robbery</label></input></div>
+          </form>
         </label>
       </div>
       <div class="large-2 columns">
         <label> Date
-          <input id="date" type="text"></input>
+          <input id="date" type="date"></input>
         </label>
       </div>
       <div class="large-3 columns">
         <label> Time
           <br>
           <label>From
-            <input id="time1" type="text"></input>
+            <input id="time1" type="time"></input>
           </label>
           <br>
           <label>To
-            <input id="time2" type="text"></input>
+            <input id="time2" type="time"></input>
           </label>
         </label>
       </div>
@@ -133,7 +149,3 @@
   </head>
 
   </html>
-
-
-
-
