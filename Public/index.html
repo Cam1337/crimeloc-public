@@ -92,6 +92,20 @@
   <script>
   $('document').ready(function () {
 
+    //load and initialize map
+    var map;
+    $(function() {
+        map = new Maplace({
+      locations: [{
+         lat: 36.0011,
+         lon: -78.9391,
+         zoom: 14
+     }]
+        }).Load();
+    });
+
+
+
     //action taken when "show crimes" button pressed
     $("#update_map").click(function() {
       var building = document.getElementById("building").value;
@@ -112,10 +126,21 @@
           if(data.error){
             console.log(data.error);
           } else{
-            console.log(JSON.stringify(data));
+            //assume array of info for crimes is returned as data here
+
+            map.RemoveLocations(0, true);
+            //loop through crimes list and add a marker for each
+            for(i=0; i<data.length; i++){
+              var temp = data[i];
+              map.AddLocations([{lat: temp.lat,
+                lon: temp.lon, title: temp.crime, location: temp.loc}], i, false);
+            }
+            map.Load();
           }
         });
     });
+
+
 
 
     //action taken to clear campus specification
@@ -127,25 +152,12 @@
 
 
 
-    //CODE HERE
-
 
   });
   </script>
 
   <script src="//maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.7"></script>
   <script src="maplace-0.1.3.js"></script>
-  <script type="text/javascript">
-  $(function() {
-      new Maplace({
-    locations: [{
-       lat: 36.0011,
-       lon: -78.9389,
-       zoom: 14
-   }]
-      }).Load();
-  });
-  </script>
   </head>
 
   </html>
