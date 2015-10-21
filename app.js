@@ -39,7 +39,8 @@ app.get('/query',function(req, res){
 	var crime = req.query.crime
 	var date = req.query.date
 	var campus = req.query.campus
-	res.send(req.query);
+	//hard-coded data for client-side handler testing
+	res.send([{lat:"36.0011", lon:"-78.9387", crime:"larceny",loc:{building:"", campus:""}}, {lat:"36.0017", lon:"-78.9391", crime:"alcohol violation",loc:{building:"", campus:""}}]);
 });
 
 
