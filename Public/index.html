@@ -122,7 +122,6 @@
             console.log(data.error);
           } else{
             //assume array of info for crimes is returned as data here
-
             map.RemoveLocations(0, true);
             //loop through crimes list and add a marker for each
             for(i=0; i<data.length; i++){
@@ -130,6 +129,7 @@
               map.AddLocations([{lat: temp.lat,
                 lon: temp.lon, title: temp.crime, location: temp.loc}], i, false);
             }
+            //TODO: make the map properly scaled after adding markers
             map.Load();
           }
         });
