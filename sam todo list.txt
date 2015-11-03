@@ -1,0 +1,13 @@
+TODO
+---------------
+
+allow communication between server code and database for querying
+
+implement logic on server code to display coordinates, etc. after queries returned.
+
+update crime types list
+
+update date/time input
+
+Allow more control of map (options for view all, better zoom upon new query, etc.)
+
