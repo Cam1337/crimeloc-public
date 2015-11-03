@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="stylesheets/css/foundation.css">
   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   </head>
 
   <body>
@@ -37,12 +38,14 @@
         </label>
       </div>
       <div class="large-2 columns">
+        <div class "ui fluid dropdown"
         <label> Crime type
-          <form id="crime">
-          <div class="row"><input value="larceny" type="checkbox" name="larceny" id="larceny"> <labe for="larceny">Larceny</label></input></div>
-          <div class="row"><input value="robbery" type="checkbox" name="robbery" id="robbery"> <labe for="robbery">Robbery</label></input></div>
-          </form>
+          <select id="crime" multiple="" class="ui fluid dropdown">
+            <option value='larceny'>larceny</option>
+            <option value='robbery'>robbery</option>
+          </select>
         </label>
+      </div>
       </div>
       <div class="large-2 columns">
         <label> Date
@@ -88,6 +91,16 @@
 
 
   </body>
+
+  <link rel="stylesheet" href="pqselect.dev.css" />
+  <script src = "pqselect.dev.js"></script>
+
+
+  <script>
+  $('#multi-select')
+.dropdown()
+;
+  </script>
 
   <script>
   $('document').ready(function () {
@@ -161,7 +174,3 @@
   </head>
 
   </html>
-
-
-
-
