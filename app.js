@@ -19,11 +19,16 @@ app.get('/query',function(req, res){
 
 
 	//hard-coded data for 2 locations
-	// locs = [{lat:"36.0011", lon:"-78.9387", crime:"larceny",loc:{building:"", campus:""}}, {lat:"36.0017", lon:"-78.9391", crime:"alcohol violation",loc:{building:"", campus:""}}];
+	// locs = [{lat:"36.0020", lon:"-78.9387", crime:"larceny",loc:{building:"", campus:""}},
+	// {lat:"36.0005", lon:"-78.9391", crime:"alcohol violation",loc:{building:"", campus:""}}];
 
 	//hard-coded data for 3 locations
-	locs = [{lat:"36.0011", lon:"-78.9387", crime:"larceny",loc:{building:"", campus:""}}, {lat:"36.0017", lon:"-78.9391", crime:"alcohol violation",loc:{building:"", campus:""}}, {lat:"36.0201", lon:"-78.9400", crime:"vandalism",loc:{building:"", campus:""}}];
+	locs = [
+	{lat:"36.0011", lon:"-78.9392", crime:"larceny",loc:{building:"few dorm", campus:"west"}},
+	{lat:"36.0017", lon:"-78.9390", crime:"alcohol violation",loc:{building:"Allen Building", campus:"west"}},
+	{lat:"36.0031", lon:"-78.9400", crime:"vandalism",loc:{building:"CIEMAS", campus:"west"}}];
 
+	// locs = [];
 
 	res.send(locs);
 

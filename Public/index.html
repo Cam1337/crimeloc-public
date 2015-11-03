@@ -6,10 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="stylesheets/css/foundation.css">
-  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <script src="semantic/dist/semantic.min.js"></script>
   </head>
 
   <body>
+
+    <div class="ui multiple selection dropdown" style="visibility: hidden">
+      <!-- This will receive comma separated value like OH,TX,WY !-->
+      <input id="buildings" name="buildings" type="hidden">
+      <i class="dropdown icon"></i>
+      <div class="default text">Building</div>
+      <div class="menu">
+        <div data-value="Academic">Academic</div>
+        <div data-value="Administrative">Administrative</div>
+        <div data-value="Athletic">Athletic</div>
+        <div data-value="Dining">Dining</div>
+        <div data-value="Residence">Residence</div>
+        <div data-value="Library">Library</div>
+        <div data-value="Medical">Medical</div>
+        <div data-value="Parking">Parking</div>
+        <div data-value="Transportation">Transportation</div>
+      </div>
+    
+      <input id="crimes" name="crimes" type="hidden">
+      <i class="dropdown icon"></i>
+      <div class="default text">Crimes</div>
+      <div class="menu">
+        <div data-value="AL">Alabama</div> <!-- TODO: FIX THIS !-->
+      </div>
+    </div>
+
+
+
     <div class="row" align = "center">
       <h1>Welcome to CrimeLoc!</h1>
     </div>
@@ -19,32 +49,35 @@
       </label>
       </div>
 
-      <div class="large-2 columns">
-        <label> Building type
-          <form id="building">
-          <select name="Building Type" multiple>
-            <option value="Dorm">Dorm</option>
-            <option value="Academic Building">Academic Building</option>
-          </select>
-        </form>
-          <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
+      <div class="large-6 columns">
+        <select name="buildings" class="ui selection dropdown" multiple="" id="multi-select">
+          <option value="">Building Types</option>
+          <option value="Academic">Academic</option>
+          <option value="Administrative">Administrative</option>
+          <option value="Athletic">Athletic</option>
+          <option value="Dining">Dining</option>
+          <option value="Residence">Residence</option>
+          <option value="Library">Library</option>
+          <option value="Medical">Medical</option>
+          <option value="Parking">Parking</option>
+          <option value="Transportation">Transportation</option>
+        </select>
 
-        </label>
       </div>
-      <div class="large-2 columns">
-        <label> Crime type
-          <form id="crime">
-          <div class="row"><input value="larceny" type="checkbox" name="larceny" id="larceny"> <labe for="larceny">Larceny</label></input></div>
-          <div class="row"><input value="robbery" type="checkbox" name="robbery" id="robbery"> <labe for="robbery">Robbery</label></input></div>
-          </form>
-        </label>
+      <div class="large-6 columns">
+         <select name="crimes" class="ui selection dropdown" multiple="" id="multi-select2">
+          <option value="">Crime Types</option>
+         <!-- TODO: FIX THIS !-->
+          <option value="WI">Wisconsin</option>
+          <option value="WY">Wyoming</option>
+        </select>
       </div>
-      <div class="large-2 columns">
+      <div class="large-4 columns">
         <label> Date
           <input id="date" type="date"></input>
         </label>
       </div>
-      <div class="large-3 columns">
+      <div class="large-4 columns">
         <label> Time
           <br>
           <label>From
@@ -56,7 +89,7 @@
           </label>
         </label>
       </div>
-      <div class="large-3 columns">
+      <div class="large-4 columns">
         <label>Campus
           <form id="campus">
             <input value="west" type="checkbox" name="campus" id="west"><label for="west">West</label>
@@ -69,20 +102,27 @@
         </label>
         <a id="clear">Clear</a>
       </div>
-    <div class="row">
+    <!-- <div class="row"> -->
       <div class="large-12 columns">
         <br>
         <button id="update_map">Show crimes</button>
       </div>
     </div>
-    </div>
+    <br>
+    <!-- </div> -->
 
     <div class="row" align="center" id="gmap" style="width: 600px; height: 400px;">
     </div>
     <div id="controls"></div>
 
+    <br>    <br>    <br>    <br>    <br>\
 
   </body>
+
+  <script>
+    $('#multi-select').dropdown();
+    $('#multi-select2').dropdown();
+  </script>
 
   <script>
   $('document').ready(function () {
@@ -95,7 +135,9 @@
          lat: 36.0011,
          lon: -78.9391,
          zoom: 14
-     }]
+     }],
+    controls_type: 'list',
+    controls_title: 'Choose a location:'
         }).Load();
     });
 
@@ -103,8 +145,18 @@
 
     //action taken when "show crimes" button pressed
     $("#update_map").click(function() {
-      var building = document.getElementById("building").value;
-      var crime = document.getElementById("crime").value;
+
+      //TODO: multi selects don't work now
+      var building = [];
+      $('#buildings input:checked').each(function() {
+        building.push($(this).attr('value'));
+      });
+      var crime = [];
+      $('#crimes input:checked').each(function() {
+        crime.push($(this).attr('value'));
+      });
+      console.log(building);
+      console.log(crime);
       var date = document.getElementById("date").value;
       var time1 = document.getElementById("time1").value;
       var time2 = document.getElementById("time2").value;
@@ -112,7 +164,7 @@
       $('#campus input:checked').each(function() {
         campus.push($(this).attr('value'));
       });
-      var header = '?building=' + building + '&crime=' + crime + '&date=' + date + '&time1= ' + time1 + '&time2=' + time2 + '&campus=' + JSON.stringify(campus);
+      var header = '?building=' + JSON.stringify(building) + '&crime=' + JSON.stringify(crime) + '&date=' + date + '&time1= ' + time1 + '&time2=' + time2 + '&campus=' + JSON.stringify(campus);
       //Make ajax call here
       $.ajax({
         url: "./query" + header,
@@ -121,14 +173,22 @@
           if(data.error){
             console.log(data.error);
           } else{
+            // console.log(map);
             //assume array of info for crimes is returned as data here
-            map.RemoveLocations(0, true);
+            while(map.markers.length > 0){
+              map.RemoveLocations(0, true);
+            }
+
             //loop through crimes list and add a marker for each
             for(i=0; i<data.length; i++){
               var temp = data[i];
+              var stuff = temp.crime + ", " + temp.loc.building + ", " + temp.loc.campus + " campus";
+
               map.AddLocations([{lat: temp.lat,
-                lon: temp.lon, title: temp.crime, location: temp.loc}], i, false);
+                lon: temp.lon, title: stuff, location: temp.loc, zoom: 18,
+                  html: '<p>' + stuff + '</p>',}], i, true);
             }
+
             //TODO: make the map properly scaled after adding markers
             map.Load();
           }
