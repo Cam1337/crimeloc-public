@@ -1,0 +1,18 @@
+Fraud
+Larceny
+Breaking and Entering (B&E)
+Resist, delay, and obstruct
+Alcohol
+Underage
+Injury
+Trespass
+Weapon
+Possession
+Assault
+Forgery and Uttering
+Theft
+Burglary
+Robbery
+Stalking
+Drug
+Other
