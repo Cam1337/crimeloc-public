@@ -6,32 +6,6 @@ var cfenv = require('cfenv');
 var app = express();
 
 
-
-//attempt at retrieving data for database
-// var data = '';
-// var htmlparser = require('htmlparser');
-// var superagent = require('superagent');
-
-// var handler = new htmlparser.DefaultHandler(function(err, dom){
-// 	if(err){
-// 		console.log(err);
-// 	} else{
-// 		data = dom;
-// 	}
-// });
-
-// superagent.get('http://police.duke.edu/news_stats/summaries/weekly/081615.html', function(err, res){
-// 	if(err){
-// 		console.log(err);
-// 	} else{
-// 		var dat = res.text;
-// 		// console.log(dat);
-// 		var parser = new htmlparser.Parser(handler);
-// 		parser.parseComplete(dat);
-// 		console.log(data[2]);
-// 	}
-// });
-
 //handler for client-side ajax GET request
 app.get('/query',function(req, res){
 	console.log(req.query);
@@ -39,9 +13,24 @@ app.get('/query',function(req, res){
 	var crime = req.query.crime
 	var date = req.query.date
 	var campus = req.query.campus
-	//hard-coded data for client-side handler testing
-	res.send([{lat:"36.0011", lon:"-78.9387", crime:"larceny",loc:{building:"", campus:""}}, {lat:"36.0017", lon:"-78.9391", crime:"alcohol violation",loc:{building:"", campus:""}}]);
+
+	var locs;
+	//TODO: query database for information here
+
+
+	//hard-coded data for 2 locations
+	// locs = [{lat:"36.0011", lon:"-78.9387", crime:"larceny",loc:{building:"", campus:""}}, {lat:"36.0017", lon:"-78.9391", crime:"alcohol violation",loc:{building:"", campus:""}}];
+
+	//hard-coded data for 3 locations
+	locs = [{lat:"36.0011", lon:"-78.9387", crime:"larceny",loc:{building:"", campus:""}}, {lat:"36.0017", lon:"-78.9391", crime:"alcohol violation",loc:{building:"", campus:""}}, {lat:"36.0201", lon:"-78.9400", crime:"vandalism",loc:{building:"", campus:""}}];
+
+
+	res.send(locs);
+
+
+
 });
+
 
 
 
