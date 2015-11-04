@@ -116,6 +116,7 @@
         <label> Date
           <input id="datepicker" type="text"></input>
         </label>
+        <a id="clear3">Clear</a>
       </div>
       <div class="large-2 columns" align="center">
         <label> Time
@@ -128,6 +129,7 @@
             <input id="time2" type="text"></input>
           </label>
         </label>
+        <a id="clear4">Clear</a>
       </div>
       <div class="large-2 columns">
         <label>Campus
@@ -209,8 +211,16 @@
     });
     $('#clear1').click(function() {
       $('#multi-select2').dropdown('clear');
-    })
+    });
 
+    $('#clear3').click(function() {
+      document.getElementById("datepicker").value = "";
+    });
+
+    $('#clear4').click(function() {
+      document.getElementById("time1").value = "";
+      document.getElementById("time2").value = "";
+    });
     //action taken when "show crimes" button pressed
     $("#update_map").click(function() {
 
