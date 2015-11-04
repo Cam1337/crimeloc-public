@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <link rel="stylesheet" href="/resources/demos/style.css">
-
+    <script src="jquery.timepicker.min.js"></script>
+    <link rel="stylesheet" href="jquery.timepicker.css">
   </head>
 
   <body>
@@ -118,11 +119,11 @@
         <label> Time
           <br>
           <label>From
-            <input id="time1" type="time"></input>
+            <input id="time1" type="text"></input>
           </label>
           <br>
           <label>To
-            <input id="time2" type="time"></input>
+            <input id="time2" type="text"></input>
           </label>
         </label>
       </div>
@@ -163,6 +164,14 @@
   <script>
     $('#datepicker').datepicker();
   </script>
+
+  <script>
+    $('#time1').timepicker();
+    </script>
+
+    <script>
+      $('#time2').timepicker();
+      </script>
 
   <script>
   $('#multi-select')
