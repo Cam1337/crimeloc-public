@@ -13,16 +13,13 @@
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <link rel="stylesheet" href="/resources/demos/style.css">
-
-
-
   </head>
 
-  <body>
 
+  <body>
     <div class="ui multiple selection dropdown" style="visibility: hidden">
       <!-- This will receive comma separated value like OH,TX,WY !-->
-      <input id="buildings" name="buildings" type="hidden">
+      <input name="buildings" type="hidden">
       <i class="dropdown icon"></i>
       <div class="default text">Building</div>
       <div class="menu">
@@ -62,7 +59,6 @@
       </div>
     </div>
 
-
     <div class="row" align = "center">
       <h1>Welcome to CrimeLoc!</h1>
     </div>
@@ -71,8 +67,7 @@
       <label>Search Parameters (specify as many or as few as desired)
       </label>
       </div>
-
-      <div class="large-6 columns">
+      <div class="large-5 columns">
         <select name="buildings" class="ui selection dropdown" multiple="" id="multi-select">
           <option value="">Building Types</option>
           <option value="Academic">Academic</option>
@@ -85,9 +80,11 @@
           <option value="Parking">Parking</option>
           <option value="Transportation">Transportation</option>
         </select>
-
       </div>
-      <div class="large-6 columns">
+      <div class="large-1 columns">
+        <a id="clear">Clear</a>
+      </div>
+      <div class="large-5 columns">
          <select name="crimes" class="ui selection dropdown" multiple="" id="multi-select2">
           <option value="">Crime Types</option>
          <!-- TODO: FIX THIS !-->
@@ -110,6 +107,9 @@
          <option value="Drug">Drug</option>
          <option value="Other">Other</option>
         </select>
+      </div>
+      <div class="large-1 columns">
+        <a id="clear1">Clear</a>
       </div>
       
       <div class="large-2 columns">
@@ -140,35 +140,21 @@
             </input>
           </form>
         </label>
-        <a id="clear">Clear</a>
+        <a id="clear2">Clear</a>
       </div>
-    <!-- <div class="row"> -->
       <div class="large-12 columns">
         <br>
         <button id="update_map">Show crimes</button>
       </div>
     </div>
     <br>
-    <!-- </div> -->
-
     <div class="row" align="center" id="gmap" style="width: 600px; height: 400px;">
     </div>
     <div id="controls"></div>
-
-    <br>    <br>    <br>    <br>    <br>\
-
+    <br><br><br><br><br>
   </body>
-
   <link rel="stylesheet" href="pqselect.dev.css" />
   <script src = "pqselect.dev.js"></script>
-
-
-  <script>
-  $('#multi-select')
-.dropdown()
-;
-  </script>
-
   <script>
     $('#multi-select').dropdown();
     $('#multi-select2').dropdown();
@@ -182,7 +168,6 @@
 
   <script>
   $('document').ready(function () {
-
     //load and initialize map
     var map;
     $(function() {
@@ -197,22 +182,19 @@
         }).Load();
     });
 
-
+    $('#clear').click(function() {
+      $('#multi-select').dropdown('clear');
+    });
+    $('#clear1').click(function() {
+      $('#multi-select2').dropdown('clear');
+    })
 
     //action taken when "show crimes" button pressed
     $("#update_map").click(function() {
-
-      //TODO: multi selects don't work now
-      var building = [];
-      $('#buildings input:checked').each(function() {
-        building.push($(this).attr('value'));
-      });
-      var crime = [];
-      $('#crimes input:checked').each(function() {
-        crime.push($(this).attr('value'));
-      });
-      console.log(building);
-      console.log(crime);
+      var building = $('#multi-select').dropdown('get value');
+      var crime = $('#multi-select2').dropdown('get value');
+      building.splice(building.length-1, 1);
+      crime.splice(crime.length-1, 1);
       var date = document.getElementById("date").value;
       var time1 = document.getElementById("time1").value;
       var time2 = document.getElementById("time2").value;
@@ -239,12 +221,10 @@
             for(i=0; i<data.length; i++){
               var temp = data[i];
               var stuff = temp.crime + ", " + temp.loc.building + ", " + temp.loc.campus + " campus";
-
               map.AddLocations([{lat: temp.lat,
                 lon: temp.lon, title: stuff, location: temp.loc, zoom: 18,
                   html: '<p>' + stuff + '</p>',}], i, true);
             }
-
             //TODO: make the map properly scaled after adding markers
             map.Load();
           }
@@ -252,23 +232,15 @@
     });
 
 
-
-
     //action taken to clear campus specification
-    $("#clear").click(function() {
+    $("#clear2").click(function() {
       document.getElementById("west").checked=false;
       document.getElementById("east").checked=false;
       document.getElementById("central").checked=false;
     });
-
-
-
-
   });
   </script>
-
   <script src="//maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.7"></script>
   <script src="maplace-0.1.3.js"></script>
   </head>
-
   </html>

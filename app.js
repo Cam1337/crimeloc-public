@@ -13,7 +13,6 @@ app.get('/query',function(req, res){
 	var crime = req.query.crime
 	var date = req.query.date
 	var campus = req.query.campus
-
 	var locs;
 	//TODO: query database for information here
 
