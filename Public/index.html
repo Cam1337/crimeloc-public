@@ -9,6 +9,12 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
     <script src="semantic/dist/semantic.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+
+
 
   </head>
 
@@ -55,7 +61,6 @@
         <div data-value="Other">Other</div>
       </div>
     </div>
-
 
 
     <div class="row" align = "center">
@@ -106,9 +111,10 @@
          <option value="Other">Other</option>
         </select>
       </div>
+      
       <div class="large-2 columns">
         <label> Date
-          <input id="date" type="date"></input>
+          <input id="datepicker" type="text"></input>
         </label>
       </div>
       <div class="large-4 columns">
@@ -166,6 +172,12 @@
   <script>
     $('#multi-select').dropdown();
     $('#multi-select2').dropdown();
+  </script>
+
+  <script>
+    $(function() {
+      $( "#datepicker" ).datepicker();
+    });
   </script>
 
   <script>
