@@ -11,7 +11,7 @@
     <script src="semantic/dist/semantic.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
     <script src="jquery.timepicker.min.js"></script>
     <link rel="stylesheet" href="jquery.timepicker.css">
   </head>
@@ -69,9 +69,11 @@
       <div class="large-12 columns">
       <label>Search Parameters (specify as many or as few as desired)
       </label>
+        <br><br>
       </div>
-
-      <div class="large-6 columns">
+    </div>
+      <div class="large-3 columns">
+        <a id="clear">Clear</a>
         <select name="buildings" class="ui selection dropdown" multiple="" id="multi-select">
           <option value="">Building Types</option>
           <option value="Academic">Academic</option>
@@ -84,9 +86,9 @@
           <option value="Parking">Parking</option>
           <option value="Transportation">Transportation</option>
         </select>
-
       </div>
-      <div class="large-6 columns">
+      <div class="large-3 columns">
+        <a id="clear1">Clear</a>
          <select name="crimes" class="ui selection dropdown" multiple="" id="multi-select2">
           <option value="">Crime Types</option>
          <!-- TODO: FIX THIS !-->
@@ -115,7 +117,7 @@
           <input id="datepicker" type="text"></input>
         </label>
       </div>
-      <div class="large-4 columns">
+      <div class="large-2 columns" align="center">
         <label> Time
           <br>
           <label>From
@@ -127,7 +129,7 @@
           </label>
         </label>
       </div>
-      <div class="large-4 columns">
+      <div class="large-2 columns">
         <label>Campus
           <form id="campus">
             <input value="west" type="checkbox" name="campus" id="west"><label for="west">West</label>
@@ -140,14 +142,14 @@
         </label>
         <a id="clear">Clear</a>
       </div>
-    <!-- <div class="row"> -->
+    <div class="row" align="center">
       <div class="large-12 columns">
         <br>
         <button id="update_map">Show crimes</button>
       </div>
     </div>
     <br>
-    <!-- </div> -->
+    </div>
 
     <div class="row" align="center" id="gmap" style="width: 600px; height: 400px;">
     </div>
@@ -201,23 +203,23 @@
         }).Load();
     });
 
-
+    //functions to clear drop down lists
+    $('#clear').click(function() {
+      $('#multi-select').dropdown('clear');
+    });
+    $('#clear1').click(function() {
+      $('#multi-select2').dropdown('clear');
+    })
 
     //action taken when "show crimes" button pressed
     $("#update_map").click(function() {
 
-      //TODO: multi selects don't work now
-      var building = [];
-      $('#buildings input:checked').each(function() {
-        building.push($(this).attr('value'));
-      });
-      var crime = [];
-      $('#crimes input:checked').each(function() {
-        crime.push($(this).attr('value'));
-      });
-      console.log(building);
-      console.log(crime);
-      var date = document.getElementById("date").value;
+      var building = $('#multi-select').dropdown('get value');
+      var crime = $('#multi-select2').dropdown('get value');
+      building.splice(building.length-1, 1);
+      crime.splice(crime.length-1, 1);
+
+      var date = document.getElementById("datepicker").value;
       var time1 = document.getElementById("time1").value;
       var time2 = document.getElementById("time2").value;
       var campus = [];

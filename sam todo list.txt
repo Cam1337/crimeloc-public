@@ -11,3 +11,4 @@ update date/time input
 
 Allow more control of map (options for view all, better zoom upon new query, etc.)
 
+SANITIZE INPUTS
