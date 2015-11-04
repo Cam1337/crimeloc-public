@@ -34,7 +34,7 @@
         <div data-value="Transportation">Transportation</div>
       </div>
 
-      <input id="crimes" name="crimes" type="hidden">
+      <input name="crimes" type="hidden">
       <i class="dropdown icon"></i>
       <div class="default text">Crimes</div>
       <div class="menu">
@@ -111,37 +111,8 @@
       <div class="large-1 columns">
         <a id="clear1">Clear</a>
       </div>
-      
-      <div class="large-2 columns">
-        <label> Date
-          <input id="datepicker" type="text"></input>
-        </label>
-      </div>
-      <div class="large-4 columns">
-        <label> Time
-          <br>
-          <label>From
-            <input id="time1" type="time"></input>
-          </label>
-          <br>
-          <label>To
-            <input id="time2" type="time"></input>
-          </label>
-        </label>
-      </div>
-      <div class="large-4 columns">
-        <label>Campus
-          <form id="campus">
-            <input value="west" type="checkbox" name="campus" id="west"><label for="west">West</label>
-            </input>
-            <input value="east" type="checkbox" name="campus" id="east"><label for="east">East</label>
-            </input>
-            <input value="central" type="checkbox" name="campus" id="central"><label for="central">Central</label>
-            </input>
-          </form>
-        </label>
-        <a id="clear2">Clear</a>
-      </div>
+
+    
       <div class="large-12 columns">
         <br>
         <button id="update_map">Show crimes</button>
@@ -153,18 +124,16 @@
     <div id="controls"></div>
     <br><br><br><br><br>
   </body>
-  <link rel="stylesheet" href="pqselect.dev.css" />
-  <script src = "pqselect.dev.js"></script>
+
+  <script>
+    $('#datepicker').datepicker();
+  </script>
+
   <script>
     $('#multi-select').dropdown();
     $('#multi-select2').dropdown();
   </script>
 
-  <script>
-    $(function() {
-      $( "#datepicker" ).datepicker();
-    });
-  </script>
 
   <script>
   $('document').ready(function () {
