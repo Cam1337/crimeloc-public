@@ -70,13 +70,13 @@
         $("#search").on("click", function(e){
             var lower_time = $("#time_lower_hour").val();
             var upper_time = $("#time_upper_hour").val();
-            var lower_time_med = $("#lower_time_med option:selected").val();
-            var upper_time_med = $("#upper_time_med option:selected").val();
+            var lower_time_med = $("#time_lower_med option:selected").val();
+            var upper_time_med = $("#time_upper_med option:selected").val();
             var pkt = {
                 lower_date: bounds.lower,
                 upper_date: bounds.upper,
-                lower_time: lower_time_med == "am" ? lower_time : parseInt(lower_time) + 12,
-                upper_time: upper_time_med == "am" ? upper_time : parseInt(upper_time) + 12,
+                lower_time: lower_time_med == "pm" ? lower_time : parseInt(lower_time) + 12,
+                upper_time: upper_time_med == "pm" ? upper_time : parseInt(upper_time) + 12,
             };
 
             var opts = {

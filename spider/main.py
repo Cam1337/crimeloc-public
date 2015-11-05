@@ -14,7 +14,8 @@ sql.save(processed, conf=sql.defaultSQLConf)
 # cmd = "SELECT count(location) c, location l FROM crimes WHERE datetime('2015-08-25 00:00:00') < reported AND reported < datetime('2015-09-07 00:00:00') group by location"
 # cmd = "SELECT time(reported), description, location FROM crimes WHERE time(reported) < '04:00:00' AND time(reported) > '03:00:00'"
 # cmd = "SELECT * FROM crimes WHERE reported < '2015-11-07 00:00:00' AND reported > '2015-11-13 00:00:00'"
-cmd = "SELECT * FROM crimes WHERE reported > '2015-11-07 00:00:00' AND reported < '2015-11-20 00:00:00' "
+# cmd = "SELECT * FROM crimes WHERE reported > '2015-11-07 00:00:00' AND reported < '2015-11-20 00:00:00' "
+cmd = "SELECT time(reported) FROM crimes"
 loadedSQL = sql.load(conf=sql.defaultSQLConf)
 result = sql.run(cmd, loadedSQL)
 
