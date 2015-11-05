@@ -1,0 +1,11 @@
+
+<div>Hello, {name}</div>
+<div>
+    You are {age} {@pluralize_years key="age" /} old
+</div>
+<div>
+    <span>Your friends are: </span>
+    <span>
+        {@format_list list="friends" val="name" sep="," last="and" between=" " /}
+    </span>
+</div>

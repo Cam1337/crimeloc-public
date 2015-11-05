@@ -1,0 +1,96 @@
+{> "layout" /}
+{<body}
+    <div class="container-fluid">
+        <br>
+        <div class="panel panel-default row-eq-height">
+            <div class="panel-body">
+                <div class="col-md-4">
+                    <div id="date_lower" class="btn btn-default">Click to set lower date bound</div> |
+                    <div id="time_lower" class="input-group">
+                        <input id="time_lower_hour" type="text" class="form-control" placeholder="Lower Time Bound: "><b></b>
+                        <!--<input type="text" class="form-control" aria-label="">-->
+                        <select id="time_lower_med">
+                            <option value="am">am</option>
+                            <option value="pm">pm</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div id="date_upper" class="btn btn-default">Click to set upper date bound</div>
+                    <div id="time_upper" class="input-group">
+                        <input id="time_upper_hour" type="text" class="form-control" placeholder="Lower Time Bound: "><b></b>
+                        <!--<input type="text" class="form-control" aria-label="">-->
+                        <select id="time_upper_med">
+                            <option value="am">am</option>
+                            <option value="pm">pm</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-1 vcenter">
+                    <div id="search" class="btn btn-primary">Search</div>
+                </div>
+                <div class="col-md-1 vcenter">
+                    <div class="btn btn-primary">Clear</div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div id="results" class="panel-body">
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        bounds = {
+            lower: "",
+            upper: ""
+        };
+        function onDateChange(d){
+            var da = new Date("20"+d);
+            var bt = $(this).attr("id").split("_")[1];
+            bounds[bt] = "20"+d;
+            bt = bt.charAt(0).toUpperCase() + bt.slice(1);
+            $(this).text(bt + " Date Bound: " + da.toDateString());
+            return true
+        }
+        function onTimeChange(t){
+
+        }
+        var opts = {
+            format: 'y-m-d',
+            flat: false,
+            hide_on_select: true,
+            change: onDateChange
+        };
+        $("#date_lower").pickmeup(opts);
+        $("#date_upper").pickmeup(opts);
+
+        $("#search").on("click", function(e){
+            var lower_time = $("#time_lower_hour").val();
+            var upper_time = $("#time_upper_hour").val();
+            var lower_time_med = $("#lower_time_med option:selected").val();
+            var upper_time_med = $("#upper_time_med option:selected").val();
+            var pkt = {
+                lower_date: bounds.lower,
+                upper_date: bounds.upper,
+                lower_time: lower_time_med == "am" ? lower_time : parseInt(lower_time) + 12,
+                upper_time: upper_time_med == "am" ? upper_time : parseInt(upper_time) + 12,
+            };
+
+            var opts = {
+                "url": "/query",
+                "type": "post",
+                "format":"html",
+                methods: {
+                    before: function(el){
+                        return pkt;
+                    },
+                }
+            };
+            remoteRequest("#results", opts)
+        })
+    </script>
+
+{/body}
