@@ -4,7 +4,7 @@ import sqlite3
 
 defaultSQLConf = {
     "type":"sqlite",
-    "file":"out.sqlite",
+    "file":"../webapp/models/out.sqlite",
     "url":{
         "domain":"",
         "port":""

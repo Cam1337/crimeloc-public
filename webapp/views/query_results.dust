@@ -1,3 +1,4 @@
+<div class="panel panel-default"><center><b>Query: </b>{query}</center></div>
 <table class="table table-striped">
     <tr>
         <td><b>Status</b></td>

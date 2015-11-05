@@ -1,7 +1,10 @@
 __author__ = 'cam'
 
 def sanitizeDescription(desc):
-    return desc.lstrip("-")
+    d = desc.lstrip("-")
+    if "2" == d.strip():
+        return "2nd degree trespassing"
+    return d
 def parseTimeOccurred(t, d):
     t = t.replace("?","")
     d = d.replace("?","")
