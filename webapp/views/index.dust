@@ -75,8 +75,8 @@
             var pkt = {
                 lower_date: bounds.lower,
                 upper_date: bounds.upper,
-                lower_time: lower_time_med == "pm" ? lower_time : parseInt(lower_time) + 12,
-                upper_time: upper_time_med == "pm" ? upper_time : parseInt(upper_time) + 12,
+                lower_time: lower_time_med == "am" ? lower_time : parseInt(lower_time) + 12,
+                upper_time: upper_time_med == "am" ? upper_time : parseInt(upper_time) + 12,
             };
 
             var opts = {

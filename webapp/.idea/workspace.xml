@@ -80,8 +80,8 @@
       <file leaf-file-name="index.dust" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/index.dust">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.32113144">
-              <caret line="73" column="51" selection-start-line="73" selection-start-column="51" selection-end-line="73" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.46256238">
+              <caret line="78" column="48" selection-start-line="78" selection-start-column="48" selection-end-line="78" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -802,8 +802,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/index.dust">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32113144">
-          <caret line="73" column="51" selection-start-line="73" selection-start-column="51" selection-end-line="73" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.46256238">
+          <caret line="78" column="48" selection-start-line="78" selection-start-column="48" selection-end-line="78" selection-end-column="48" />
           <folding />
         </state>
       </provider>
