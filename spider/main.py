@@ -18,6 +18,14 @@ sql.save(processed, conf=sql.defaultSQLConf)
 cmd = "SELECT time(reported) FROM crimes"
 loadedSQL = sql.load(conf=sql.defaultSQLConf)
 result = sql.run(cmd, loadedSQL)
-
 pprint.pprint(result)
 print len(result)
+
+def productionSQL(f="TEST-PRODUCTION.SQL"):
+    loadedSQL = sql.load(conf=sql.defaultSQLConf)
+    for l in open(f,"r").readlines():
+        result = sql.run(l, loadedSQL)
+        print "-------------------\nQuery: {}\nResult:".format(l.strip()),
+        pprint.pprint(result)
+
+# productionSQL()
