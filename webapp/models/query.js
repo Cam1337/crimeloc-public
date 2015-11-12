@@ -14,7 +14,7 @@ module.exports = {
             //if (b.lower_date != '' || b.upper_date != '' || b.lower_time != NaN || b.upperTime != NaN){
             //    base_query += " WHERE"
             //}
-            if b.lower_date == "24"){
+            if (b.lower_date == "24"){
                 b.lower_date = "00"
             }
             if (b.lower_date != ''){
