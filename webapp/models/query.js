@@ -21,9 +21,9 @@ module.exports = {
                 conditions.push(" reported > '" + b.lower_date + " 00:00:00' ")
             }if (b.upper_date != ''){
                 conditions.push(" reported < '" + b.upper_date + " 00:00:00' ")
-            }if (!isNaN(b.lower_time)){
+            }if (!isNaN(b.lower_time) && b.lower_time != ''){
                 conditions.push(" time(reported) > '" + b.lower_time + ":00:00' ")
-            }if (!isNaN(b.upper_time)){
+            }if (!isNaN(b.upper_time) && b.upper_time != ''){
                 conditions.push(" time(reported) < '" + b.upper_time + ":00:00' ")
             }
             if (conditions.length > 0){
