@@ -1,0 +1,17 @@
+<div class="panel panel-default"><center><b>Query: </b>{query}</center></div>
+<table class="table table-striped">
+    <tr>
+        <td><b>Status</b></td>
+        <td><b>Description</b></td>
+        <td><b>Location</b></td>
+        <td><b>Date&Time Occurred</b></td>
+    </tr>
+    {#results}
+        <tr>
+            <td>{.status}</td>
+            <td>{.description}</td>
+            <td>{.location}</td>
+            <td>{.occurred_start}</td>
+        </tr>
+    {/results}
+</table>
