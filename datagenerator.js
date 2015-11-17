@@ -30,7 +30,8 @@ var crime_types = [
 
 
 
-var buildings = [];
+var buildings = []; //format: {name:"Crowell", type:"Dorm", campus: "West", lat:123.3, long: 1234123.1234}
+//todo: add buildings here
 
 
 
@@ -43,6 +44,10 @@ var dispositions = [
 		"Pending",
 		"Unfounded"
 	];
+
+
+//GENERATE DATA HERE
+
 
 var months = ["January", "February", "March", "April", "May", "June",
 		"July", "August", "September", "October", "November", "December"];
@@ -99,25 +104,16 @@ for(i=0;i<12;i++){ //generate data for each month
 		var disposition;
 
 		var prob2 = Math.random();
-		if(crime.tags.indexOf("violent") != -1 && prob2 > 0.9){ //arrest at least 90% of all violent offenders
+		if(crime.tags.indexOf("violent") != -1 && prob2 > 0.9){ //arrest 90% of all violent offenders
 			disposition = "Arrest";
-		} else if(){
-
+		} else{
+			disposition = dispositions[Math.floor((Math.random() * crime_types.length-1) + 1)];
 		}
-
-
-		"Arrest",
-		"Cleared by Referral",
-		"Closed",
-		"Closed-SC",
-		"Exceptionally Cleared",
-		"Pending",
-		"Unfounded"
 
 
 
 		//add crime instance to database
-
+		//TODO
 
 
 	}
