@@ -29,10 +29,8 @@ var crime_types = [
     ];
 
 
-
-
-
 var buildings = [
+	//academic & administrative
 	{name:"2022 Campus Drive", type:"Academic & Administrative", campus:"West", lat:36.000378, lon:-78.929905},
 	{name:"218 Alexander", type:"Academic & Administrative", campus:"Central", lat:36.004661, lon:-78.927861},
 	{name:"705 Broad St", type:"Academic & Administrative", campus:"East", lat:36.007891, lon:-78.920217},
@@ -84,13 +82,51 @@ var buildings = [
 	{name:"Trent Drive Hall", type:"Academic & Administrative", campus:"West", lat:36.007172, lon:-78.933803},
 	{name:"Undergraduate Admissions", type:"Academic & Administrative", campus:"West", lat:35.999895, lon:-78.933184},
 	{name:"West Duke Building", type:"Academic & Administrative", campus:"East", lat:36.004955, lon:-78.915396},
-	{name:"White Lecture Hall", type:"Academic & Administrative", campus:"East", lat:36.005264, lon:-78.913910}
+	{name:"White Lecture Hall", type:"Academic & Administrative", campus:"East", lat:36.005264, lon:-78.913910},
+	//TODO: Housing, Dining, Athletics, Performance
+	//parking
+	{name:"Allen Lot", type:"Parking", campus: "West", lat:36.001760, lon: -78.936692},
+	{name:"Biddle Music Lot", type:"Parking", campus: "East", lat:36.009326, lon: -78.915372},
+	{name:"Blue Zone Lot", type:"Parking", campus: "West", lat: 35.996298, lon: -78.938656},
+	{name:"Brown Lot", type:"Parking", campus: "East", lat: 36.008425, lon: -78.913738},
+	{name:"Brian Center Lot", type:"Parking", campus: "West", lat: 36.002018, lon: -78.941392},
+	{name:"Brian Center Parking Garage", type:"Parking", campus: "West", lat: 36.001785, lon: -78.942175},
+	{name:"Wilson Lot", type:"Parking", campus: "West", lat: 35.998219, lon: -78.940893},
+	{name:"Central Housing Lot 1", type:"Parking", campus: "Central", lat: 36.003898, lon: -78.930416},
+	{name:"Central Housing Lot 2", type:"Parking", campus: "Central", lat: 36.004430, lon: -78.928560},
+	{name:"Central Housing Lot 3", type:"Parking", campus: "Central", lat: 36.004037, lon: -78.926007},
+	{name:"Duke Police Lot", type:"Parking", campus: "Central", lat: 36.001877, lon: -78.926463},
+	{name:"Edens B Lot", type:"Parking", campus: "West", lat: 35.997887, lon: -78.938039},
+	{name:"Edens C Lot", type:"Parking", campus: "West", lat: 35.997513, lon: -78.936912},
+	{name:"Edens D Lot", type:"Parking", campus: "West", lat: 35.998839, lon: -78.934928},
+	{name:"Epworth Lot", type:"Parking", campus: "East", lat: 36.005942, lon: -78.912773},
+	{name:"H Lot", type:"Parking", campus: "Central", lat: 36.006167, lon: -78.931285},
+	{name:"IM Lot", type:"Parking", campus: "West", lat: 35.996126, lon: -78.939461},
+	{name:"Law School Lot", type:"Parking", campus: "West", lat: 35.999857, lon: -78.946391},
+	{name:"Public Policy Lot", type:"Parking", campus: "West", lat: 35.998562, lon: -78.942727},
+	{name:"Smith Warehouse Lot N", type:"Parking", campus: "East", lat: 36.002742, lon: -78.914956},
+	{name:"Smith Warehouse Lot S", type:"Parking", campus: "East", lat: 36.001760, lon: -78.915707},
+	{name:"Southgate Lot", type:"Parking", campus: "East", lat: 36.006322, lon: -78.918335},
+	//medical
+	{name:"Davidson Building", type:"Medical", campus: "West", lat: 36.003114, lon: -78.936918},
+	{name:"Duke Children's Hospital", type:"Medical", campus: "West", lat: 36.007402, lon: -78.937293},
+	{name:"Duke Hospital", type:"Medical", campus: "West", lat: 36.006811, lon: -78.937476},
+	{name:"Duke Student Health", type:"Medical", campus: "West", lat: 36.003244, lon: -78.935663},
+	{name:"Duke VA Medical Center", type:"Medical", campus: "West", lat: 36.008981, lon: -78.938409},
+	{name:"Global Health Research Building", type:"Medical", campus: "West", lat: 36.008027, lon: -78.943398},
+	{name:"Snyderman Genome Science Research Building", type:"Medical", campus: "West", lat: 36.007254, lon: -78.944589},
+	//library
+	{name:"Bostock Library", type:"Library", campus:"West", lat: 36.003135, lon: -78.938318},
+	{name:"Perkins Library", type: "Library", campus: "West", lat: 36.002542, lon: -78.938575},
+	{name:"Rubenstein Rare Books Library", type: "Library", campus: "West", lat: 36.001992, lon: -78.938503},
+	{name:"Goodson Law Library", type: "Library", campus: "West", lat: 35.999894, lon: -78.945152},
+	{name:"Lilly Library", type: "Library", campus: "East", lat: 36.007732, lon: -78.915347},
+	//store
+	{name:"Bryan Center Lobby Shop", type:"Store", campus:"West", lat: 36.000977, lon: -78.940812},
+	{name:"East Campus Store", type:"Store", campus: "East", lat: 36.007646, lon: -78.914092},
+	{name:"Gothic Bookshop", type:"Store", campus: "West", lat: 36.000795, lon: -78.940643}
 
-
-
-
-]; //format: {name:"Crowell", type:"Dorm", campus: "West", lat:123.3, long: 1234123.1234}
-//todo: add buildings here
+];
 
 
 
@@ -140,18 +176,20 @@ for(i=0;i<12;i++){ //generate data for each month
 
 
 		//generate crime here
-		var ind = Math.floor((Math.random() * crime_types.length-1) + 1);
+		var ind = Math.floor((Math.random() * (crime_types.length-1)));
 		var crime = crime_types[ind];
 		// console.log(JSON.stringify(crime));
 
 
 		//generate building (include building type, campus)
+		var ind2 = Math.floor((Math.random() * (buildings.length-1)));
+		var building = buildings[ind2];
 
 		//generate indoor/outdoor
 		var indoor;
 		var prob1 = Math.random();
 
-		if((crime.tags.indexOf("driving") == -1) && (crime.name == "Breaking and Entering" || prob1 > 0.7)){ //driving crimes cannot occur inside
+		if(crime.tags.indexOf("driving") == -1 && building.type != "Parking" && (crime.name == "Breaking and Entering" || prob1 > 0.7)){ //driving crimes cannot occur inside
 			indoor = true;
 		} else{
 			indoor = false;
@@ -166,14 +204,24 @@ for(i=0;i<12;i++){ //generate data for each month
 		if(crime.tags.indexOf("violent") != -1 && prob2 > 0.9){ //arrest 90% of all violent offenders
 			disposition = "Arrest";
 		} else{
-			disposition = dispositions[Math.floor((Math.random() * crime_types.length-1) + 1)];
+			disposition = dispositions[Math.floor((Math.random() * dispositions.length-1) + 1)];
 		}
 
 
-
+		console.log(month + " " + day + ", " + hour + ":" + minute);
+		console.log(crime);
+		console.log(building);
+		console.log(indoor);
+		console.log(disposition);
 		//add crime instance to database
 		//TODO
 
 
 	}
 }
+
+
+
+
+
+
