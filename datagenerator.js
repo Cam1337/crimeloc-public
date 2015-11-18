@@ -1,6 +1,6 @@
-//Used to generate fake data for our project
+//this program is used to generate fake data for our project
 
-
+var fs = require('fs');
 
 var crime_types = [
 		//violent
@@ -144,13 +144,15 @@ var dispositions = [
 //GENERATE DATA HERE
 
 
-var months = ["January", "February", "March", "April", "May", "June",
-		"July", "August", "September", "October", "November", "December"];
+// var months = ["January", "February", "March", "April", "May", "June",
+// 		"July", "August", "September", "October", "November", "December"];
 
-
+var out = [];
+var id = -2;
 
 for(i=0;i<12;i++){ //generate data for each month
-	var month = months[i];
+	id ++;
+	var month = i + 1;
 	var max;
 	if([3,5,8,10].indexOf(i) != -1){
 		max = 30;
@@ -159,15 +161,16 @@ for(i=0;i<12;i++){ //generate data for each month
 	} else max = 31;
 	// console.log(month + ", " + max);
 
-	for(j=0;j<10;j++){	//generate 10k crimes per month
+	for(j=0;j<10;j++){	//generate 10k crimes per month 
+		id ++;
 		//generate day, time of day
 		var day = Math.floor((Math.random() * max) + 1); //day of month
-		var hour = Math.floor((Math.random() * 24) + 1); //hour of day
+		var hour = Math.floor((Math.random() * 24)); //hour of day
 		hour = "" + hour;
 		if(hour < 10){
 			hour = "0" + hour;
 		}
-		var minute = Math.floor((Math.random() * 60) + 1); //minute of hour
+		var minute = Math.floor((Math.random() * 60)); //minute of hour
 		minute = "" + minute;
 		if(minute < 10){
 			minute = "0" + minute;
@@ -178,6 +181,7 @@ for(i=0;i<12;i++){ //generate data for each month
 		//generate crime here
 		var ind = Math.floor((Math.random() * (crime_types.length-1)));
 		var crime = crime_types[ind];
+		crime.id = id;
 		// console.log(JSON.stringify(crime));
 
 
@@ -190,9 +194,9 @@ for(i=0;i<12;i++){ //generate data for each month
 		var prob1 = Math.random();
 
 		if(crime.tags.indexOf("driving") == -1 && building.type != "Parking" && (crime.name == "Breaking and Entering" || prob1 > 0.7)){ //driving crimes cannot occur inside
-			indoor = true;
+			indoor = "inside";
 		} else{
-			indoor = false;
+			indoor = "outside";
 		}
 		// console.log(indoor);
 
@@ -207,21 +211,32 @@ for(i=0;i<12;i++){ //generate data for each month
 			disposition = dispositions[Math.floor((Math.random() * dispositions.length-1) + 1)];
 		}
 
+		// console.log(month + " " + day + ", " + hour + ":" + minute);
+		// console.log(crime);
+		// console.log(building);
+		// console.log(indoor);
+		// console.log(disposition);
 
-		console.log(month + " " + day + ", " + hour + ":" + minute);
-		console.log(crime);
-		console.log(building);
-		console.log(indoor);
-		console.log(disposition);
-		//add crime instance to database
-		//TODO
-
-
+		//TODO: add crime instance to database
+		// if(i<11 || j < 10){
+		// 	out += {date: month + "/" + day + "/15, time: " + hour + ":" + minute + ", crime: "+ JSON.stringify(crime) + ", building: " + JSON.stringify(building) + ", disposition: " + disposition + ", inside: " + indoor};
+		// } else{
+			var out_line = {date: month + "/" + day + "/15", time: hour + ":" + minute, crime: crime, building: building, disposition: disposition, inside: indoor};
+			out.push(out_line);
+		// }
+		
 	}
 }
 
 
 
+fs.writeFile('data.json', JSON.stringify(out), function (err) {
+  	if (err){
+  		throw err;
+  	} else{
+  		console.log('done.');
+  	}
+});
 
 
 

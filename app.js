@@ -2,32 +2,72 @@ var express = require('express');
 
 var cfenv = require('cfenv');
 
+var fs = require('fs');
+
 // create a new express server
 var app = express();
+
+var dat;
+
+fs.readFile('data.json', 'utf8', function (err, data) {
+  	if (err){
+  		throw err;
+	} else{
+
+  		dat = JSON.parse(data);
+	}
+});
 
 
 //handler for client-side ajax GET request
 app.get('/query',function(req, res){
-	console.log(req.query);
-	var building = req.query.building
-	var crime = req.query.crime
-	var date = req.query.date
-	var campus = req.query.campus
-	var locs;
-	//TODO: query database for information here
 
+	var building = JSON.parse('[' + req.query.building + ']')[0];
+	var crime = JSON.parse('[' + req.query.crime + ']')[0];
+	var date = req.query.date;
+	var time1 = req.query.time1.split(":");
+	var time2 = req.query.time2.split(":");
+	time1[0] = parseInt(time1[0]);
+	time1[1] = parseInt(time1[1]);
+	time2[0] = parseInt(time2[0]);
+	time2[1] = parseInt(time2[1]);
+	var campus = JSON.parse('[' + req.query.campus + ']')[0];
 
-	//hard-coded data for 2 locations
-	// locs = [{lat:"36.0020", lon:"-78.9387", crime:"larceny",loc:{building:"", campus:""}},
-	// {lat:"36.0005", lon:"-78.9391", crime:"alcohol violation",loc:{building:"", campus:""}}];
+	var locs = [];
 
-	//hard-coded data for 3 locations
-	locs = [
-	{lat:"36.0011", lon:"-78.9392", crime:"larceny",loc:{building:"few dorm", campus:"west"}},
-	{lat:"36.0017", lon:"-78.9390", crime:"alcohol violation",loc:{building:"Allen Building", campus:"west"}},
-	{lat:"36.0031", lon:"-78.9400", crime:"vandalism",loc:{building:"CIEMAS", campus:"west"}}];
-
-	// locs = [];
+	//TODO: DELETE THIS
+	for(i=0; i<dat.length; i++){
+		var temp = dat[i];
+		var t = temp.time.split(":");
+		t[0] = parseInt(t[0]);
+		t[1] = parseInt(t[1]);
+		
+		if((building.indexOf(temp.building.type) != -1 || building[0] === null) &&
+			(date === temp.date || date === '') &&
+			((time1[0] < t[0]) || (time1[0] === t[0] && time1[1] <= t[1]) || time1.length === 0) &&
+			((time2[0] > t[0]) || (time2[0] === t[0] && time2[1] >= t[1]) || time2.length === 0) &&
+			(campus.indexOf(temp.building.campus) != -1 || campus.length === 0)
+		){
+			var crime_match;
+			if(crime[0] === null){
+				crime_match = true;
+			} else{
+				crime_match = false;
+				for(x=0; x<temp.crime.tags.length; x++){
+					var c = temp.crime.tags[x];
+					console.log(c);
+					if(crime.indexOf(c) != -1){
+						crime_match = true;
+						break;
+					}
+				}
+			}
+			if(crime_match){
+				locs.push({lat:temp.building.lat, lon:temp.building.lon, crime: temp.crime.name, loc: {building: temp.building.name, campus: temp.building.campus}});
+			}
+		}
+	}
+	//TODO: STOP DELETE HERE
 
 	res.send(locs);
 
