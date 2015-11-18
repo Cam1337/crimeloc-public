@@ -25,39 +25,30 @@
       <i class="dropdown icon"></i>
       <div class="default text">Building</div>
       <div class="menu">
-        <div data-value="Academic">Academic</div>
+        <div data-value="Academic/Administrative">Academic/Administrative</div>
         <div data-value="Administrative">Administrative</div>
-        <div data-value="Athletic">Athletic</div>
+        <div data-value="Athletics">Athletics</div>
         <div data-value="Dining">Dining</div>
-        <div data-value="Residence">Residence</div>
+        <div data-value="Housing">Housing</div>
         <div data-value="Library">Library</div>
         <div data-value="Medical">Medical</div>
         <div data-value="Parking">Parking</div>
-        <div data-value="Transportation">Transportation</div>
+        <div data-value="Performance">Performance</div>
+        <div data-value="Store">Store</div>
       </div>
 
       <input id="crimes" name="crimes" type="hidden">
       <i class="dropdown icon"></i>
       <div class="default text">Crimes</div>
       <div class="menu">
-        <div data-value="Fraud">Fraud</div>
-        <div data-value="Larceny">Larceny</div>
-        <div data-value="Breaking and Entering">Breaking and Entering</div>
-        <div data-value="Resist, Delay, Obstruct">Resist, Delay, Obstruct</div>
-        <div data-value="Alcohol">Alcohol</div>
-        <div data-value="Underage">Underage</div>
-        <div data-value="Injury">Injury</div>
-        <div data-value="Trespass">Trespass</div>
-        <div data-value="Weapon">Weapon</div>
-        <div data-value="Possession">Possession</div>
-        <div data-value="Assault">Assault</div>
-        <div data-value="Forgery and Uttering">Forgery and Uttering</div>
-        <div data-value="Theft">Theft</div>
-        <div data-value="Burglary">Burglary</div>
-        <div data-value="Robbery">Robbery</div>
-        <div data-value="Stalking">Stalking</div>
-        <div data-value="Drug">Drug</div>
-        <div data-value="Other">Other</div>
+        <div data-value="violent">Violent</div>
+        <div data-value="driving">Driving</div>
+        <div data-value="alcohol/drugs">Alcohol/Drugs</div>
+        <div data-value="trespassing, etc.">trespassing, etc.</div>
+        <div data-value="theft, etc.">Theft, etc.</div>
+        <div data-value="sex-related">Sex-related</div>
+        <div data-value="other">Other</div>
+
       </div>
     </div>
 
@@ -77,38 +68,27 @@
         <a id="clear">Clear</a>
         <select name="buildings" class="ui selection dropdown" multiple="" id="multi-select">
           <option value="">Building Types</option>
-          <option value="Academic">Academic</option>
-          <option value="Administrative">Administrative</option>
-          <option value="Athletic">Athletic</option>
+          <option value="Academic/Administrative">Academic/Administrative</option>
+          <option value="Athletics">Athletic</option>
           <option value="Dining">Dining</option>
-          <option value="Residence">Residence</option>
+          <option value="Housing">Housing</option>
           <option value="Library">Library</option>
           <option value="Medical">Medical</option>
           <option value="Parking">Parking</option>
-          <option value="Transportation">Transportation</option>
+          <option value="Performance">Performance</option>
+          <option value="Store">Store</option>
         </select>
       </div>
       <div class="large-3 columns">
         <a id="clear1">Clear</a>
          <select name="crimes" class="ui selection dropdown" multiple="" id="multi-select2">
           <option value="">Crime Types</option>
-           <option value="Fraud">Fraud</option>
-           <option value="Larceny">Larceny</option>
-           <option value="Breaking and Entering">Breaking and Entering</option>
-           <option value="Resist, Delay, Obstruct">Resist, Delay, Obstruct</option>
-           <option value="Alcohol">Alcohol</option>
-           <option value="Underage">Underage</option>
-           <option value="Injury">Injury</option>
-           <option value="Trespass">Trespass</option>
-           <option value="Weapon">Weapon</option>
-           <option value="Possession">Possession</option>
-           <option value="Assault">Assault</option>
-           <option value="Forgery and Uttering">Forgery and Uttering</option>
-           <option value="Theft">Theft</option>
-           <option value="Burglary">Burglary</option>
-           <option value="Robbery">Robbery</option>
-           <option value="Stalking">Stalking</option>
-           <option value="Drug">Drug</option>
+           <option value="violent">violent</option>
+           <option value="driving">driving</option>
+           <option value="alcohol/drugs">alcohol/drugs</option>
+           <option value="theft, etc.">Theft, etc.</option>
+           <option value="sex-related">Sex-related</option>
+           <option value="trespassing, etc.">Trespassing, etc.</option>
            <option value="Other">Other</div>
         </select>
       </div>
@@ -134,11 +114,11 @@
       <div class="large-2 columns">
         <label>Campus
           <form id="campus">
-            <input value="west" type="checkbox" name="campus" id="west"><label for="west">West</label>
+            <input value="West" type="checkbox" name="campus" id="west"><label for="west">West</label>
             </input>
-            <input value="east" type="checkbox" name="campus" id="east"><label for="east">East</label>
+            <input value="East" type="checkbox" name="campus" id="east"><label for="east">East</label>
             </input>
-            <input value="central" type="checkbox" name="campus" id="central"><label for="central">Central</label>
+            <input value="Central" type="checkbox" name="campus" id="central"><label for="central">Central</label>
             </input>
           </form>
         </label>
@@ -236,10 +216,30 @@
       $('#campus input:checked').each(function() {
         campus.push($(this).attr('value'));
       });
-      var header = '?building=' + JSON.stringify(building) + '&crime=' + JSON.stringify(crime) + '&date=' + date + '&time1= ' + time1 + '&time2=' + time2 + '&campus=' + JSON.stringify(campus);
+      var t1 = '';
+      var t2 = '';
+      if(time1 != ""){
+        t1 = time1.split(":")[0];
+        if(time1.indexOf('pm') != -1 && t1 !== '12'){
+          t1 = parseInt(t1) + 12;
+        } else if(time1.indexOf('am') != -1 && t1 === '12'){
+          t1 = 0;
+        }
+        t1 = t1 + ":" + time1.split(":")[1].split("am")[0].split("pm")[0];
+      }
+      if(time2 != ""){
+        t2 = time2.split(":")[0];
+        if(time2.indexOf('pm') != -1 && t2 !== '12'){
+          t2 = parseInt(t2) + 12;
+        } else if(time2.indexOf('am') != -1 && t2 === '12'){
+          t2 = 0;
+        }
+        t2 = t2 + ":" + time2.split(":")[1].split("am")[0].split("pm")[0];
+      }
+      var query_params = '?building=' + JSON.stringify(building) + '&crime=' + JSON.stringify(crime) + '&date=' + date + '&time1=' + t1 + '&time2=' + t2 + '&campus=' + JSON.stringify(campus);
       //Make ajax call here
       $.ajax({
-        url: "./query" + header,
+        url: "./query" + query_params,
         type: "GET"
       }).done(function(data){
           if(data.error){
@@ -257,7 +257,7 @@
               var stuff = temp.crime + ", " + temp.loc.building + ", " + temp.loc.campus + " campus";
 
               map.AddLocations([{lat: temp.lat,
-                lon: temp.lon, title: stuff, location: temp.loc, zoom: 18,
+                lon: temp.lon, title: stuff, location: temp.loc,
                   html: '<p>' + stuff + '</p>',}], i, true);
             }
 

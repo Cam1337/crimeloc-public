@@ -21,7 +21,7 @@ fs.readFile('data.json', 'utf8', function (err, data) {
 
 //handler for client-side ajax GET request
 app.get('/query',function(req, res){
-
+	console.log(req.query);
 	var building = JSON.parse('[' + req.query.building + ']')[0];
 	var crime = JSON.parse('[' + req.query.crime + ']')[0];
 	var date = req.query.date;
@@ -41,21 +41,19 @@ app.get('/query',function(req, res){
 		var t = temp.time.split(":");
 		t[0] = parseInt(t[0]);
 		t[1] = parseInt(t[1]);
-		
-		if((building.indexOf(temp.building.type) != -1 || building[0] === null) &&
+		if((building.indexOf(temp.building.type) != -1 || building[0] === '') &&
 			(date === temp.date || date === '') &&
-			((time1[0] < t[0]) || (time1[0] === t[0] && time1[1] <= t[1]) || time1.length === 0) &&
-			((time2[0] > t[0]) || (time2[0] === t[0] && time2[1] >= t[1]) || time2.length === 0) &&
+			((time1[0] < t[0]) || (time1[0] === t[0] && time1[1] <= t[1]) || String(time1[0]) === "NaN") &&
+			((time2[0] > t[0]) || (time2[0] === t[0] && time2[1] >= t[1]) || String(time2[0]) === "NaN") &&
 			(campus.indexOf(temp.building.campus) != -1 || campus.length === 0)
 		){
 			var crime_match;
-			if(crime[0] === null){
+			if(crime[0] === ''){
 				crime_match = true;
 			} else{
 				crime_match = false;
 				for(x=0; x<temp.crime.tags.length; x++){
 					var c = temp.crime.tags[x];
-					console.log(c);
 					if(crime.indexOf(c) != -1){
 						crime_match = true;
 						break;
