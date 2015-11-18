@@ -7,8 +7,8 @@ var fs = require('fs');
 // create a new express server
 var app = express();
 
+//TODO: Remove this once SQL DB Queries Implemented
 var dat;
-
 fs.readFile('data.json', 'utf8', function (err, data) {
   	if (err){
   		throw err;
@@ -17,6 +17,7 @@ fs.readFile('data.json', 'utf8', function (err, data) {
   		dat = JSON.parse(data);
 	}
 });
+//END DELETE
 
 
 //handler for client-side ajax GET request
