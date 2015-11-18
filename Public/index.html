@@ -245,38 +245,44 @@
         }
         t2 = t2 + ":" + time2.split(":")[1].split("am")[0].split("pm")[0];
       }
-      var query_params = '?building=' + JSON.stringify(building) + '&crime=' + JSON.stringify(crime) + '&date1=' + date1 + '&date2=' + date2 + '&time1=' + t1 + '&time2=' + t2 + '&campus=' + JSON.stringify(campus);
-      //Make ajax call here
-      $.ajax({
-        url: "./query" + query_params,
-        type: "GET"
-      }).done(function(data){
-          if(data.error){
-            console.log(data.error);
-          } else{
-            // console.log(map);
-            //assume array of info for crimes is returned as data here
-            while(map.markers.length > 0){
-              map.RemoveLocations(0, true);
+      if(t1 >= t2){
+        window.alert("Enter a valid time range, please (the start time must be less than the end time)");
+      }
+      else{
+        var query_params = '?building=' + JSON.stringify(building) + '&crime=' + JSON.stringify(crime) + '&date1=' + date1 + '&date2=' + date2 + '&time1=' + t1 + '&time2=' + t2 + '&campus=' + JSON.stringify(campus);
+        //Make ajax call here
+        $.ajax({
+          url: "./query" + query_params,
+          type: "GET"
+        }).done(function(data){
+            if(data.error){
+              console.log(data.error);
+            } else{
+              // console.log(map);
+              //assume array of info for crimes is returned as data here
+              while(map.markers.length > 0){
+                map.RemoveLocations(0, true);
+              }
+
+              //loop through crimes list and add a marker for each
+              for(i=0; i<data.length; i++){
+                var temp = data[i];
+                var stuff = temp.crime + ", " + temp.loc.building + ", " + temp.loc.campus + " campus";
+
+                map.AddLocations([{lat: temp.lat,
+                  lon: temp.lon, title: stuff, location: temp.loc,
+                    html: '<p>' + stuff + '</p>',}], i, false);
+              }
+
+              //TODO: make the map properly scaled after adding markers
+              map.Load();
             }
-
-            //loop through crimes list and add a marker for each
-            for(i=0; i<data.length; i++){
-              var temp = data[i];
-              var stuff = temp.crime + ", " + temp.loc.building + ", " + temp.loc.campus + " campus";
-
-              map.AddLocations([{lat: temp.lat,
-                lon: temp.lon, title: stuff, location: temp.loc,
-                  html: '<p>' + stuff + '</p>',}], i, false);
-            }
-
-            //TODO: make the map properly scaled after adding markers
-            map.Load();
-          }
-        });
-    });
+          });
+      });
 
 
+      }
+      
 
 
     //action taken to clear campus specification
