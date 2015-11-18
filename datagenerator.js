@@ -145,15 +145,15 @@ var dispositions = [
 //GENERATE DATA HERE
 
 
-// var months = ["January", "February", "March", "April", "May", "June",
-// 		"July", "August", "September", "October", "November", "December"];
-
 var out = [];
 var id = -2;
 
 for(i=0;i<12;i++){ //generate data for each month
 	id ++;
 	var month = i + 1;
+	if(month < 10){
+		month = "0" + month;
+	}
 	var max;
 	if([3,5,8,10].indexOf(i) != -1){
 		max = 30;
@@ -180,7 +180,7 @@ for(i=0;i<12;i++){ //generate data for each month
 
 
 		//generate crime here
-		var ind = Math.floor((Math.random() * (crime_types.length-1)));
+		var ind = Math.floor(Math.random() * (crime_types.length));
 		var crime = crime_types[ind];
 		crime.id = id;
 		// console.log(JSON.stringify(crime));

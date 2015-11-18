@@ -89,7 +89,7 @@
            <option value="theft, etc.">Theft, etc.</option>
            <option value="sex-related">Sex-related</option>
            <option value="trespassing, etc.">Trespassing, etc.</option>
-           <option value="Other">Other</div>
+           <option value="other">Other</div>
         </select>
       </div>
       <div class="large-2 columns" align="center">
@@ -245,7 +245,8 @@
         }
         t2 = t2 + ":" + time2.split(":")[1].split("am")[0].split("pm")[0];
       }
-      if(t1!='' && t2 !='' && t1 >= t2){
+      if(t1!='' && t2 !='' && parseInt(t1.split(":")[0]) >= parseInt(t2.split(":")[0])){
+        console.log(t1, t2);
         window.alert("Enter a valid time range, please (the start time must be less than the end time)");
       } else if(date1!='' && date2 !='' && date1 >= date2){
         window.alert("Enter a valid date range, please (the start date must be less than the end date)");
