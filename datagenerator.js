@@ -161,7 +161,7 @@ for(i=0;i<12;i++){ //generate data for each month
 	} else max = 31;
 	// console.log(month + ", " + max);
 
-	for(j=0;j<10;j++){	//generate 10k crimes per month 
+	for(j=0;j<100;j++){	//generate 100 crimes per month, will change this later
 		id ++;
 		//generate day, time of day
 		var day = Math.floor((Math.random() * max) + 1); //day of month
@@ -221,7 +221,7 @@ for(i=0;i<12;i++){ //generate data for each month
 		// if(i<11 || j < 10){
 		// 	out += {date: month + "/" + day + "/15, time: " + hour + ":" + minute + ", crime: "+ JSON.stringify(crime) + ", building: " + JSON.stringify(building) + ", disposition: " + disposition + ", inside: " + indoor};
 		// } else{
-			var out_line = {date: month + "/" + day + "/15", time: hour + ":" + minute, crime: crime, building: building, disposition: disposition, inside: indoor};
+			var out_line = {date: month + "/" + day + "/2015", time: hour + ":" + minute, crime: crime, building: building, disposition: disposition, inside: indoor};
 			out.push(out_line);
 		// }
 		

@@ -92,9 +92,15 @@
            <option value="Other">Other</div>
         </select>
       </div>
-      <div class="large-2 columns">
+      <div class="large-2 columns" align="center">
         <label> Date
-          <input id="datepicker" type="text"></input>
+          <br>
+          <label> From
+            <input id="datepicker1" type="text"></input>
+          </label>
+          <label> To
+            <input id="datepicker2" type="text"></input>
+          </label>
         </label>
         <a id="clear3">Clear</a>
       </div>
@@ -146,7 +152,8 @@
 
 
   <script>
-    $('#datepicker').datepicker();
+    $('#datepicker1').datepicker();
+    $('#datepicker2').datepicker();
   </script>
 
   <script>
@@ -194,7 +201,8 @@
     });
 
     $('#clear3').click(function() {
-      document.getElementById("datepicker").value = "";
+      document.getElementById("datepicker1").value = null;
+      document.getElementById("datepicker2").value = null;
     });
 
     $('#clear4').click(function() {
@@ -209,7 +217,8 @@
       building.splice(building.length-1, 1);
       crime.splice(crime.length-1, 1);
 
-      var date = document.getElementById("datepicker").value;
+      var date1 = document.getElementById("datepicker1").value;
+      var date2 = document.getElementById("datepicker2").value;
       var time1 = document.getElementById("time1").value;
       var time2 = document.getElementById("time2").value;
       var campus = [];
@@ -236,7 +245,7 @@
         }
         t2 = t2 + ":" + time2.split(":")[1].split("am")[0].split("pm")[0];
       }
-      var query_params = '?building=' + JSON.stringify(building) + '&crime=' + JSON.stringify(crime) + '&date=' + date + '&time1=' + t1 + '&time2=' + t2 + '&campus=' + JSON.stringify(campus);
+      var query_params = '?building=' + JSON.stringify(building) + '&crime=' + JSON.stringify(crime) + '&date1=' + date1 + '&date2=' + date2 + '&time1=' + t1 + '&time2=' + t2 + '&campus=' + JSON.stringify(campus);
       //Make ajax call here
       $.ajax({
         url: "./query" + query_params,
@@ -258,7 +267,7 @@
 
               map.AddLocations([{lat: temp.lat,
                 lon: temp.lon, title: stuff, location: temp.loc,
-                  html: '<p>' + stuff + '</p>',}], i, true);
+                  html: '<p>' + stuff + '</p>',}], i, false);
             }
 
             //TODO: make the map properly scaled after adding markers
