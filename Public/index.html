@@ -245,10 +245,10 @@
         }
         t2 = t2 + ":" + time2.split(":")[1].split("am")[0].split("pm")[0];
       }
-      if(t1 >= t2){
-        window.alert("Enter a valid time range, please (the start time must be before the end time)");
-      } else if(date1 >= date2){
-        window.alert("Enter a valid date range, please (the start date must be before the end date)");
+      if(t1!='' && t2 !='' && t1 >= t2){
+        window.alert("Enter a valid time range, please (the start time must be less than the end time)");
+      } else if(date1!='' && date2 !='' && date1 >= date2){
+        window.alert("Enter a valid date range, please (the start date must be less than the end date)");
       } else{
         var query_params = '?building=' + JSON.stringify(building) + '&crime=' + JSON.stringify(crime) + '&date1=' + date1 + '&date2=' + date2 + '&time1=' + t1 + '&time2=' + t2 + '&campus=' + JSON.stringify(campus);
         //Make ajax call here
@@ -279,11 +279,11 @@
               map.Load();
             }
           });
-      });
-
 
       }
-      
+    });
+
+
 
 
     //action taken to clear campus specification
