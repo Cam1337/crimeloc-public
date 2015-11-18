@@ -42,7 +42,7 @@ app.get('/query',function(req, res){
 
 	var locs = [];
 
-	//TODO: DELETE THIS
+	//TODO: DELETE THIS, REPLACE WITH SQL QUERIES
 	for(i=0; i<dat.length; i++){
 		var temp = dat[i];
 		var t = temp.time.split(":");

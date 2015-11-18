@@ -26,6 +26,7 @@ var crime_types = [
 		{name:"Breaking and Entering", tags:["trespassing, etc."]},
 		{name:"Trespassing", tags:["trespassing, etc."]},
 		{name:"Resist/Delay/Obstruction of justice", tags:["other"]}
+		//TODO: add/remove crimes, take out sexual assault?
     ];
 
 
@@ -211,25 +212,16 @@ for(i=0;i<12;i++){ //generate data for each month
 			disposition = dispositions[Math.floor((Math.random() * dispositions.length-1) + 1)];
 		}
 
-		// console.log(month + " " + day + ", " + hour + ":" + minute);
-		// console.log(crime);
-		// console.log(building);
-		// console.log(indoor);
-		// console.log(disposition);
-
-		//TODO: add crime instance to database
-		// if(i<11 || j < 10){
-		// 	out += {date: month + "/" + day + "/15, time: " + hour + ":" + minute + ", crime: "+ JSON.stringify(crime) + ", building: " + JSON.stringify(building) + ", disposition: " + disposition + ", inside: " + indoor};
-		// } else{
+		//TODO: Replace the next two lines with a way to write to an SQL db, not just make a json file
 			var out_line = {date: month + "/" + day + "/2015", time: hour + ":" + minute, crime: crime, building: building, disposition: disposition, inside: indoor};
 			out.push(out_line);
-		// }
+		//END DELETE
 		
 	}
 }
 
 
-
+//DELETE THIS ONCE SQL WORKING
 fs.writeFile('data.json', JSON.stringify(out), function (err) {
   	if (err){
   		throw err;
@@ -237,6 +229,7 @@ fs.writeFile('data.json', JSON.stringify(out), function (err) {
   		console.log('done.');
   	}
 });
+//END DELETE
 
 
 
