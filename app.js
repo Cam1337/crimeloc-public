@@ -3,9 +3,13 @@ var express = require('express');
 var cfenv = require('cfenv');
 
 var fs = require('fs');
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('db.sqlite');
 
 // create a new express server
 var app = express();
+
+
 
 //TODO: Remove this once SQL DB Queries Implemented
 var dat;
@@ -18,6 +22,7 @@ fs.readFile('data.json', 'utf8', function (err, data) {
 	}
 });
 //END DELETE
+
 
 
 //handler for client-side ajax GET request
@@ -76,6 +81,19 @@ app.get('/query',function(req, res){
 		}
 	}
 	//TODO: STOP DELETE HERE
+
+	//TODO: Finish SQL DB Queries here
+	db.serialize(function() {
+	  	//TODO: replace these with queries built by the request query params
+	  	db.each("SELECT * FROM Building WHERE Type='Academic/Administrative'", function(err, row) {
+    		console.log(JSON.stringify(row));
+	  	});
+
+		db.each("SELECT  * FROM Crime WHERE Type='Fraud'", function(err, row) {
+	  		console.log(JSON.stringify(row));
+	  	});
+	});
+
 
 	res.send(locs);
 

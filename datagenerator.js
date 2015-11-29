@@ -1,6 +1,8 @@
 //this program is used to generate fake data for our project
 
 var fs = require('fs');
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('db.sqlite');
 
 var crime_types = [
 		//violent
@@ -111,7 +113,113 @@ var buildings = [
 	{name:"Trinity Cafe", type:"Dining", campus:"East", lat:36.007506, lon:-78.914162},
 	{name:"Twinnie's", type:"Dining", campus:"West", lat:36.003340, lon:-78.939664},
 	//Housing
-	// {name:"", type:"Housing", campus:"East", lat:},
+	//east
+	{name:"Alspaugh Residence Hall", type:"Housing", campus:"East", lat:36.008148, lon:-78.915128},
+	{name:"Basset Residence Hall", type:"Housing", campus:"East", lat:36.008695, lon:-78.914183},
+	{name:"Bell Tower Residence Hall", type:"Housing", campus:"East", lat:36.007002, lon:-78.917896},
+	{name:"Blackwell Residence Hall", type:"Housing", campus:"East", lat:36.006456, lon:-78.916340},
+	{name:"Brown Residence Hall", type:"Housing", campus:"East", lat:36.008148, lon:-78.914173},
+	{name:"East Residence Hall", type:"Housing", campus:"East", lat:36.006421, lon:-78.914248},
+	{name:"Epworth Residence Hall", type:"Housing", campus:"East", lat:36.006022, lon:-78.913218},
+	{name:"Gilbert-Addoms Residence Hall", type:"Housing", campus:"East", lat:36.005588, lon:-78.916909},
+	{name:"Giles Residence Hall", type:"Housing", campus:"East", lat:36.006559, lon:-78.915176},
+	{name:"Jarvis Residence Hall", type:"Housing", campus:"East", lat:36.006025, lon:-78.915380},
+	{name:"Pegram Residence Hall", type:"Housing", campus:"East", lat:36.008764, lon:-78.915095},
+	{name:"Randolph Residence Hall", type:"Housing", campus:"East", lat:36.006855, lon:-78.917134},
+	{name:"Southgate Residence Hall", type:"Housing", campus:"East", lat:36.005909, lon:-78.918035},
+	{name:"Wilson Residence Hall", type:"Housing", campus:"East", lat:36.007037, lon:-78.914258},
+	//west
+	{name:"Wannamaker 1", type:"Housing", campus:"West", lat:35.998513, lon:-78.939283},
+	{name:"Wannamaker 2", type:"Housing", campus:"West", lat:35.998679, lon:-78.939171},
+	{name:"Wannamaker 3", type:"Housing", campus:"West", lat:35.998888, lon:-78.939074},
+	{name:"Wannamaker 4", type:"Housing", campus:"West", lat:35.998992, lon:-78.938967},
+	{name:"Kilgo House I", type:"Housing", campus:"West", lat:35.999618, lon:-78.939954},
+	{name:"Kilgo House J", type:"Housing", campus:"West", lat:35.999765, lon:-78.939831},
+	{name:"Kilgo House K", type:"Housing", campus:"West", lat:35.999815, lon:-78.940104},
+	{name:"Kilgo House L", type:"Housing", campus:"West", lat:35.999931, lon:-78.940319},
+	{name:"Kilgo House M", type:"Housing", campus:"West", lat:36.000146, lon:-78.940190},
+	{name:"Kilgo House N", type:"Housing", campus:"West", lat:36.000306, lon:-78.940067},
+	{name:"Kilgo House O", type:"Housing", campus:"West", lat:36.000011, lon:-78.939697},
+	{name:"Kilgo House P", type:"Housing", campus:"West", lat:36.000220, lon:-78.939541},
+	{name:"Keohane House 4A", type:"Housing", campus:"West", lat:35.998783, lon:-78.938141},
+	{name:"Keohane House 4B", type:"Housing", campus:"West", lat:35.999299, lon:-78.937846},
+	{name:"Keohane House 4D", type:"Housing", campus:"West", lat:35.999461, lon:-78.937299},
+	{name:"Keohane House 4E", type:"Housing", campus:"West", lat:35.998994, lon:-78.937269},
+	{name:"Few House FF", type:"Housing", campus:"West", lat:36.000535, lon:-78.938433},
+	{name:"Few House GG", type:"Housing", campus:"West", lat:36.000311, lon:-78.937843},
+	{name:"Few House HH", type:"Housing", campus:"West", lat:35.999915, lon:-78.937749},
+	{name:"Edens House 1A", type:"Housing", campus:"West", lat:35.998580, lon:-78.936781},
+	{name:"Edens House 1B", type:"Housing", campus:"West", lat:35.998390, lon:-78.936566},
+	{name:"Edens House 1C", type:"Housing", campus:"West", lat:35.998933, lon:-78.936636},
+	{name:"Edens House 2A", type:"Housing", campus:"West", lat:35.999006, lon:-78.935866},
+	{name:"Edens House 2C", type:"Housing", campus:"West", lat:35.998985, lon:-78.936215},
+	{name:"Edens House 3A (Decker Tower)", type:"Housing", campus:"West", lat:35.998611, lon:-78.935534},
+	{name:"Edens House 3B (Mitchell Tower)", type:"Housing", campus:"West", lat:35.998408, lon:-78.935169},
+	{name:"Crowell House BB", type:"Housing", campus:"West", lat:35.998973, lon:-78.939635},
+	{name:"Crowell House CC", type:"Housing", campus:"West", lat:35.998770, lon:-78.939756},
+	{name:"Crowell House DD", type:"Housing", campus:"West", lat:35.998927, lon:-78.940330},
+	{name:"Crowell House EE", type:"Housing", campus:"West", lat:35.999184, lon:-78.940190},
+	{name:"Crowell House G", type:"Housing", campus:"West", lat:35.999307, lon:-78.939959},
+	{name:"Crowell House H", type:"Housing", campus:"West", lat:35.999175, lon:-78.939680},
+	{name:"Craven House A", type:"Housing", campus:"West", lat:36.000077, lon:-78.938484},
+	{name:"Craven House AA", type:"Housing", campus:"West", lat:35.999356, lon:-78.939133},
+	{name:"Craven House B", type:"Housing", campus:"West", lat:36.000117, lon:-78.938683},
+	{name:"Craven House C", type:"Housing", campus:"West", lat:35.999985, lon:-78.938809},
+	{name:"Craven House D", type:"Housing", campus:"West", lat:35.999878, lon:-78.938887},
+	{name:"Craven House E", type:"Housing", campus:"West", lat:35.999611, lon:-78.939117},
+	{name:"Craven House F", type:"Housing", campus:"West", lat:35.999243, lon:-78.939367},
+	{name:"Craven House R", type:"Housing", campus:"West", lat:35.999678, lon:-78.938817},
+	{name:"Craven House S", type:"Housing", campus:"West", lat:35.999586, lon:-78.938650},
+	{name:"Craven House T", type:"Housing", campus:"West", lat:35.999774, lon:-78.938363},
+	{name:"Craven House U", type:"Housing", campus:"West", lat:35.999436, lon:-78.938602},
+	{name:"Craven House V0 & v00", type:"Housing", campus:"West", lat:35.999553, lon:-78.938508},
+	{name:"Craven House W/Y", type:"Housing", campus:"West", lat:35.999181, lon:-78.938782},
+	{name:"Craven House X", type:"Housing", campus:"West", lat:35.999335, lon:-78.938707},
+	{name:"Craven House Z", type:"Housing", campus:"West", lat:35.999286, lon:-78.938967},
+	//central
+	{name:"1700 Pace", type:"Housing", campus:"Central", lat:36.004034, lon:-78.925320},
+	{name:"1706 Pace", type:"Housing", campus:"Central", lat:36.004095, lon:-78.925685},
+	{name:"1708 Pace", type:"Housing", campus:"Central", lat:36.004546, lon:-78.925760},
+	{name:"1712 Pace", type:"Housing", campus:"Central", lat:36.004216, lon:-78.926189},
+	{name:"1809 Erwin", type:"Housing", campus:"Central", lat:36.005501, lon:-78.927047},
+	{name:"1901 Erwin", type:"Housing", campus:"Central", lat:36.005657, lon:-78.927562},
+	{name:"1905 Erwin", type:"Housing", campus:"Central", lat:36.005327, lon:-78.927777},
+	{name:"1907 Erwin", type:"Housing", campus:"Central", lat:36.005683, lon:-78.927991},
+	{name:"1909 Erwin", type:"Housing", campus:"Central", lat:36.005770, lon:-78.928356},
+	{name:"1911 Erwin", type:"Housing", campus:"Central", lat:36.005570, lon:-78.928506},
+	{name:"1913 Erwin", type:"Housing", campus:"Central", lat:36.005909, lon:-78.928560},
+	{name:"1915 Erwin", type:"Housing", campus:"Central", lat:36.005518, lon:-78.928860},
+	{name:"1909 Yearby", type:"Housing", campus:"Central", lat:36.004971, lon:-78.928270},
+	{name:"1911 Yearby", type:"Housing", campus:"Central", lat:36.004633, lon:-78.928388},
+	{name:"1915 Yearby", type:"Housing", campus:"Central", lat:36.004867, lon:-78.928785},
+	{name:"2011 Yearby", type:"Housing", campus:"Central", lat:36.004998, lon:-78.930974},
+	{name:"2015 Yearby", type:"Housing", campus:"Central", lat:36.004581, lon:-78.931264},
+	{name:"2017 Yearby", type:"Housing", campus:"Central", lat:36.004937, lon:-78.931382},
+	{name:"1914 Lewis", type:"Housing", campus:"Central", lat:36.004147, lon:-78.931350},
+	{name:"201 Alexander", type:"Housing", campus:"Central", lat:36.005171, lon:-78.925663},
+	{name:"202 Alexander", type:"Housing", campus:"Central", lat:36.005353, lon:-78.926543},
+	{name:"204 Alexander", type:"Housing", campus:"Central", lat:36.005206, lon:-78.926800},
+	{name:"205 Alexander", type:"Housing", campus:"Central", lat:36.005214, lon:-78.925985},
+	{name:"206 Alexander", type:"Housing", campus:"Central", lat:36.005327, lon:-78.927294},
+	{name:"208 Alexander", type:"Housing", campus:"Central", lat:36.004954, lon:-78.926607},
+	{name:"209 Alexander", type:"Housing", campus:"Central", lat:36.004876, lon:-78.925942},
+	{name:"210 Alexander", type:"Housing", campus:"Central", lat:36.004989, lon:-78.927798},
+	{name:"215 Alexander", type:"Housing", campus:"Central", lat:36.004616, lon:-78.926135},
+	{name:"220 Alexander", type:"Housing", campus:"Central", lat:36.004251, lon:-78.926929},
+	{name:"205 Oregon", type:"Housing", campus:"Central", lat:36.004650, lon:-78.924494},
+	{name:"206 Oregon", type:"Housing", campus:"Central", lat:36.004902, lon:-78.925084},
+	{name:"301 Oregon", type:"Housing", campus:"Central", lat:36.003548, lon:-78.924912},
+	{name:"302 Oregon", type:"Housing", campus:"Central", lat:36.003505, lon:-78.925470},
+	{name:"209 Anderson", type:"Housing", campus:"Central", lat:36.006082, lon:-78.928978},
+	{name:"215 Anderson", type:"Housing", campus:"Central", lat:36.005900, lon:-78.929440},
+	{name:"221 Anderson", type:"Housing", campus:"Central", lat:36.005466, lon:-78.929386},
+	{name:"302 Anderson", type:"Housing", campus:"Central", lat:36.005006, lon:-78.930362},
+	{name:"304 Anderson", type:"Housing", campus:"Central", lat:36.004772, lon:-78.930652},
+	{name:"312 Anderson", type:"Housing", campus:"Central", lat:36.004407, lon:-78.930309},
+	{name:"314 Anderson", type:"Housing", campus:"Central", lat:36.004156, lon:-78.930770},
+	{name:"301 Swift", type:"Housing", campus:"Central", lat:36.002697, lon:-78.921050},
+	{name:"Devil's Den", type:"Housing", campus:"Central", lat:36.002810, lon:-78.925105},
+	{name:"Mill Village", type:"Housing", campus:"Central", lat:36.004954, lon:-78.929311},	
 	//parking
 	{name:"Allen Lot", type:"Parking", campus: "West", lat:36.001760, lon: -78.936692},
 	{name:"Biddle Music Lot", type:"Parking", campus: "East", lat:36.009326, lon: -78.915372},
@@ -173,10 +281,8 @@ var dispositions = [
 
 
 var out = [];
-var id = -2;
 
 for(i=0;i<12;i++){ //generate data for each month
-	id ++;
 	var month = i + 1;
 	if(month < 10){
 		month = "0" + month;
@@ -188,9 +294,7 @@ for(i=0;i<12;i++){ //generate data for each month
 		max = 28;
 	} else max = 31;
 	// console.log(month + ", " + max);
-
 	for(j=0;j<100;j++){	//generate 100 crimes per month, will change this later
-		id ++;
 		//generate day, time of day
 		var day = Math.floor((Math.random() * max) + 1); //day of month
 		var hour = Math.floor((Math.random() * 24)); //hour of day
@@ -209,7 +313,6 @@ for(i=0;i<12;i++){ //generate data for each month
 		//generate crime here
 		var ind = Math.floor(Math.random() * (crime_types.length));
 		var crime = crime_types[ind];
-		crime.id = id;
 		// console.log(JSON.stringify(crime));
 
 
@@ -240,23 +343,54 @@ for(i=0;i<12;i++){ //generate data for each month
 		}
 
 		//TODO: Replace the next two lines with a way to write to an SQL db, not just make a json file
-			var out_line = {date: month + "/" + day + "/2015", time: hour + ":" + minute, crime: crime, building: building, disposition: disposition, inside: indoor};
+			var out_line = {date: "2015-" + month + "-" + day, time: hour + ":" + minute, crime: crime, building: building.name, disposition: disposition, inside: indoor};
 			out.push(out_line);
 		//END DELETE
 		
 	}
 }
 
+//write data to database
+db.serialize(function() {
 
-//DELETE THIS ONCE SQL WORKING
-fs.writeFile('data.json', JSON.stringify(out), function (err) {
-  	if (err){
-  		throw err;
-  	} else{
-  		console.log('done.');
-  	}
+	db.run('DROP TABLE Building');
+	db.run('DROP TABLE Crime');
+	db.run('CREATE TABLE Building (Name VARCHAR(256) NOT NULL PRIMARY KEY, Type VARCHAR(256) NOT NULL, Campus VARCHAR(256) NOT NULL, Lat INTEGER NOT NULL, Lon INTEGER NOT NULL)');
+	db.run('CREATE TABLE Crime(ID INTEGER NOT NULL PRIMARY KEY, Type VARCHAR(256) NOT NULL, Tags TEXT[], Date DATE NOT NULL, Time TIME NOT NULL, Disposition VARCHAR(256) NOT NULL, Area_Name VARCHAR(256) NOT NULL, Exterior VARCHAR(256) NOT NULL)');
+
+
+	for (var i = 0; i < buildings.length; i++) {
+		var temp = buildings[i];
+		db.run("INSERT INTO Building (Name, Type, Campus, Lat, Lon) VALUES (" + JSON.stringify(temp.name) + ", " + JSON.stringify(temp.type) + ", " + JSON.stringify(temp.campus) + ", " + JSON.stringify(temp.lat) + ", " + JSON.stringify(temp.lon) + ")", function(err, result){
+			if(err){
+				console.log(err);
+			}
+		});
+	}
+
+	for (var i = 0; i < out.length; i++) {
+		var temp2 = out[i];
+		console.log
+		//console.log("INSERT INTO Crime (ID, Type, Tags, Date, Time, Disposition, Area_Name, Exterior) VALUES (" + i + ", " + JSON.stringify(temp2.crime.name)+ ", '" + temp2.crime.tags + "', " + JSON.stringify(temp2.date) + ", " + JSON.stringify(temp2.time) + ", " + JSON.stringify(temp2.disposition) + ", " + JSON.stringify(temp2.building) + ", " + JSON.stringify(temp2.inside) + ")");
+		db.run("INSERT INTO Crime (ID, Type, Tags, Date, Time, Disposition, Area_Name, Exterior) VALUES (" + i + ", " + JSON.stringify(temp2.crime.name)+ ", '" + temp2.crime.tags + "', " + JSON.stringify(temp2.date) + ", " + JSON.stringify(temp2.time) + ", " + JSON.stringify(temp2.disposition) + ", " + JSON.stringify(temp2.building) + ", " + JSON.stringify(temp2.inside) + ")", function(err, result){
+			if(err){
+				// console.log("error 2: " + err);
+			}
+		});
+	}
+ 
+//Test queries
+
+ //  	db.each("SELECT rowid AS id, Name FROM Building WHERE Type='Academic/Administrative'", function(err, row) {
+ //    	console.log(row.id + ": " + row.Name);
+ //  	});
+
+	// db.each("SELECT  Type, Date, Time, Tags FROM Crime WHERE Type='Fraud'", function(err, row) {
+ //  		console.log(row.Type + ", " + JSON.stringify(row.Tags) + ", " + row.Date + ", " + row.Time);
+ //  	});
+
 });
-//END DELETE
-
+ 
+db.close();
 
 
