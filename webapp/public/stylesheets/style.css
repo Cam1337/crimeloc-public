@@ -84,3 +84,7 @@ div .panel-body div .btn-primary {
 .am-pm {
     min-width: 45px;
 }
+
+#results-map {
+    height:500px;
+}

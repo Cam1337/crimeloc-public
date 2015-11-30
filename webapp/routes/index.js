@@ -15,6 +15,10 @@ router.post('/api/query', function(req, res){
   defaultModelExecutor(model, req, res)
 })
 
+router.post('/api/render_table', function(req, res){
+  res.render('query_results', req.body)
+})
+
 router.get('/api/locations', function(req, res){
   var model = require("../models/locations");
   defaultModelExecutor(model, req, res)

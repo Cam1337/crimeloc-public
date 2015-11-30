@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="panel panel-default">
-            <div id="results-text" class="panel-body">
+            <div id="results-table" class="panel-body">
 
             </div>
         </div>
@@ -60,10 +60,42 @@
 
 
     <script>
-        bounds = {
+        var bounds = {
             lower: "",
             upper: ""
         };
+        var resultsMap = new Maplace({
+            locations: [{lat:36.001271, lon:-78.9289, title:"Duke", zoom:15}],
+            map_div: "#results-map",
+            controls_title: "Choose a location"
+        });
+
+        function renderResults(data) {
+            var table_opts = {
+                url: "/api/render_table",
+                type: "post",
+                format: "html",
+                methods: {
+                    before: function (el) {
+                        return data;
+                    }
+                }
+            };
+            remoteRequest("#results-table", table_opts);
+
+            var locations = [];
+            for (var i = 0; i < data.results.length; i++){
+                var r = data.results[i];
+                var loc = {
+                    name: r.Type,
+                    lat: r.Lat,
+                    lon: r.Lon
+                };
+                locations.push(loc)
+            };
+            resultsMap.SetLocations(locations, true);
+        };
+
         function onDateChange(d){
             var da = new Date("20"+d);
             var bt = $(this).attr("id").split("_")[1];
@@ -99,14 +131,17 @@
             var opts = {
                 "url": "/api/query",
                 "type": "post",
-                "format":"html",
+                "format":"json",
                 methods: {
                     before: function(el){
                         return pkt;
+                    },
+                    after: function(data){
+                        renderResults(data)
                     }
                 }
             };
-            remoteRequest("#results-text", opts)
+            remoteRequest("", opts)
         });
 
         $(document).ready(function(){
@@ -116,7 +151,8 @@
                 format: "html",
                 methods: {}
             };
-            remoteRequest("#location_selection_select", location_select_opts)
+            remoteRequest("#location_selection_select", location_select_opts);
+            resultsMap.Load();
         })
     </script>
 

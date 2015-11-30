@@ -1,17 +1,17 @@
-<div class="panel panel-default"><center><b>Query: </b>{query}</center></div>
+<div class="panel panel-default"><center><b>Query: </b>{sql_query}</center></div>
 <table class="table table-striped">
     <tr>
         <td><b>Status</b></td>
         <td><b>Description</b></td>
-        <td><b>Location</b></td>
+        <td><b>Location [Latitude,Longitude]</b></td>
         <td><b>Date&Time Occurred</b></td>
     </tr>
     {#results}
         <tr>
-            <td>{.status}</td>
-            <td>{.description}</td>
-            <td>{.location}</td>
-            <td>{.occurred_start}</td>
+            <td>{.Disposition}</td>
+            <td>{.Type}</td>
+            <td>{.Area_Name} [{.Lat},{.Lon}]</td>
+            <td>{.Date} at {.Time}</td>
         </tr>
     {/results}
 </table>

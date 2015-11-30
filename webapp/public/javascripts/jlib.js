@@ -10,10 +10,14 @@ function remoteRequest(el, options, next){
 		if (options.empty){
 			$(el).empty()
 		}
+
 		if (options.methods.after){
 			data = options.methods.after(data)
 		}
-		$(el).html(data)
+
+		if (options.format === "html"){
+			$(el).html(data)
+		}
 
 		if (options.methods.callback !== undefined && options.methods.callback !== null){
 			options.methods.callback()
