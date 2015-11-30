@@ -55,7 +55,7 @@ var buildings = [
 	{name:"Environment Hall", type:"Academic/Administrative", campus:"West", lat:36.004862, lon:-78.942137},
 	{name:"Episcopal Center", type:"Academic/Administrative", campus:"Central", lat:36.001849, lon:-78.927025},
 	{name:"Faculty Club", type:"Academic/Administrative", campus:"East", lat:35.996625, lon:-78.950737},
-	{name:"Fitzpatrick Center for Interdisciplinary Engineering, Medicine, and Applied Sciences", type:"Academic/Administrative", campus:"West", lat:36.003600, lon:-78.939557},
+	{name:"Fitzpatrick Center (CIEMAS)", type:"Academic/Administrative", campus:"West", lat:36.003600, lon:-78.939557},
 	{name:"Flowers Building", type:"Academic/Administrative", campus:"West", lat:36.001382, lon:-78.939753},
 	{name:"Freeman Center for Jewish Life", type:"Academic/Administrative", campus:"East", lat:36.000408, lon:-78.922261},
 	{name:"French Family Science Center", type:"Academic/Administrative", campus:"West", lat:36.002814, lon:-78.943504},
@@ -417,6 +417,7 @@ db.serialize(function() {
 		});
 	}
 
+
 //Test queries
 
  //  	db.each("SELECT rowid AS id, Name FROM Building WHERE Type='Academic/Administrative'", function(err, row) {
@@ -430,3 +431,4 @@ db.serialize(function() {
 });
 
 db.close();
+
