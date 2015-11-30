@@ -87,6 +87,51 @@ var buildings = [
 	{name:"West Duke Building", type:"Academic/Administrative", campus:"East", lat:36.004955, lon:-78.915396},
 	{name:"White Lecture Hall", type:"Academic/Administrative", campus:"East", lat:36.005264, lon:-78.913910},
 	//TODO: Housing, Dining, Athletics, Performance
+	//Athletics
+	{name:"Ambler Tennis Stadium", type:"Athletics", campus:"West", lat:35.997974, lon:-78.940171},
+	{name:"Brodie Recreation Center", type:"Athletics", campus:"East", lat:36.007640, lon:-78.917079},
+	{name:"Brooks Football Building", type:"Athletics", campus:"West", lat:35.993236, lon:-78.941129},
+	{name:"Cameron Indoor Stadium", type:"Athletics", campus:"West", lat:35.997794, lon:-78.942284},
+	{name:"Card Gymnasium", type:"Athletics", campus:"West", lat:35.997433, lon:-78.941306},
+	{name:"Intramural Building", type:"Athletics", campus:"West", lat:35.996635, lon:-78.939927},
+	{name:"Jack Coombs Field Baseball Stadium", type:"Athletics", campus:"West", lat:35.998014, lon:-78.944256},
+	{name:"Koskinen Stadium", type:"Athletics", campus:"West", lat:35.995792, lon:-78.943999},
+	{name:"Krzyzewski Center for Athletic Excellence", type:"Athletics", campus:"West", lat:35.997945, lon:-78.942926},
+	{name:"Murray Building", type:"Athletics", campus:"West", lat:35.996316, lon:-78.942899},
+	{name:"Pascal Field House", type:"Athletics", campus:"West", lat:35.993566, lon:-78.942009},
+	{name:"Schwartz-Butters Athletic Center", type:"Athletics", campus:"West", lat:35.998262, lon:-78.942234},
+	{name:"Sheffield Tennis Center", type:"Athletics", campus:"West", lat:35.997059, lon:-78.939477},
+	{name:"Taishoff Aquatic Pavillion", type:"Athletics", campus:"West", lat:35.996820, lon:-78.941129},
+	{name:"Village Gym", type:"Athletics", campus:"Central", lat:36.004842, lon:-78.929590},
+	{name:"Wallace Wade Stadium", type:"Athletics", campus:"West", lat:35.995358, lon:-78.941789},
+	{name:"Williams Field", type:"Athletics", campus:"East", lat:36.007891, lon:-78.918829},
+	{name:"Wilson Recreation Center", type:"Athletics", campus:"West", lat:35.997007, lon:-78.940866},
+	{name:"Yoh Football Center", type:"Athletics", campus:"West", lat:35.996695, lon:-78.941638},
+
+	//Performance
+	{name:"Arts Annex", type:"Performance", campus:"East", lat:35.999755, lon:-78.918850},
+	{name:"Baldwin Auditorium", type:"Performance", campus:"East", lat:36.009020, lon:-78.914623},
+	{name:"Bone Hall", type:"Performance", campus:"East", lat:36.009072, lon:-78.915889},
+	{name:"Brody Theater", type:"Performance", campus:"East", lat:36.009546, lon:-78.916479},
+	{name:"Brown Gallery", type:"Performance", campus:"West", lat:36.001118, lon:-78.941681},
+	{name:"Bryan Center Box Office", type:"Performance", campus:"West", lat:36.000953, lon:-78.940845},
+	{name:"Duke Chapel", type:"Performance", campus:"West", lat:36.000528, lon:--78.938935},
+	{name:"Duke CoffeeHouse", type:"Performance", campus:"East", lat:36.006773, lon:-78.913330},
+	{name:"Frederic Jameson Gallery", type:"Performance", campus:"West", lat:36.006522, lon:-78.914108},
+	{name:"Griffith Film Theater", type:"Performance", campus:"West", lat:36.001398, lon:-78.941590},
+	{name:"Mary Lou WIlliams Center for Black Culture", type:"Performance", campus:"West", lat:36.001398, lon:-78.941590},
+	{name:"Nasher Art Museum", type:"Performance", campus:"West", lat:35.999113, lon:-78.928957},
+	{name:"Nelson Music Room", type:"Performance", campus:"West", lat:36.004911, lon:-78.914280},
+	{name:"Page Auditorium", type:"Performance", campus:"West", lat:36.001147, lon:-78.940061},
+	{name:"Reynolds Theater", type:"Performance", campus:"West", lat:36.001803, lon:-78.942073},
+	{name:"Sarah P. Duke Gardens", type:"Performance", campus:"West", lat:36.001325, lon:-78.941885},
+	{name:"Sheafer Lab Theater", type:"Performance", campus:"West", lat:36.001325, lon:-78.941885},
+	{name:"The Ark", type:"Performance", campus:"West", lat:36.007176, lon:-78.913497},
+	{name:"Trent Gallery", type:"Performance", campus:"West", lat:36.006977, lon:-78.933624},
+
+
+
+
 	//Dining
 	{name:"Au Bon Pain", type:"Dining", campus:"West", lat:36.000849, lon:-78.940845},
 	{name:"Bella Union", type:"Dining", campus:"West", lat:35.999260, lon:-78.936982},
@@ -219,7 +264,7 @@ var buildings = [
 	{name:"314 Anderson", type:"Housing", campus:"Central", lat:36.004156, lon:-78.930770},
 	{name:"301 Swift", type:"Housing", campus:"Central", lat:36.002697, lon:-78.921050},
 	{name:"Devil's Den", type:"Housing", campus:"Central", lat:36.002810, lon:-78.925105},
-	{name:"Mill Village", type:"Housing", campus:"Central", lat:36.004954, lon:-78.929311},	
+	{name:"Mill Village", type:"Housing", campus:"Central", lat:36.004954, lon:-78.929311},
 	//parking
 	{name:"Allen Lot", type:"Parking", campus: "West", lat:36.001760, lon: -78.936692},
 	{name:"Biddle Music Lot", type:"Parking", campus: "East", lat:36.009326, lon: -78.915372},
@@ -346,7 +391,7 @@ for(i=0;i<12;i++){ //generate data for each month
 			var out_line = {date: "2015-" + month + "-" + day, time: hour + ":" + minute, crime: crime, building: building.name, disposition: disposition, inside: indoor};
 			out.push(out_line);
 		//END DELETE
-		
+
 	}
 }
 
@@ -378,7 +423,7 @@ db.serialize(function() {
 			}
 		});
 	}
- 
+
 //Test queries
 
  //  	db.each("SELECT rowid AS id, Name FROM Building WHERE Type='Academic/Administrative'", function(err, row) {
@@ -390,7 +435,5 @@ db.serialize(function() {
  //  	});
 
 });
- 
+
 db.close();
-
-
