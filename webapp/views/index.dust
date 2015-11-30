@@ -30,7 +30,6 @@
                 <div class="col-md-2">
                     <div id="time_upper" class="input-group">
                         <input id="time_upper_hour" type="text" class="form-control" placeholder="Lower Time Bound: "><b></b>
-                        <!--<input type="text" class="form-control" aria-label="">-->
                         <select class="am-pm" id="time_upper_med">
                             <option value="am">am</option>
                             <option value="pm">pm</option>
@@ -52,6 +51,24 @@
             </div>
         </div>
         <div class="panel panel-default">
+            <div id="results-text-error">
+                <div id="query-search" class="panel-body">
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <input type="text" id="query-search-value" class="form-control" placeholder="Raw SQL Query">
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="btn btn-primary" id="query-search-submit">Search</div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="btn btn-primary" id="query-search-clear">Clear</div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <center><div id="query-search-error"></div></center>
+                </div>
+            </div>
             <div id="results-table" class="panel-body">
 
             </div>
@@ -71,6 +88,11 @@
         });
 
         function renderResults(data) {
+            if (data.error != null){
+                $("#query-search-error").text("ERROR: " + data.error.code);
+                return;
+            }
+
             var table_opts = {
                 url: "/api/render_table",
                 type: "post",
@@ -117,6 +139,7 @@
         $("#date_upper").pickmeup(opts);
 
         $("#search-btn").on("click", function(e){
+            $("#results-text-error").show();
             var lower_time = $("#time_lower_hour").val();
             var upper_time = $("#time_upper_hour").val();
             var lower_time_med = $("#time_lower_med option:selected").val();
@@ -141,7 +164,24 @@
                     }
                 }
             };
-            remoteRequest("", opts)
+            remoteRequest(null, opts)
+        });
+
+        $("#query-search-submit").on('click', function(e){
+            var opts = {
+                url: "/api/query_raw",
+                type: "post",
+                format: "json",
+                methods: {
+                    before: function(el){
+                        return {query: $("#query-search-value").val()}
+                    },
+                    after: function(data){
+                        renderResults(data)
+                    }
+                }
+            };
+            remoteRequest(null, opts);
         });
 
         $(document).ready(function(){
@@ -153,6 +193,8 @@
             };
             remoteRequest("#location_selection_select", location_select_opts);
             resultsMap.Load();
+
+            $("#results-text-error").hide();
         })
     </script>
 

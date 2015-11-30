@@ -15,6 +15,11 @@ router.post('/api/query', function(req, res){
   defaultModelExecutor(model, req, res)
 })
 
+router.post('/api/query_raw', function(req, res){
+  var model = require("../models/query_raw");
+  defaultModelExecutor(model, req, res)
+})
+
 router.post('/api/render_table', function(req, res){
   res.render('query_results', req.body)
 })

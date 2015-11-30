@@ -15,7 +15,7 @@ module.exports = {
             var query = JSONToSQLQuery(req.body);
             db.all(query, function(err, rows){
                 //console.log(rows)
-                next({results: rows, sql_query: query})
+                next({results: rows, error: err, sql_query: query})
             })
         })
 
