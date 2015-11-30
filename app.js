@@ -85,13 +85,13 @@ app.get('/query',function(req, res){
 	//TODO: Finish SQL DB Queries here
 	db.serialize(function() {
 	  	//TODO: replace these with queries built by the request query params
-	  	db.each("SELECT * FROM Building WHERE Type='Academic/Administrative'", function(err, row) {
-    		console.log(JSON.stringify(row));
-	  	});
+	 //  	db.each("SELECT * FROM Building WHERE Type='Academic/Administrative'", function(err, row) {
+ 	 //   		console.log(JSON.stringify(row));
+	 //  	});
 
-		db.each("SELECT  * FROM Crime WHERE Type='Fraud'", function(err, row) {
-	  		console.log(JSON.stringify(row));
-	  	});
+	 //		db.each("SELECT  * FROM Crime WHERE Type='Fraud'", function(err, row) {
+	 //  		console.log(JSON.stringify(row));
+	 //  	});
 	});
 
 

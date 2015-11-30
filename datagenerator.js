@@ -86,7 +86,6 @@ var buildings = [
 	{name:"Undergraduate Admissions", type:"Academic/Administrative", campus:"West", lat:35.999895, lon:-78.933184},
 	{name:"West Duke Building", type:"Academic/Administrative", campus:"East", lat:36.004955, lon:-78.915396},
 	{name:"White Lecture Hall", type:"Academic/Administrative", campus:"East", lat:36.005264, lon:-78.913910},
-	//TODO: Housing, Dining, Athletics, Performance
 	//Athletics
 	{name:"Ambler Tennis Stadium", type:"Athletics", campus:"West", lat:35.997974, lon:-78.940171},
 	{name:"Brodie Recreation Center", type:"Athletics", campus:"East", lat:36.007640, lon:-78.917079},
@@ -107,7 +106,6 @@ var buildings = [
 	{name:"Williams Field", type:"Athletics", campus:"East", lat:36.007891, lon:-78.918829},
 	{name:"Wilson Recreation Center", type:"Athletics", campus:"West", lat:35.997007, lon:-78.940866},
 	{name:"Yoh Football Center", type:"Athletics", campus:"West", lat:35.996695, lon:-78.941638},
-
 	//Performance
 	{name:"Arts Annex", type:"Performance", campus:"East", lat:35.999755, lon:-78.918850},
 	{name:"Baldwin Auditorium", type:"Performance", campus:"East", lat:36.009020, lon:-78.914623},
@@ -115,7 +113,7 @@ var buildings = [
 	{name:"Brody Theater", type:"Performance", campus:"East", lat:36.009546, lon:-78.916479},
 	{name:"Brown Gallery", type:"Performance", campus:"West", lat:36.001118, lon:-78.941681},
 	{name:"Bryan Center Box Office", type:"Performance", campus:"West", lat:36.000953, lon:-78.940845},
-	{name:"Duke Chapel", type:"Performance", campus:"West", lat:36.000528, lon:--78.938935},
+	{name:"Duke Chapel", type:"Performance", campus:"West", lat:36.000528, lon:-78.938935},
 	{name:"Duke CoffeeHouse", type:"Performance", campus:"East", lat:36.006773, lon:-78.913330},
 	{name:"Frederic Jameson Gallery", type:"Performance", campus:"East", lat:36.006522, lon:-78.914108},
 	{name:"Griffith Film Theater", type:"Performance", campus:"West", lat:36.001398, lon:-78.941590},
@@ -128,10 +126,6 @@ var buildings = [
 	{name:"Sheafer Lab Theater", type:"Performance", campus:"West", lat:36.001325, lon:-78.941885},
 	{name:"The Ark", type:"Performance", campus:"East", lat:36.007176, lon:-78.913497},
 	{name:"Trent Gallery", type:"Performance", campus:"Central", lat:36.006977, lon:-78.933624},
-
-
-
-
 	//Dining
 	{name:"Au Bon Pain", type:"Dining", campus:"West", lat:36.000849, lon:-78.940845},
 	{name:"Bella Union", type:"Dining", campus:"West", lat:35.999260, lon:-78.936982},
@@ -401,7 +395,7 @@ db.serialize(function() {
 	db.run('DROP TABLE Building');
 	db.run('DROP TABLE Crime');
 	db.run('CREATE TABLE Building (Name VARCHAR(256) NOT NULL PRIMARY KEY, Type VARCHAR(256) NOT NULL, Campus VARCHAR(256) NOT NULL, Lat INTEGER NOT NULL, Lon INTEGER NOT NULL)');
-	db.run('CREATE TABLE Crime(ID INTEGER NOT NULL PRIMARY KEY, Type VARCHAR(256) NOT NULL, Tags TEXT[], Date DATE NOT NULL, Time TIME NOT NULL, Disposition VARCHAR(256) NOT NULL, Area_Name VARCHAR(256) NOT NULL, Exterior VARCHAR(256) NOT NULL)');
+	db.run('CREATE TABLE Crime(ID INTEGER NOT NULL PRIMARY KEY, Type VARCHAR(256) NOT NULL, Tags TEXT[], Date DATE NOT NULL, Time TIME NOT NULL, Disposition VARCHAR(256) NOT NULL, Area_Name VARCHAR(256) NOT NULL, Exterior VARCHAR(256) NOT NULL, FOREIGN KEY(Area_Name) REFERENCES Building(name))');
 
 
 	for (var i = 0; i < buildings.length; i++) {
@@ -416,10 +410,9 @@ db.serialize(function() {
 	for (var i = 0; i < out.length; i++) {
 		var temp2 = out[i];
 		console.log
-		//console.log("INSERT INTO Crime (ID, Type, Tags, Date, Time, Disposition, Area_Name, Exterior) VALUES (" + i + ", " + JSON.stringify(temp2.crime.name)+ ", '" + temp2.crime.tags + "', " + JSON.stringify(temp2.date) + ", " + JSON.stringify(temp2.time) + ", " + JSON.stringify(temp2.disposition) + ", " + JSON.stringify(temp2.building) + ", " + JSON.stringify(temp2.inside) + ")");
 		db.run("INSERT INTO Crime (ID, Type, Tags, Date, Time, Disposition, Area_Name, Exterior) VALUES (" + i + ", " + JSON.stringify(temp2.crime.name)+ ", '" + temp2.crime.tags + "', " + JSON.stringify(temp2.date) + ", " + JSON.stringify(temp2.time) + ", " + JSON.stringify(temp2.disposition) + ", " + JSON.stringify(temp2.building) + ", " + JSON.stringify(temp2.inside) + ")", function(err, result){
 			if(err){
-				// console.log("error 2: " + err);
+				console.log(err);
 			}
 		});
 	}
