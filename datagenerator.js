@@ -117,17 +117,17 @@ var buildings = [
 	{name:"Bryan Center Box Office", type:"Performance", campus:"West", lat:36.000953, lon:-78.940845},
 	{name:"Duke Chapel", type:"Performance", campus:"West", lat:36.000528, lon:--78.938935},
 	{name:"Duke CoffeeHouse", type:"Performance", campus:"East", lat:36.006773, lon:-78.913330},
-	{name:"Frederic Jameson Gallery", type:"Performance", campus:"West", lat:36.006522, lon:-78.914108},
+	{name:"Frederic Jameson Gallery", type:"Performance", campus:"East", lat:36.006522, lon:-78.914108},
 	{name:"Griffith Film Theater", type:"Performance", campus:"West", lat:36.001398, lon:-78.941590},
 	{name:"Mary Lou WIlliams Center for Black Culture", type:"Performance", campus:"West", lat:36.001398, lon:-78.941590},
 	{name:"Nasher Art Museum", type:"Performance", campus:"West", lat:35.999113, lon:-78.928957},
-	{name:"Nelson Music Room", type:"Performance", campus:"West", lat:36.004911, lon:-78.914280},
+	{name:"Nelson Music Room", type:"Performance", campus:"East", lat:36.004911, lon:-78.914280},
 	{name:"Page Auditorium", type:"Performance", campus:"West", lat:36.001147, lon:-78.940061},
 	{name:"Reynolds Theater", type:"Performance", campus:"West", lat:36.001803, lon:-78.942073},
 	{name:"Sarah P. Duke Gardens", type:"Performance", campus:"West", lat:36.001325, lon:-78.941885},
 	{name:"Sheafer Lab Theater", type:"Performance", campus:"West", lat:36.001325, lon:-78.941885},
-	{name:"The Ark", type:"Performance", campus:"West", lat:36.007176, lon:-78.913497},
-	{name:"Trent Gallery", type:"Performance", campus:"West", lat:36.006977, lon:-78.933624},
+	{name:"The Ark", type:"Performance", campus:"East", lat:36.007176, lon:-78.913497},
+	{name:"Trent Gallery", type:"Performance", campus:"Central", lat:36.006977, lon:-78.933624},
 
 
 
