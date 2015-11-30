@@ -10,8 +10,13 @@ router.get('/', function(req, res){
   defaultModelExecutor(model, req, res)
 })
 
-router.post('/query', function(req, res){
+router.post('/api/query', function(req, res){
   var model = require("../models/query");
+  defaultModelExecutor(model, req, res)
+})
+
+router.get('/api/locations', function(req, res){
+  var model = require("../models/locations");
   defaultModelExecutor(model, req, res)
 })
 

@@ -9,6 +9,10 @@
 
     <script src="/javascripts/jquery.min.js"></script>
     <script src="/javascripts/jlib.js"></script>
+    <!-- GoogleMapsAPI & MapLace -->
+    <script src="https://maps.googleapis.com/maps/api/js"> </script>
+    <script src="/javascripts/maplace-0.1.3.min.js"></script>
+    <!-- pickMeUp -->
     <script src="/javascripts/jquery.pickmeup.min.js"></script>
     <!-- Bootstrap & Bootflat's JS files.-->
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

@@ -7,6 +7,17 @@ a {
   color: #00B7FF;
 }
 
+div .panel-body div .btn-primary {
+    /*margin: 0;*/
+    /*padding: 0;*/
+    width: 100%;
+    border: 1px solid black;
+}
+
+ .panel-body div.col-md-2 div {
+    min-width: 100%;
+}
+
 .vcenter  {
   min-height: 100%;  /* Fallback for vh unit */
   min-height: 100vh; /* You might also want to use
@@ -51,20 +62,25 @@ a {
 
 #time_lower {
   display: inline-flex;
-  width: 50%;
+  /*width: 50%;*/
 }
 #time_lower input {
-  width: 60%;
-  margin-left: 10px;
+    /*min-width: 100%;*/
+  /*width: 60%;*/
+  /*margin-left: 10px;*/
 }
 
 #time_upper {
   display:inline-flex;
-  width: 50%;
+  /*width: 50%;*/
 }
 
 #time_upper input {
-  width: 60%;
-  margin-left: 10px;
+  /*width: 60%;*/
+  /*margin-left: 10px;*/
 
+}
+
+.am-pm {
+    min-width: 45px;
 }

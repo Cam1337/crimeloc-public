@@ -4,38 +4,55 @@
         <center><h3>CrimeLoc</h3></center>
         <div class="panel panel-default row-eq-height">
             <div class="panel-body">
-                <div class="col-md-4">
-                    <div id="date_lower" class="btn btn-default">Click to set lower date bound</div> |
+                <div class="col-md-2">
+                    <div id="location_selection" class="input-group">
+                        <select id="location_selection_select" class="form-control">
+                            <option value="Wannamaker">Wannamaker Firelane</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div id="date_lower" class="btn btn-default">Click to set lower date bound</div>
+                </div>
+                <div class="col-md-2">
                     <div id="time_lower" class="input-group">
                         <input id="time_lower_hour" type="text" class="form-control" placeholder="Lower Time Bound: "><b></b>
                         <!--<input type="text" class="form-control" aria-label="">-->
-                        <select id="time_lower_med">
+                        <select class="am-pm" id="time_lower_med">
                             <option value="am">am</option>
                             <option value="pm">pm</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <div id="date_upper" class="btn btn-default">Click to set upper date bound</div>
+                </div>
+                <div class="col-md-2">
                     <div id="time_upper" class="input-group">
                         <input id="time_upper_hour" type="text" class="form-control" placeholder="Lower Time Bound: "><b></b>
                         <!--<input type="text" class="form-control" aria-label="">-->
-                        <select id="time_upper_med">
+                        <select class="am-pm" id="time_upper_med">
                             <option value="am">am</option>
                             <option value="pm">pm</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-md-1 vcenter">
-                    <div id="search" class="btn btn-primary">Search</div>
+                <div class="col-md-2"></div>
+                <div class="col-md-1">
+                    <div id="search-btn" class="btn btn-primary">Search</div>
                 </div>
-                <div class="col-md-1 vcenter">
+                <div class="col-md-1">
                     <div class="btn btn-primary">Clear</div>
                 </div>
             </div>
         </div>
         <div class="panel panel-default">
-            <div id="results" class="panel-body">
+            <div id="results-map" class="panel-body">
+
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div id="results-text" class="panel-body">
 
             </div>
         </div>
@@ -67,7 +84,7 @@
         $("#date_lower").pickmeup(opts);
         $("#date_upper").pickmeup(opts);
 
-        $("#search").on("click", function(e){
+        $("#search-btn").on("click", function(e){
             var lower_time = $("#time_lower_hour").val();
             var upper_time = $("#time_upper_hour").val();
             var lower_time_med = $("#time_lower_med option:selected").val();
@@ -80,16 +97,26 @@
             };
 
             var opts = {
-                "url": "/query",
+                "url": "/api/query",
                 "type": "post",
                 "format":"html",
                 methods: {
                     before: function(el){
                         return pkt;
-                    },
+                    }
                 }
             };
-            remoteRequest("#results", opts)
+            remoteRequest("#results-text", opts)
+        });
+
+        $(document).ready(function(){
+            var location_select_opts = {
+                url: "/api/locations",
+                type: "get",
+                format: "html",
+                methods: {}
+            };
+            remoteRequest("#location_selection_select", location_select_opts)
         })
     </script>
 

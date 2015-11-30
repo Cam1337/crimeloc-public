@@ -22,14 +22,20 @@
         <script src="../public/javascripts/jquery.pickmeup.min.js"></script>
 
         <div class="container-fluid">
-            <br>
-            <div id="search" class="panel panel-default row">
-                <div id="time_start" class="col-md-3 panel-body"></div>
-                <div id="time_range" class="col-md-3 panel-body"></div>
-                <div id="time_end" class="col-md-3 panel-body"></div>
-                <div class="col-md-1 col-md-offset-1 panel-body" style="background-color:red">search</div>
-                <div class="col-md-1 panel-body" style="background-color:blue">clear</div>
-            </div>
+            <!--<br>-->
+            <!--<div id="search" class="panel panel-default row">-->
+                <!--<div id="time_start" class="col-md-3 panel-body"></div>-->
+                <!--<div id="time_range" class="col-md-3 panel-body"></div>-->
+                <!--<div id="time_end" class="col-md-3 panel-body"></div>-->
+                <!--<div class="col-md-1 col-md-offset-1 panel-body" style="background-color:red">search</div>-->
+                <!--<div class="col-md-1 panel-body" style="background-color:blue">clear</div>-->
+            <!--</div>-->
+            <form id="search_form">
+                <div  class="form-group">
+                    <label class="control-label" for="time_start">Time Start</label>
+                    <input name="time_start" id="time_start" class="form-control">
+                </div>
+            </form>
         </div>
 
         <script>
