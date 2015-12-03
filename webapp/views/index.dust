@@ -44,6 +44,18 @@
                     <div class="btn btn-primary">Clear</div>
                 </div>
             </div>
+            <option class="panel panel-default row-eq-height">
+                <select multiple="" id="multi">
+                    <option value="">Crime Types</option>
+                    <option value="violent">violent</option>
+                    <option value="driving">driving</option>
+                    <option value="alcohol/drugs">alcohol/drugs</option>
+                    <option value="theft, etc.">Theft, etc.</option>
+                    <option value="sex-related">Sex-related</option>
+                    <option value="trespassing, etc.">Trespassing, etc.</option>
+                    <option value="other">Other</option>
+            </select>
+            </div>
         </div>
         <div class="panel panel-default">
             <div id="results-map" class="panel-body">
@@ -198,6 +210,9 @@
             resultsMap.Load();
 
             $("#results-text-error").hide();
+            $("#multi").pqSelect({
+                checkbox: true
+            });
         })
     </script>
 
