@@ -3,15 +3,21 @@
     <tr>
         <td><b>Status</b></td>
         <td><b>Description</b></td>
-        <td><b>Location [Latitude,Longitude]</b></td>
-        <td><b>Date&Time Occurred</b></td>
+        <td><b>Location</b></td>
+        <td><b>Latitude</b></td>
+        <td><b>Longitude</b></td>
+        <td><b>Date</b></td>
+        <td><b>Time</b></td>
     </tr>
     {#results}
         <tr>
             <td>{.Disposition}</td>
             <td>{.Type}</td>
-            <td>{.Area_Name} [{.Lat},{.Lon}]</td>
-            <td>{.Date} at {.Time}</td>
+            <td>{.Area_Name}</td>
+            <td>{.Lat}</td>
+            <td>{.Lon}</td>
+            <td>{.Date}</td>
+            <td>{.Time}</td>
         </tr>
     {/results}
 </table>
