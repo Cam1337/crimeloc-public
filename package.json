@@ -1,18 +1,19 @@
 {
-	"name": "CrimeLoc",
-	"version": "0.0.1",
-	"description": "Interact with a database of crime on Duke Campus",
-	"scripts": {
-		"start": "node app.js"
-	},
-	"dependencies": {
-		"htmlparser": "*",
-		"superagent": "1.4.x",
-		"express": "4.12.x",
-		"cfenv": "1.0.x"
-	},
-	"repository": {},
-	"engines": {
-		"node": "0.12.x"
-	} 
+  "name": "CrimeLoc",
+  "version": "0.0.1",
+  "description": "Interact with a database of crime on Duke Campus",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "cfenv": "1.0.x",
+    "express": "4.12.x",
+    "htmlparser": "*",
+    "sqlite3": "^3.1.1",
+    "superagent": "1.4.x"
+  },
+  "repository": {},
+  "engines": {
+    "node": "0.12.x"
+  }
 }
