@@ -2,8 +2,10 @@
  * Created by cam on 11/5/2015.
  */
 var sqlite3 = require("sqlite3").verbose();
-var db = new sqlite3.Database("../models/db.sqlite");
+var path = require('path');
+var db = new sqlite3.Database(path.join(__dirname, "db.sqlite"));
 
+console.log(__dirname );
 module.exports = {
     template: "locations_select",
     run: function(req, next){

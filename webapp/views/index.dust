@@ -210,9 +210,7 @@
             resultsMap.Load();
 
             $("#results-text-error").hide();
-            $("#multi").pqSelect({
-                checkbox: true
-            });
+
         })
     </script>
 

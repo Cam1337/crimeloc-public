@@ -2,17 +2,14 @@
  * Created by cam on 11/5/2015.
  */
 var sqlite3 = require("sqlite3").verbose();
-var db = new sqlite3.Database("../models/db.sqlite");
-
-function JSONToSQLQuery(jsobj){
-    return "SELECT Crime.Disposition, Crime.Type, Crime.Date, Crime.Time, Crime.Area_Name, Building.Lat, Building.Lon FROM Crime, Building WHERE Building.Name==Crime.Area_Name LIMIT 25";
-}
+var path = require('path');
+var db = new sqlite3.Database(path.join(__dirname, "db.sqlite"));
 
 module.exports = {
     template: null,
     run: function(req, next){
         db.serialize(function() {
-            var query = JSONToSQLQuery(req.body);
+            var query = require('./jsonToSQL.js').convert(req.body); // JSONToSQLQuery(req.body);
             db.all(query, function(err, rows){
                 //console.log(rows)
 
