@@ -2,7 +2,7 @@
  * Created by cam on 11/5/2015.
  */
 var sqlite3 = require("sqlite3").verbose();
-var db = new sqlite3.Database("../models/db.sqlite");
+var db = new sqlite3.Database("./models/db.sqlite");
 
 
 module.exports = {

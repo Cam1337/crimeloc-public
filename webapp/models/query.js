@@ -2,7 +2,7 @@
  * Created by cam on 11/5/2015.
  */
 var sqlite3 = require("sqlite3").verbose();
-var db = new sqlite3.Database("../models/db.sqlite");
+var db = new sqlite3.Database("./models/db.sqlite");
 
 function JSONToSQLQuery(jsobj){
     return "SELECT Crime.Disposition, Crime.Type, Crime.Date, Crime.Time, Crime.Area_Name, Building.Lat, Building.Lon FROM Crime, Building WHERE Building.Name==Crime.Area_Name LIMIT 25";
