@@ -21,6 +21,30 @@ module.exports.convert = function(jsobj){
     
 }
 
+function sanitaryDate(date) {
+    var s = date.split('-');
+    for(var i = 0; i < s.length; i++) {
+        if(parseInt(s[i]) == NaN) {
+            console.log("Bad date input (NaN)");
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+function sanitaryTime(time) {
+    var s = time.split(':');
+    for(var i = 0 ; i < s.length; i++) {
+        if(parseInt(s[i]) == NaN) {
+            console.log("Bad time input (NaN)");
+            return false;
+        }
+    }
+    
+    return true;
+}
+
 
 function convertToWhereIn(column, list) {
     
@@ -50,10 +74,39 @@ function convertDateTime(column, start, end) {
     var statement = "";
     
     if(start !== "null") {
+        if(!(start.length == 10 || start.length == 5)) {
+            console.log("Bad date/time input (length of query)");
+            return "";
+        }
+        else if(start.length == 5) {
+            if(!sanitaryTime(start)) {
+                return "";
+            }
+        }
+        else {  // start.length == 10
+            if(!sanitaryDate(start)) {
+                return "";
+            }
+        }
         statement += column + " > " + "'" + start + "'";
     }
     
     if(end !== "null") {
+        if(!(end.length == 10 || end.length == 5)) {
+            console.log("Bad date/time input (length of query)");
+            return "";
+        }
+        else if(end.length == 5) {
+            if(!sanitaryTime(end)) {
+                return "";
+            }
+        }
+        else {  // end.length == 10
+            if(!sanitaryDate(end)) {
+                return "";
+            }
+        }
+        
         if(start !== "null") {
             statement += " AND ";
         }
