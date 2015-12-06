@@ -4,8 +4,11 @@
 
 function renderResults(data) {
     if (data.error != null){
+        console.log(data.error);
         $("#query-search-error").text("ERROR: " + data.error.code);
         return;
+    }else{
+        $("#query-search-error").hide();
     }
 
     var table_opts = {
