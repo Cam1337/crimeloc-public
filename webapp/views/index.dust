@@ -148,8 +148,8 @@
 
     <script>
         var bounds = {
-            lower: "",
-            upper: ""
+            lower: "null",
+            upper: "null"
         };
 
         var resultsMap = new Maplace({
@@ -220,15 +220,15 @@
             var locations = $("#location_selection_select").val();
             var c_tags = $("#crime_tag").val();
 
-            if (locations[0] == "Select a location"){
+            if ((locations != null) && (locations[0] == "Select a location")){
                 locations.splice(0,1);
             }
-            if (c_tags[0] == ""){
+            if ((c_tags != null) && (c_tags[0] == "")){
                 c_tags.splice(0,1);
             }
             var pkt = {
-                locations: locations,
-                tags: c_tags,
+                locations: locations && locations.length != 0 ? null : locations,
+                tags: c_tags && c_tags.length == 0 ? null : c_tags,
                 lower_date: bounds.lower,
                 upper_date: bounds.upper,
                 lower_time: lower_time,
