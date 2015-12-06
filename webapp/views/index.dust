@@ -226,9 +226,11 @@
             if ((c_tags != null) && (c_tags[0] == "")){
                 c_tags.splice(0,1);
             }
+            console.log(locations);
+            console.log(c_tags);
             var pkt = {
-                locations: locations && locations.length != 0 ? null : locations,
-                tags: c_tags && c_tags.length == 0 ? null : c_tags,
+                locations: ((locations) && (locations.length != 0)) ? locations : null,
+                tags: ((c_tags) && (c_tags.length != 0)) ? c_tags : null,
                 lower_date: bounds.lower,
                 upper_date: bounds.upper,
                 lower_time: lower_time,
