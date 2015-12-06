@@ -33,9 +33,16 @@
     <script src="https://bootflat.github.io/bootflat/js/jquery.fs.stepper.min.js"></script>
 
     <!-- user written code -->
+    <script>
+      var bounds = {
+        lower: "null",
+        upper: "null"
+      };
+    </script>
     <script src="/javascripts/client/mapBuilder.js"></script>
     <script src="/javascripts/client/multiSelectionLoader.js"></script>
     <script src="/javascripts/client/querySearch.js"></script>
+    <script src="/javascripts/client/calendarLoader.js"></script>
   <body>
     {+body /}
 </html>

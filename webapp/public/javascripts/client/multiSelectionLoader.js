@@ -25,3 +25,12 @@ function remoteLoadLocations(){
         createMultiselect("#location_selection_select");
     });
 }
+
+function remoteLoadCrimes(){
+    createMultiselect("#crime_tag");
+}
+
+function loadAllMultiSelects(){
+    remoteLoadLocations();
+    remoteLoadCrimes();
+}

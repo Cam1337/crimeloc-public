@@ -147,134 +147,13 @@
 
 
     <script>
-        var bounds = {
-            lower: "null",
-            upper: "null"
-        };
-
-        var resultsMap = new Maplace({
-            locations: [{lat:36.001271, lon:-78.9289, title:"Duke", zoom:15}],
-            map_div: "#results-map",
-            controls_title: "Choose a location",
-            map_options: {
-                scrollwheel: false
-            }
-        });
-
-        function renderResults(data) {
-            if (data.error != null){
-                $("#query-search-error").text("ERROR: " + data.error.code);
-                return;
-            }
-
-            var table_opts = {
-                url: "/api/render_table",
-                type: "post",
-                format: "html",
-                methods: {
-                    before: function (el) {
-                        return data;
-                    }
-                }
-            };
-            remoteRequest("#results-table", table_opts);
-
-            var locations = [];
-            for (var i = 0; i < data.results.length; i++){
-                var r = data.results[i];
-                var loc = {
-                    name: r.Type,
-                    lat: r.Lat,
-                    lon: r.Lon
-                };
-                locations.push(loc)
-            };
-            resultsMap.SetLocations(locations, true);
-        };
-
-
-        function onDateChange(d){
-            var da = new Date("20"+d);
-            var bt = $(this).attr("id").split("_")[1];
-            bounds[bt] = "20"+d;
-            bt = bt.charAt(0).toUpperCase() + bt.slice(1);
-            $(this).text(bt + " Date Bound: " + da.toDateString());
-            return true
-        }
-        function onTimeChange(t){
-
-        }
-        var opts = {
-            format: 'y-m-d',
-            flat: false,
-            hide_on_select: true,
-            change: onDateChange
-        };
-        $("#date_lower").pickmeup(opts);
-        $("#date_upper").pickmeup(opts);
-
-        $("#search-btn").on("click", function(e){
-            $("#results-text-error").show();
-            var lower_time = $("#time_lower option:selected").val();
-            var upper_time = $("#time_upper option:selected").val();
-            var locations = $("#location_selection_select").val();
-            var c_tags = $("#crime_tag").val();
-
-            if ((locations != null) && (locations[0] == "Select a location")){
-                locations.splice(0,1);
-            }
-            if ((c_tags != null) && (c_tags[0] == "")){
-                c_tags.splice(0,1);
-            }
-            var pkt = {
-                locations: ((locations) && (locations.length != 0)) ? locations : "null",
-                tags: ((c_tags) && (c_tags.length != 0)) ? c_tags : "null",
-                lower_date: bounds.lower,
-                upper_date: bounds.upper,
-                lower_time: lower_time,
-                upper_time: upper_time,
-            };
-            console.log(pkt);
-            var opts = {
-                "url": "/api/query",
-                "type": "post",
-                "format":"json",
-                methods: {
-                    before: function(el){
-                        return pkt;
-                    },
-                    after: function(data){
-                        renderResults(data)
-                    }
-                }
-            };
-            remoteRequest(null, opts);
-        });
-
-        $("#query-search-submit").on('click', function(e){
-            var opts = {
-                url: "/api/query_raw",
-                type: "post",
-                format: "json",
-                methods: {
-                    before: function(el){
-                        return {query: $("#query-search-value").val()}
-                    },
-                    after: function(data){
-                        renderResults(data)
-                    }
-                }
-            };
-            remoteRequest(null, opts);
-        });
-
-
         $(document).ready(function(){
-
-            resultsMap.Load();
+            $("#date_lower").pickmeup(date_picker_opts);
+            $("#date_upper").pickmeup(date_picker_opts);
             remoteLoadLocations();
+            loadMap();
+
             $("#results-text-error").hide();
-            createMultiselect("#crime_tag");
         })
     </script>
 
