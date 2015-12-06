@@ -93,7 +93,7 @@
             <div class="panel panel-default row-eq-height">
                 <div class="panel-body">
                     <div class="col-md-2" class="form-group">
-                        <select class="form-control" multiple="multiple" id="crime_tags"></select>
+                        <select class="form-control" multiple="multiple" id="crime_type"></select>
                     </div>
                     <div class="col-md-2 form-group">
                         <select class="form-control" multiple="multiple" id="building_type"></select>
