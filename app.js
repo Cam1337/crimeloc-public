@@ -28,7 +28,7 @@ app.get('/query',function(req, res){
 	var campus = JSON.parse('[' + req.query.campus + ']')[0];
 	var locs = [];
 
-	//TODO: Finish SQL DB Queries here
+	//TODO: Sanitize inputs
 	db.serialize(function() {
 	  	var query_params = "";
 	  	if(date1 != ""){
@@ -72,9 +72,6 @@ app.get('/query',function(req, res){
 	  		}
 	  		query_params = query_params + ")";
 	  	}
-
-	  	// console.log(query_params);
-	  	//TODO add params
 	  	db.each("SELECT * FROM Building, Crime WHERE Crime.Area_Name == Building.Name" + query_params + " LIMIT 200", function(err, row) {
  	   		if(err){
  	   			console.log(err);
