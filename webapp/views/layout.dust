@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://bootflat.github.io/bootflat/css/bootflat.css">
     <!--<link rel="stylesheet" href="/stylesheets/jquery-ui.css">-->
     <link rel="stylesheet" href="/stylesheets/pickmeup.min.css">
-    <!--<link rel="stylesheet" href="/stylesheets/semantic.css">-->
+    <link rel="stylesheet" href="/stylesheets/bootstrap-multiselect.css">
 
     <!--<link rel="stylesheet" href="/stylesheets/pqselect.bootstrap.dev.css">-->
 
@@ -15,7 +15,7 @@
     <script src="/javascripts/jquery.min.js"></script>
     <!--<script src="/javascripts/jquery-ui.min.js"></script>-->
 
-    <!--<script src="/javascripts/semantic.js"></script>-->
+    <script src="/javascripts/bootstrap-multiselect.js"></script>
 
 
     <script src="/javascripts/jlib.js"></script>

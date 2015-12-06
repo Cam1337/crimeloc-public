@@ -6,8 +6,6 @@ function remoteRequestEvent(event, selector, el, options){
 }
 
 function remoteRequest(el, options, next){
-	console.log("Requesting " + options.url);
-
 	function insertHTML(data){ // keep inside for easy access to el, options and next
 		if (options.empty){
 			$(el).empty()

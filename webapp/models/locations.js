@@ -5,7 +5,6 @@ var sqlite3 = require("sqlite3").verbose();
 var path = require('path');
 var db = new sqlite3.Database(path.join(__dirname, "db.sqlite"));
 
-console.log(__dirname );
 module.exports = {
     template: "locations_select",
     run: function(req, next){
@@ -17,15 +16,6 @@ module.exports = {
                 next({results: results})
             })
         })
-        //next({
-        //    results: [
-        //        {id: -1, name: "Select a location"},
-        //        {id: 1, name:"Wannamaker Firelane"},
-        //        {id: 2, name:"Edens"},
-        //        {id: 3, name:"Brown Dormitory"},
-        //        {id: 4, name:"Wilson Gym"}
-        //    ]
-        //})
     },
     cookies: {
         track: false,
