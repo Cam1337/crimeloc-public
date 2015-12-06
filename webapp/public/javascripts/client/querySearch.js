@@ -38,17 +38,18 @@ function executeQuerySearch(e){
     var lower_time = $("#time_lower option:selected").val();
     var upper_time = $("#time_upper option:selected").val();
 
-    var locations = $("#location_selection_select").val();
-    var tags = $("#crime_tag").val();
+    var building_name = $("#building_name").val();
+    var building_type = $("#building_type").val();
+    var crime_tags = $("#crime_tags").val();
 
     var pkt = {
-        locations: locations ? locations : "null",
-        tags: tags ? tags : "null",
-
+        crime_tags: crime_tags ? crime_tags : "null",
+        building_name: building_name ? building_name : "null",
+        building_type: building_type ? building_type : "null",
         lower_date: bounds.lower,
         upper_date: bounds.upper,
         lower_time: lower_time,
-        upper_time: upper_time,
+        upper_time: upper_time
     };
     console.log(pkt);
     var opts = {

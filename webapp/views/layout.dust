@@ -2,12 +2,13 @@
 <html>
   <head>
     <title>{title}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://bootflat.github.io/bootflat/css/bootflat.css">
     <!--<link rel="stylesheet" href="/stylesheets/jquery-ui.css">-->
     <link rel="stylesheet" href="/stylesheets/pickmeup.min.css">
     <link rel="stylesheet" href="/stylesheets/bootstrap-multiselect.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
 
     <!--<link rel="stylesheet" href="/stylesheets/pqselect.bootstrap.dev.css">-->
 

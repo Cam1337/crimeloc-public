@@ -5,10 +5,8 @@
         <div class="panel panel-default row-eq-height">
             <div class="panel-body">
                 <div class="col-md-2">
-                    <div id="location_selection" class="input-group">
-                        <select id="location_selection_select" class="form-control" multiple="multiple">
-                            <option value="Wannamaker">Wannamaker Firelane</option>
-                        </select>
+                    <div class="form-group">
+                        <select id="building_name" class="form-control" multiple="multiple"></select>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -16,12 +14,6 @@
                 </div>
                 <div class="col-md-2">
                     <div  class="form-group">
-                        <!--<input id="time_lower_hour" type="text" class="form-control" placeholder="Lower Time Bound: "><b></b>-->
-                        <!--&lt;!&ndash;<input type="text" class="form-control" aria-label="">&ndash;&gt;-->
-                        <!--<select class="am-pm" id="time_lower_med">-->
-                            <!--<option value="am">am</option>-->
-                            <!--<option value="pm">pm</option>-->
-                        <!--</select>-->
                         <select id="time_lower" class="form-control">
                             <option value="null">Lower Time Bound</option>
                             <option value="00:00">12:00AM</option>
@@ -100,22 +92,11 @@
             </div>
             <div class="panel panel-default row-eq-height">
                 <div class="panel-body">
-                    <div class="col-md-4" class="form-group">
-                        <select class="form-control" multiple="multiple" id="crime_tag">
-                            <option value="">Crime Types</option>
-                            <option value="violent">violent</option>
-                            <option value="driving">driving</option>
-                            <option value="alcohol/drugs">alcohol/drugs</option>
-                            <option value="theft, etc.">Theft, etc.</option>
-                            <option value="sex-related">Sex-related</option>
-                            <option value="trespassing, etc.">Trespassing, etc.</option>
-                            <option value="other">Other</option>
-                        </select>
+                    <div class="col-md-2" class="form-group">
+                        <select class="form-control" multiple="multiple" id="crime_tags"></select>
                     </div>
-                    <div class="col-md-4 form-group">
-                        <select class="form-control" multiple="multiple" id="building_type">
-
-                        </select>
+                    <div class="col-md-2 form-group">
+                        <select class="form-control" multiple="multiple" id="building_type"></select>
                     </div>
                 </div>
             </div>

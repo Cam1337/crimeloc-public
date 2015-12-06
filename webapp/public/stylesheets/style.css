@@ -97,3 +97,7 @@ div .panel-body div .btn-primary {
 .multiselect-container {
     width: 250px;
 }
+
+div.btn-group {
+    margin: 0 auto;
+}

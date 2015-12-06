@@ -36,7 +36,7 @@ function remoteLoadLocations(){
 }
 
 function loadAllMultiSelects(){
-    remoteCreateMultiSelect("Building","Name","Select a location","#location_selection_select");
-    remoteCreateMultiSelect("Crime","Type","Select crime type","#crime_tag");
+    remoteCreateMultiSelect("Building","Name","Select a location","#building_name");
+    remoteCreateMultiSelect("Crime","Type","Select crime type","#crime_tags");
     remoteCreateMultiSelect("Building","Type","Select building type","#building_type");
 }
