@@ -1,3 +1,0 @@
-{#results}
-    <option value="{.Name}">{.Name}</option>
-{/results}

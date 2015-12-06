@@ -1,10 +1,25 @@
-function createMultiselect(e_id){
-    $(e_id + " option:first").prop("selected",true).val("null");
+function toMultiSelect(e_id, first){
+    //$(e_id + " option:first").prop("selected",true).val("null").prop("disabled", true);
     $(e_id).multiselect({
+        nonSelectedText: first,
         onChange: function(option, checked, select){
-            $(e_id + " option:first").prop("selected",false);
+            //$(e_id + " option:first").prop("selected",false);
         }
     });
+}
+
+function remoteCreateMultiSelect(table, column, first, id){
+    var opts = {
+        url: "/api/get_distinct",
+        type: "post",
+        format: "html",
+        methods: {
+            before: function(el){
+                return {table: table, column: column};
+            }
+        }
+    };
+    remoteRequest(id, opts, function(){ toMultiSelect(id, first); })
 }
 
 function remoteLoadLocations(){
@@ -26,11 +41,6 @@ function remoteLoadLocations(){
     });
 }
 
-function remoteLoadCrimes(){
-    createMultiselect("#crime_tag");
-}
-
 function loadAllMultiSelects(){
-    remoteLoadLocations();
-    remoteLoadCrimes();
+    remoteCreateMultiSelect("Building","Name","Select a location","#location_selection_select");
 }

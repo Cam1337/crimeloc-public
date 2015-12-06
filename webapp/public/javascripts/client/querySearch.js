@@ -40,9 +40,7 @@ function executeQuerySearch(e){
     var locations = $("#location_selection_select").val();
     var c_tags = $("#crime_tag").val();
 
-    if ((locations != null) && (locations[0] == "Select a location")){
-        locations.splice(0,1);
-    }
+
     if ((c_tags != null) && (c_tags[0] == "")){
         c_tags.splice(0,1);
     }
@@ -88,6 +86,7 @@ function executeQuerySearchRaw(e){
     remoteRequest(null, opts);
 }
 
-$("#search-btn").on("click", executeQuerySearch);
-
-$("#query-search-submit").on('click', executeQuerySearchRaw);
+function bindSearchButtons(){
+    $("#search-btn").on("click", executeQuerySearch);
+    $("#query-search-submit").on('click', executeQuerySearchRaw);
+}

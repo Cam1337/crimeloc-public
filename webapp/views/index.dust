@@ -150,7 +150,8 @@
         $(document).ready(function(){
             $("#date_lower").pickmeup(date_picker_opts);
             $("#date_upper").pickmeup(date_picker_opts);
-            remoteLoadLocations();
+            bindSearchButtons();
+            loadAllMultiSelects();
             loadMap();
 
             $("#results-text-error").hide();

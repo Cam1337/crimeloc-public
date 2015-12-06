@@ -24,8 +24,8 @@ router.post('/api/render_table', function(req, res){
   res.render('query_results', req.body)
 })
 
-router.get('/api/locations', function(req, res){
-  var model = require("../models/locations");
+router.post('/api/get_distinct', function(req, res){
+  var model = require("../models/get_distinct");
   defaultModelExecutor(model, req, res)
 })
 
