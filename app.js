@@ -73,13 +73,13 @@ app.get('/query',function(req, res){
 	  		query_params = query_params + ")";
 	  	}
 
-	  	console.log(query_params);
+	  	// console.log(query_params);
 	  	//TODO add params
 	  	db.each("SELECT * FROM Building, Crime WHERE Crime.Area_Name == Building.Name" + query_params + " LIMIT 200", function(err, row) {
  	   		if(err){
  	   			console.log(err);
  	   		} else{
-	 	   		// console.log(row);
+	 	   		console.log(row.Time);
 	 	   		locs.push({time: row.Time, date: row.Date, lat:row.Lat, lon:row.Lon, crime: row.Type, disposition: row.Disposition, exterior: row.Exterior, loc: {building: row.Name, campus: row.Campus}});
  	   		}
 	  	});

@@ -237,6 +237,9 @@
         } else if(time1.indexOf('am') != -1 && t1 === '12'){
           t1 = 0;
         }
+        if(parseInt(t1) < 10){
+          t1 = "0" + t1;
+        }
         t1 = t1 + ":" + time1.split(":")[1].split("am")[0].split("pm")[0];
       }
       if(time2 != ""){
@@ -246,13 +249,16 @@
         } else if(time2.indexOf('am') != -1 && t2 === '12'){
           t2 = 0;
         }
+        if(parseInt(t2) < 10){
+          t2 = "0" + t2;
+        }
         t2 = t2 + ":" + time2.split(":")[1].split("am")[0].split("pm")[0];
       }
       if(t1 != "" && t2 != "" && (parseInt(t1.split(":")[0]) > parseInt(t2.split(":")[0]) || (parseInt(t1.split(":")[0]) === parseInt(t2.split(":")[0]) && parseInt(t1.split(":")[1]) > parseInt(t2.split(":")[1])))){
-        console.log(t1, t2);
+        // console.log(t1, t2);
         window.alert("Enter a valid time range, please (the start time must be less than the end time)");
       } else if(date1 != "" && date2 != "" && date1 >= date2){
-        console.log(date1, date2);
+        // console.log(date1, date2);
         window.alert("Enter a valid date range, please (the start date must be less than the end date)");
       } else{
         var query_params = '?building=' + JSON.stringify(building) + '&crime=' + JSON.stringify(crime) + '&date1=' + date1 + '&date2=' + date2 + '&time1=' + t1 + '&time2=' + t2 + '&campus=' + JSON.stringify(campus);
