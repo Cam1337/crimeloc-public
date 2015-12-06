@@ -75,7 +75,7 @@ app.get('/query',function(req, res){
 
 	  	console.log(query_params);
 	  	//TODO add params
-	  	db.each("SELECT * FROM Building, Crime WHERE Crime.Area_Name == Building.Name" + query_params, function(err, row) {
+	  	db.each("SELECT * FROM Building, Crime WHERE Crime.Area_Name == Building.Name" + query_params + " LIMIT 200", function(err, row) {
  	   		if(err){
  	   			console.log(err);
  	   		} else{
