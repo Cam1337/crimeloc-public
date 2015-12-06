@@ -10,21 +10,6 @@ var db = new sqlite3.Database('db.sqlite');
 var app = express();
 
 
-
-//TODO: Remove this once SQL DB Queries Implemented
-var dat;
-fs.readFile('data.json', 'utf8', function (err, data) {
-  	if (err){
-  		throw err;
-	} else{
-
-  		dat = JSON.parse(data);
-	}
-});
-//END DELETE
-
-
-
 //handler for client-side ajax GET request
 app.get('/query',function(req, res){
 	console.log(req.query);
@@ -38,66 +23,72 @@ app.get('/query',function(req, res){
 	}
 	var date1 = req.query.date1;
 	var date2 = req.query.date2;
-	var time1 = req.query.time1.split(":");
-	var time2 = req.query.time2.split(":");
-	time1[0] = parseInt(time1[0]);
-	time1[1] = parseInt(time1[1]);
-	time2[0] = parseInt(time2[0]);
-	time2[1] = parseInt(time2[1]);
+	var time1 = req.query.time1;
+	var time2 = req.query.time2;
 	var campus = JSON.parse('[' + req.query.campus + ']')[0];
-
 	var locs = [];
-
-	//TODO: DELETE THIS, REPLACE WITH SQL QUERIES
-	for(i=0; i<dat.length; i++){
-		var temp = dat[i];
-		var t = temp.time.split(":");
-		t[0] = parseInt(t[0]);
-		t[1] = parseInt(t[1]);
-		// console.log(temp.date);
-		if((building.indexOf(temp.building.type) != -1 || building[0] === '') &&
-			(date1 <= temp.date || date1 === '') &&
-			(date2 >= temp.date || date2 === '') &&
-			((time1[0] < t[0]) || (time1[0] === t[0] && time1[1] <= t[1]) || String(time1[0]) === "NaN") &&
-			((time2[0] > t[0]) || (time2[0] === t[0] && time2[1] >= t[1]) || String(time2[0]) === "NaN") &&
-			(campus.indexOf(temp.building.campus) != -1 || campus.length === 0)
-		){
-			var crime_match;
-			if(crime[0] === ''){
-				crime_match = true;
-			} else{
-				crime_match = false;
-				for(x=0; x<temp.crime.tags.length; x++){
-					var c = temp.crime.tags[x];
-					if(crime.indexOf(c) != -1){
-						crime_match = true;
-						break;
-					}
-				}
-			}
-			if(crime_match){
-				locs.push({lat:temp.building.lat, lon:temp.building.lon, crime: temp.crime.name, loc: {building: temp.building.name, campus: temp.building.campus}});
-			}
-		}
-	}
-	//TODO: STOP DELETE HERE
 
 	//TODO: Finish SQL DB Queries here
 	db.serialize(function() {
-	  	//TODO: replace these with queries built by the request query params
-	 //  	db.each("SELECT * FROM Building WHERE Type='Academic/Administrative'", function(err, row) {
- 	 //   		console.log(JSON.stringify(row));
-	 //  	});
+	  	var query_params = "";
+	  	if(date1 != ""){
+	  		query_params = query_params + " and Crime.Date >= '" + date1 + "'";
+	  	}
+	  	if(date2 != ""){
+	  		query_params = query_params + " and Crime.Date <= '" + date2 + "'";
+	  	}
+	  	if(time1 != ""){
+	  		query_params = query_params + " and Crime.Time >= '" + time1 + "'";
+	  	}
+	  	if(time2 != ""){
+	  		query_params = query_params + " and Crime.Time <= '" + time2 + "'";
+	  	}
 
-	 //		db.each("SELECT  * FROM Crime WHERE Type='Fraud'", function(err, row) {
-	 //  		console.log(JSON.stringify(row));
-	 //  	});
+	  	if(crime[0] != "" || crime.length > 1){
+	  		query_params = query_params + " and (Crime.Type == '" + crime[0] + "'";
+	  		for(i=1; i< crime.length; i++){
+	  			var temp_crime = crime[i];
+	  			query_params = query_params + " or Crime.Type == '" + temp_crime + "'";
+	  		}
+	  		query_params = query_params + ")";
+	  	}
+
+	  	if(building[0] != "" || building.length > 1){
+	  		query_params = query_params + " and (Building.Type == '" + building[0] + "'";
+	  		for(i=1; i< building.length; i++){
+	  			var temp_building = building[i];
+	  			query_params = query_params + " or Building.Type == '" + temp_building + "'";
+	  		}
+	  		query_params = query_params + ")";
+	  	}
+
+	  	if(campus.length > 0){
+	  		query_params = query_params + " and (Building.Campus == '" + campus[0] + "'";
+	  		if(campus.length > 1){
+		  		for(i=1; i < campus.length; i++){
+		  			var temp_campus = campus[i];
+		  			query_params = query_params + " or Building.Campus == '" + temp_campus + "'";
+		  		}
+	  		}
+	  		query_params = query_params + ")";
+	  	}
+
+	  	console.log(query_params);
+	  	//TODO add params
+	  	db.each("SELECT * FROM Building, Crime WHERE Crime.Area_Name == Building.Name" + query_params, function(err, row) {
+ 	   		if(err){
+ 	   			console.log(err);
+ 	   		} else{
+	 	   		// console.log(row);
+	 	   		locs.push({time: row.Time, date: row.Date, lat:row.Lat, lon:row.Lon, crime: row.Type, disposition: row.Disposition, exterior: row.Exterior, loc: {building: row.Name, campus: row.Campus}});
+ 	   		}
+	  	});
+
+	  	db.each("", function(){ //by serializing, waits for all data before sending locs
+			res.send(locs);
+	  	});
+
 	});
-
-
-	res.send(locs);
-
-
 
 });
 

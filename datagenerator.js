@@ -336,6 +336,11 @@ for(i=0;i<12;i++){ //generate data for each month
 	for(j=0;j<100;j++){	//generate 100 crimes per month, will change this later
 		//generate day, time of day
 		var day = Math.floor((Math.random() * max) + 1); //day of month
+		day = "" + day;
+		if(day < 10){
+			day = "0" + day;
+		}
+
 		var hour = Math.floor((Math.random() * 24)); //hour of day
 		hour = "" + hour;
 		if(hour < 10){
