@@ -35,7 +35,7 @@
     <!-- user written code -->
     <script src="/javascripts/client/mapBuilder.js"></script>
     <script src="/javascripts/client/multiSelectionLoader.js"></script>
-    <script src="/javascripts/client/querySearch  .js"></script>
+    <script src="/javascripts/client/querySearch.js"></script>
   <body>
     {+body /}
 </html>
