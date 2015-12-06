@@ -11,11 +11,12 @@ module.exports = {
         db.serialize(function(){
             var table = req.body.table;
             var col = req.body.column;
-            var query = "SELECT DISTINCT " + col + " FROM " + table;
+            var query = "SELECT DISTINCT " + col + " col FROM " + table;
             db.all(query, function(err, rows){
-                results = [];
-                results.push.apply(results, rows)
-                next({results: results})
+                console.log(rows);
+                console.log(err);
+                console.log(query);
+                next({results: rows})
             })
         })
     },

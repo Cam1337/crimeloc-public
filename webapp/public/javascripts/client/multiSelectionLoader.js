@@ -1,11 +1,5 @@
 function toMultiSelect(e_id, first){
-    //$(e_id + " option:first").prop("selected",true).val("null").prop("disabled", true);
-    $(e_id).multiselect({
-        nonSelectedText: first,
-        onChange: function(option, checked, select){
-            //$(e_id + " option:first").prop("selected",false);
-        }
-    });
+    $(e_id).multiselect({nonSelectedText: first, maxHeight: 300});
 }
 
 function remoteCreateMultiSelect(table, column, first, id){
@@ -43,4 +37,6 @@ function remoteLoadLocations(){
 
 function loadAllMultiSelects(){
     remoteCreateMultiSelect("Building","Name","Select a location","#location_selection_select");
+    remoteCreateMultiSelect("Crime","Type","Select crime type","#crime_tag");
+    remoteCreateMultiSelect("Building","Type","Select building type","#building_type");
 }

@@ -37,16 +37,14 @@ function executeQuerySearch(e){
     $("#results-text-error").show();
     var lower_time = $("#time_lower option:selected").val();
     var upper_time = $("#time_upper option:selected").val();
+
     var locations = $("#location_selection_select").val();
-    var c_tags = $("#crime_tag").val();
+    var tags = $("#crime_tag").val();
 
-
-    if ((c_tags != null) && (c_tags[0] == "")){
-        c_tags.splice(0,1);
-    }
     var pkt = {
-        locations: ((locations) && (locations.length != 0)) ? locations : "null",
-        tags: ((c_tags) && (c_tags.length != 0)) ? c_tags : "null",
+        locations: locations ? locations : "null",
+        tags: tags ? tags : "null",
+
         lower_date: bounds.lower,
         upper_date: bounds.upper,
         lower_time: lower_time,

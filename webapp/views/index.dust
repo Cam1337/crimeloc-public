@@ -100,8 +100,8 @@
             </div>
             <div class="panel panel-default row-eq-height">
                 <div class="panel-body">
-                    <div class="col-md-4">
-                        <select multiple="multiple" id="crime_tag">
+                    <div class="col-md-4" class="form-group">
+                        <select class="form-control" multiple="multiple" id="crime_tag">
                             <option value="">Crime Types</option>
                             <option value="violent">violent</option>
                             <option value="driving">driving</option>
@@ -110,6 +110,11 @@
                             <option value="sex-related">Sex-related</option>
                             <option value="trespassing, etc.">Trespassing, etc.</option>
                             <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <select class="form-control" multiple="multiple" id="building_type">
+
                         </select>
                     </div>
                 </div>
