@@ -12,18 +12,18 @@
     <!--<link rel="stylesheet" href="/stylesheets/pqselect.bootstrap.dev.css">-->
 
 
-    <script src="/javascripts/jquery.min.js"></script>
+    <script src="/javascripts/lib/jquery.min.js"></script>
     <!--<script src="/javascripts/jquery-ui.min.js"></script>-->
 
-    <script src="/javascripts/bootstrap-multiselect.js"></script>
+    <script src="/javascripts/lib/bootstrap-multiselect.js"></script>
 
 
-    <script src="/javascripts/jlib.js"></script>
+    <script src="/javascripts/lib/jlib.js"></script>
     <!-- GoogleMapsAPI & MapLace -->
     <script src="https://maps.googleapis.com/maps/api/js"> </script>
-    <script src="/javascripts/maplace-0.1.3.min.js"></script>
+    <script src="/javascripts/lib/maplace-0.1.3.min.js"></script>
     <!-- pickMeUp & pqSelect -->
-    <script src="/javascripts/jquery.pickmeup.min.js"></script>
+    <script src="/javascripts/lib/jquery.pickmeup.min.js"></script>
     <!--<script src="/javascripts/pqselect.dev.js"></script>-->
 
     <!-- Bootstrap & Bootflat's JS files.-->
@@ -31,7 +31,11 @@
     <script src="https://bootflat.github.io/bootflat/js/icheck.min.js"></script>
     <script src="https://bootflat.github.io/bootflat/js/jquery.fs.selecter.min.js"></script>
     <script src="https://bootflat.github.io/bootflat/js/jquery.fs.stepper.min.js"></script>
-  </head>
+
+    <!-- user written code -->
+    <script src="/javascripts/client/mapBuilder.js"></script>
+    <script src="/javascripts/client/multiSelectionLoader.js"></script>
+    <script src="/javascripts/client/querySearch  .js"></script>
   <body>
     {+body /}
 </html>
