@@ -15,12 +15,38 @@
                     <div id="date_lower" class="btn btn-default">Click to set lower date bound</div>
                 </div>
                 <div class="col-md-2">
-                    <div id="time_lower" class="input-group">
-                        <input id="time_lower_hour" type="text" class="form-control" placeholder="Lower Time Bound: "><b></b>
-                        <!--<input type="text" class="form-control" aria-label="">-->
-                        <select class="am-pm" id="time_lower_med">
-                            <option value="am">am</option>
-                            <option value="pm">pm</option>
+                    <div id="time_lower" class="form-group">
+                        <!--<input id="time_lower_hour" type="text" class="form-control" placeholder="Lower Time Bound: "><b></b>-->
+                        <!--&lt;!&ndash;<input type="text" class="form-control" aria-label="">&ndash;&gt;-->
+                        <!--<select class="am-pm" id="time_lower_med">-->
+                            <!--<option value="am">am</option>-->
+                            <!--<option value="pm">pm</option>-->
+                        <!--</select>-->
+                        <select class="form-control">
+                            <option value="00:00">12:00AM</option>
+                            <option value="01:00">1:00AM</option>
+                            <option value="02:00">2:00AM</option>
+                            <option value="03:00">3:00AM</option>
+                            <option value="04:00">4:00AM</option>
+                            <option value="05:00">5:00AM</option>
+                            <option value="06:00">6:00AM</option>
+                            <option value="07:00">7:00AM</option>
+                            <option value="08:00">8:00AM</option>
+                            <option value="09:00">9:00AM</option>
+                            <option value="10:00">10:00AM</option>
+                            <option value="11:00">11:00AM</option>
+                            <option value="12:00">12:00PM</option>
+                            <option value="13:00">1:00PM</option>
+                            <option value="14:00">2:00PM</option>
+                            <option value="15:00">3:00PM</option>
+                            <option value="16:00">4:00PM</option>
+                            <option value="17:00">5:00PM</option>
+                            <option value="18:00">6:00PM</option>
+                            <option value="19:00">7:00PM</option>
+                            <option value="20:00">8:00PM</option>
+                            <option value="21:00">9:00PM</option>
+                            <option value="22:00">10:00PM</option>
+                            <option value="23:00">11:00PM</option>
                         </select>
                     </div>
                 </div>
@@ -28,11 +54,38 @@
                     <div id="date_upper" class="btn btn-default">Click to set upper date bound</div>
                 </div>
                 <div class="col-md-2">
-                    <div id="time_upper" class="input-group">
-                        <input id="time_upper_hour" type="text" class="form-control" placeholder="Lower Time Bound: "><b></b>
-                        <select class="am-pm" id="time_upper_med">
-                            <option value="am">am</option>
-                            <option value="pm">pm</option>
+                    <div id="time_upper" class="form-group">
+                        <!--<input id="time_upper_hour" type="text" class="form-control" placeholder="Lower Time Bound: "><b></b>-->
+                        <!--<select class="am-pm" id="time_upper_med">-->
+                            <!--<option value="am">am</option>-->
+                            <!--<option value="pm">pm</option>-->
+                        <!--</select>-->
+                        Upper Time Bound:
+                        <select class="form-control">
+                            <option value="00:00">12:00AM</option>
+                            <option value="01:00">1:00AM</option>
+                            <option value="02:00">2:00AM</option>
+                            <option value="03:00">3:00AM</option>
+                            <option value="04:00">4:00AM</option>
+                            <option value="05:00">5:00AM</option>
+                            <option value="06:00">6:00AM</option>
+                            <option value="07:00">7:00AM</option>
+                            <option value="08:00">8:00AM</option>
+                            <option value="09:00">9:00AM</option>
+                            <option value="10:00">10:00AM</option>
+                            <option value="11:00">11:00AM</option>
+                            <option value="12:00">12:00PM</option>
+                            <option value="13:00">1:00PM</option>
+                            <option value="14:00">2:00PM</option>
+                            <option value="15:00">3:00PM</option>
+                            <option value="16:00">4:00PM</option>
+                            <option value="17:00">5:00PM</option>
+                            <option value="18:00">6:00PM</option>
+                            <option value="19:00">7:00PM</option>
+                            <option value="20:00">8:00PM</option>
+                            <option value="21:00">9:00PM</option>
+                            <option value="22:00">10:00PM</option>
+                            <option value="23:00">11:00PM</option>
                         </select>
                     </div>
                 </div>
@@ -93,6 +146,7 @@
             lower: "",
             upper: ""
         };
+
         var resultsMap = new Maplace({
             locations: [{lat:36.001271, lon:-78.9289, title:"Duke", zoom:15}],
             map_div: "#results-map",
@@ -102,6 +156,7 @@
             }
         });
 
+        // render results table from json data
         function renderResults(data) {
             if (data.error != null){
                 $("#query-search-error").text("ERROR: " + data.error.code);
@@ -179,7 +234,7 @@
                     }
                 }
             };
-            remoteRequest(null, opts)
+            remoteRequest(null, opts);
         });
 
         $("#query-search-submit").on('click', function(e){

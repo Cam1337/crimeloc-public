@@ -5,17 +5,17 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://bootflat.github.io/bootflat/css/bootflat.css">
-    <link rel="stylesheet" href="/stylesheets/jquery-ui.css">
+    <!--<link rel="stylesheet" href="/stylesheets/jquery-ui.css">-->
     <link rel="stylesheet" href="/stylesheets/pickmeup.min.css">
-    <link rel="stylesheet" href="/stylesheets/semantic.css">
+    <!--<link rel="stylesheet" href="/stylesheets/semantic.css">-->
 
-    <link rel="stylesheet" href="/stylesheets/pqselect.bootstrap.dev.css">
+    <!--<link rel="stylesheet" href="/stylesheets/pqselect.bootstrap.dev.css">-->
 
 
     <script src="/javascripts/jquery.min.js"></script>
-    <script src="/javascripts/jquery-ui.min.js"></script>
+    <!--<script src="/javascripts/jquery-ui.min.js"></script>-->
 
-    <script src="/javascripts/semantic.js"></script>
+    <!--<script src="/javascripts/semantic.js"></script>-->
 
 
     <script src="/javascripts/jlib.js"></script>
@@ -24,7 +24,7 @@
     <script src="/javascripts/maplace-0.1.3.min.js"></script>
     <!-- pickMeUp & pqSelect -->
     <script src="/javascripts/jquery.pickmeup.min.js"></script>
-    <script src="/javascripts/pqselect.dev.js"></script>
+    <!--<script src="/javascripts/pqselect.dev.js"></script>-->
 
     <!-- Bootstrap & Bootflat's JS files.-->
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
