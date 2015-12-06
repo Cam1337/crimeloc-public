@@ -2,7 +2,6 @@ var express = require('express');
 
 var cfenv = require('cfenv');
 
-var fs = require('fs');
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('db.sqlite');
 
@@ -11,7 +10,7 @@ var app = express();
 
 
 //handler for client-side ajax GET request
-app.get('/query',function(req, res){
+app.get('/query', function(req, res){
 	console.log(req.query);
 	var building = JSON.parse('[' + req.query.building + ']')[0];
 	if(building[0] === null){

@@ -1,34 +1,40 @@
 //this program is used to generate fake data for our project
 
-var fs = require('fs');
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('db.sqlite');
 
 var crime_types = [
 		//violent
+		{name:"Sexual assault", tags:["violent", "sex-related"]},
+		{name:"Robbery", tags:["theft"]},
+		{name:"Assault", tags:["violent"]},
+		{name:"Burglary", tags:["theft"]},
+		{name:"Stalking", tags:["sex-related"]},
+		{name:"Domestic Violence", tags:["violent"]},
+		{name:"Alcohol violation", tags:["alcohol/drugs"]},
+		{name:"Weapon Possession", tags:["violent"]},
+
 		{name:"Arson", tags:["violent"]},
 		{name:"Injury to personal property", tags:["violent"]},
-		{name:"Weapon Possession", tags:["violent"]},
-		{name:"Assault", tags:["violent"]},
+		{name:"Assault with a deadly weapon", tags:["violent"]},
+		
 		{name:"Moving Violation", tags:["driving"]},
 		{name:"Driving while Intoxicated", tags:["driving", "alcohol/drugs"]},
 		{name:"Indecent exposure", tags:["sex-related"]},
-		{name:"Sexual assault", tags:["violent", "sex-related"]},
-		{name:"Stalking", tags:["sex-related"]},
+		
 		{name:"Drug Possession", tags:["alcohol/drugs"]},
-		{name:"Alcohol violation", tags:["alcohol/drugs"]},
 		{name:"Underage Possession of Alcohol", tags:["alcohol/drugs"]},
 		{name:"Fraud", tags:["theft"]},
 		{name:"Forgery and Uttering", tags:["theft"]},
+		
 		{name:"Theft", tags:["theft"]},
 		{name:"Larceny", tags:["theft"]},
-		{name:"Burglary", tags:["theft"]},
-		{name:"Robbery", tags:["theft"]},
 		{name:"Armed Robbery", tags:["violent", "theft"]},
+		
 		{name:"Breaking and Entering", tags:["trespassing"]},
 		{name:"Trespassing", tags:["trespassing"]},
 		{name:"Resist/Delay/Obstruction of justice", tags:["other"]}
-		//TODO: add/remove crimes, take out sexual assault?
+
     ];
 
 
@@ -317,8 +323,6 @@ var dispositions = [
 
 
 //GENERATE DATA HERE
-
-
 var out = [];
 
 for(i=0;i<12;i++){ //generate data for each month
@@ -355,10 +359,29 @@ for(i=0;i<12;i++){ //generate data for each month
 
 
 		//generate crime here
-		var ind = Math.floor(Math.random() * (crime_types.length));
-		var crime = crime_types[ind];
-		// console.log(JSON.stringify(crime));
+		var rand_ind = Math.random();
+		var ind;
+		if(rand_ind < 0.0016){
+			ind = 0;
+		} else if(rand_ind < 0.0136){
+			ind = 1;
+		} else if(rand_ind < 0.094){
+			ind = 2;
+		} else if (rand_ind < 0.1032){
+			ind = 3;
+		} else if (rand_ind < 0.10768){
+			ind = 4;
+		} else if (rand_ind < 0.25648){
+			ind = 5;
+		} else if (rand_ind < 0.77648){
+			ind = 6;
+		} else if (rand_ind < 0.77968){
+			ind = 7;
+		} else{
+			ind = Math.floor(Math.random() * (crime_types.length - 8)) + 8;
 
+		}
+		var crime = crime_types[ind];
 
 		//generate building (include building type, campus)
 		var ind2 = Math.floor((Math.random() * (buildings.length-1)));

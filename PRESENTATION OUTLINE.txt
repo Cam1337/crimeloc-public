@@ -1,0 +1,10 @@
+PRESENTATION OUTLINE
+
+Present app in action (make some queries, show how UI, display work, etc.) - SOMEONE
+
+Anything else here
+
+Present how data was generated - SAM
+
+Present attempts at SQL injection and show that they fail - SAM
+
