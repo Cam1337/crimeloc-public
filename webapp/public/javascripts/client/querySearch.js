@@ -40,10 +40,10 @@ function executeQuerySearch(e){
 
     var building_name = $("#building_name").val();
     var building_type = $("#building_type").val();
-    var crime_tags = $("#crime_tags").val();
+    var crime_type = $("#crime_type").val();
 
     var pkt = {
-        crime_tags: crime_tags ? crime_tags : "null",
+        crime_type: crime_type ? crime_type : "null",
         building_name: building_name ? building_name : "null",
         building_type: building_type ? building_type : "null",
         lower_date: bounds.lower,
