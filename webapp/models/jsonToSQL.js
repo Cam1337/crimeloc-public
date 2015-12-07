@@ -6,6 +6,8 @@ var constants = require("./constants.js");
 
 module.exports.convert = function(jsobj){
     console.log(jsobj);
+    
+    
 
     var prefix = "SELECT Crime.Disposition, Crime.Type, Crime.Date, Crime.Time, Crime.Area_Name, Building.Campus, Building.Lat, Building.Lon FROM Crime, Building WHERE Building.Name==Crime.Area_Name";
     var suffix = " LIMIT 150";
@@ -73,7 +75,7 @@ function convertToWhereIn(column, list, container) {
     
     var statement = "";
     
-    if(list === "null" || !checkContains(container, list)) {
+    if(list === undefined || list === "null" || !checkContains(container, list)) {
          return statement;
     }
     
@@ -96,7 +98,7 @@ function convertDateTime(column, start, end) {
     
     var statement = "";
     
-    if(start !== "null") {
+    if(start !== undefined && start !== "null") {
         if(!(start.length == 10 || start.length == 5)) {
             console.log("Bad date/time input (length of query)");
             return "";
@@ -114,7 +116,7 @@ function convertDateTime(column, start, end) {
         statement += column + " > " + "'" + start + "'";
     }
     
-    if(end !== "null") {
+    if(end !== undefined && end !== "null") {
         if(!(end.length == 10 || end.length == 5)) {
             console.log("Bad date/time input (length of query)");
             return "";
