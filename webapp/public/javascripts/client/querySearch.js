@@ -15,10 +15,13 @@ function renderResults(data) {
     var locations = [];
     for (var i = 0; i < data.results.length; i++){
         var r = data.results[i];
+        var stuff1 = r.Type + ", " + r.Area_Name + ", " + r.Campus + " Campus";
+        var stuff2 = r.Date + ", " + r.Time;
         var loc = {
             name: r.Type,
             lat: r.Lat,
-            lon: r.Lon
+            lon: r.Lon,
+            html: '<p>' + stuff1 + '</p><p>' + stuff2 + '</p>'
         };
         locations.push(loc)
     };
