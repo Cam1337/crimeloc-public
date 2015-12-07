@@ -21,6 +21,20 @@ module.exports.convert = function(jsobj){
     
 }
 
+function checkContains(list, val) {
+    if(list === undefined || list == null) {
+        return false;
+    }
+    
+    for(var i = 0; i < list.length; i++) {
+        if(val === list[i].col) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
 function sanitaryDate(date) {
     var s = date.split('-');
     for(var i = 0; i < s.length; i++) {
@@ -119,27 +133,33 @@ function convertDateTime(column, start, end) {
 
 function conjunctStatements(location, tag, types, date, time) {
     
-    var statement = "";
+    var arr = [location,tag,types,date,time];
+    arr.filter(function(e){
+        return e !== "";
+    })
+    return arr.join(" AND ");
     
-    if(location !== "") {
-        statement += " AND " + location;
-    }
+    // var statement = "";
     
-    if(tag !== "") {
-        statement += " AND " + tag;
-    }
+    // if(location !== "") {
+    //     statement += " AND " + location;
+    // }
     
-    if(types !== "") {
-        statement += " AND " + types;
-    }
+    // if(tag !== "") {
+    //     statement += " AND " + tag;
+    // }
     
-    if(date !== "") {
-        statement += " AND " + date;
-    }
+    // if(types !== "") {
+    //     statement += " AND " + types;
+    // }
     
-    if(time !== "") {
-        statement += " AND " + time;
-    }
+    // if(date !== "") {
+    //     statement += " AND " + date;
+    // }
     
-    return statement;
+    // if(time !== "") {
+    //     statement += " AND " + time;
+    // }
+    
+    // return statement;
 }
