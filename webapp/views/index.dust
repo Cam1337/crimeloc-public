@@ -119,11 +119,6 @@
         <div class="panel panel-default">
             <div id="results-text-error">
                 <div id="query-search" class="panel-body">
-                    <div class="col-md-10">
-                        <div class="input-group">
-                            <input type="text" id="query-search-value" class="form-control" placeholder="Raw SQL Query">
-                        </div>
-                    </div>
                     <div class="col-md-1">
                         <div class="btn btn-primary" id="query-search-submit">Search</div>
                     </div>

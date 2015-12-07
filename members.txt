@@ -4,6 +4,6 @@ Sam Doyle: designed E/R diagram, modified table schemas in project description, 
 
 Eli Williams: wrote table declarations, modified project description, wrote sample SQL queries, web app modification with Cam
 
-Cam Wrigley: researched http scraping, implemented Python scraper, SQLite3 preprocessing/loading, web app modification with Eli
+Cam Wrigley: researched http scraping, implemented Python scraper. SQLite3 preprocessing/loading, web app modification with Eli. Frontend (templating and models), form inputs & functionality, backend nodejs/express app boilerplate
 
 Casey Tissue: wrote project description, put map on web app, worked on user input fields, passing info to server with Sam, data generation, helped with project description for final submission
