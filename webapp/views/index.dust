@@ -106,7 +106,7 @@
                         <div id="search-btn" class="btn btn-primary">Search</div>
                     </div>
                     <div class="col-md-1">
-                        <div class="btn btn-primary">Clear</div>
+                        <div class="btn btn-primary" id="clear-search">Clear</div>
                     </div>
                 </div>
             </div>
