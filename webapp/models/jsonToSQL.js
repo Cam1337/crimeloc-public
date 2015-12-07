@@ -10,11 +10,9 @@ module.exports.convert = function(jsobj){
     var prefix = "SELECT Crime.Disposition, Crime.Type, Crime.Date, Crime.Time, Crime.Area_Name, Building.Lat, Building.Lon FROM Crime, Building WHERE Building.Name==Crime.Area_Name";
     var suffix = " LIMIT 150";
 
-    var contains = [checkContains(constants.building_name, jsobj.building_name), checkContains(constants.building_type, jsobj.building_type), checkContains(constants.crime_type, jsobj.crime_type)];
-    console.log(contains);
-    var locs = convertToWhereIn("Crime.Area_Name", jsobj.building_name);
-    var tags = convertToWhereIn("Crime.Type", jsobj.crime_type);
-    var types = convertToWhereIn("Building.Type", jsobj.building_type);
+    var locs = convertToWhereIn("Crime.Area_Name", jsobj.building_name, constants.building_name);
+    var tags = convertToWhereIn("Crime.Type", jsobj.crime_type, constants.crime_type);
+    var types = convertToWhereIn("Building.Type", jsobj.building_type, constants.building_type);
     var date = convertDateTime("Crime.Date", jsobj.lower_date, jsobj.upper_date);
     var time = convertDateTime("Crime.Time", jsobj.lower_time, jsobj.upper_time);
     
@@ -67,11 +65,11 @@ function sanitaryTime(time) {
 }
 
 
-function convertToWhereIn(column, list) {
+function convertToWhereIn(column, list, container) {
     
     var statement = "";
     
-    if(list === "null") {
+    if(list === "null" || !checkContains(container, list)) {
          return statement;
     }
     
