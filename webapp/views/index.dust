@@ -113,19 +113,10 @@
         </div>
         <div class="panel panel-default">
             <div id="results-map" class="panel-body">
-
             </div>
         </div>
         <div class="panel panel-default">
             <div id="results-text-error">
-                <div id="query-search" class="panel-body">
-                    <div class="col-md-1">
-                        <div class="btn btn-primary" id="query-search-submit">Search</div>
-                    </div>
-                    <div class="col-md-1">
-                        <div class="btn btn-primary" id="query-search-clear">Clear</div>
-                    </div>
-                </div>
                 <div class="panel-body">
                     <center><div id="query-search-error"></div></center>
                 </div>
