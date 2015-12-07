@@ -2,12 +2,16 @@
  * Created by cam on 12/5/2015.
  */
 
+var constants = require("./constants.js");
+
 module.exports.convert = function(jsobj){
     console.log(jsobj);
     
     var prefix = "SELECT Crime.Disposition, Crime.Type, Crime.Date, Crime.Time, Crime.Area_Name, Building.Lat, Building.Lon FROM Crime, Building WHERE Building.Name==Crime.Area_Name";
-    var suffix = " LIMIT 500";
-    
+    var suffix = " LIMIT 150";
+
+    var contains = [checkContains(constants.building_name, jsobj.building_name), checkContains(constants.building_type, jsobj.building_type), checkContains(constants.crime_type, jsobj.crime_type)];
+    console.log(contains);
     var locs = convertToWhereIn("Crime.Area_Name", jsobj.building_name);
     var tags = convertToWhereIn("Crime.Type", jsobj.crime_type);
     var types = convertToWhereIn("Building.Type", jsobj.building_type);
@@ -21,14 +25,17 @@ module.exports.convert = function(jsobj){
     
 }
 
-function checkContains(list, val) {
+function checkContains(list, vals) {
+    if (vals === "null"){return true;}
     if(list === undefined || list == null) {
         return false;
     }
     
     for(var i = 0; i < list.length; i++) {
-        if(val === list[i].col) {
-            return true;
+        for (var j = 0; j < vals.length; j++){
+            if (vals[j] === list[i].col){
+                return true;
+            }
         }
     }
     
@@ -134,10 +141,14 @@ function convertDateTime(column, start, end) {
 function conjunctStatements(location, tag, types, date, time) {
     
     var arr = [location,tag,types,date,time];
-    arr.filter(function(e){
+    arr = arr.filter(function(e){
         return e !== "";
     })
-    return arr.join(" AND ");
+    var statement = arr.join(" AND ");
+    if (statement !== ""){
+        return " AND " + statement;
+    }
+    return statement;
     
     // var statement = "";
     

@@ -10,7 +10,6 @@ function renderResults(data) {
     }else{
         $("#query-search-error").hide();
     }
-
     $("#results-table").html(data.result_html);
 
     var locations = [];
