@@ -13,3 +13,8 @@ Instructions for running locally:
 7. Go the localhost:3000 to visit the web app.
 
 
+Instructions for updating db:
+
+in webapp folder, run node datagenerator.js
+
+
