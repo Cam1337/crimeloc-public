@@ -256,5 +256,15 @@ module.exports = {
         { col: 'Unfounded' },
         { col: 'Pending' },
         { col: 'Arrest' },
-        { col: 'Cleared by Referral' } ]
+        { col: 'Cleared by Referral' } ],
+    crime_tags: [ { col: 'driving' },
+        { col: 'theft, etc.' },
+        { col: 'alcohol/drugs' },
+        { col: 'other' },
+        { col: 'violent,sex-related' },
+        { col: 'violent' },
+        { col: 'trespassing, etc.' },
+        { col: 'sex-related' },
+        { col: 'violent,theft, etc.' },
+        { col: 'driving,alcohol/drugs' } ]
 }

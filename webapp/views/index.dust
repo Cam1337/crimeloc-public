@@ -4,10 +4,11 @@
         <center><h3>CrimeLoc</h3></center>
         <div class="panel panel-default row-eq-height">
             <div class="panel-body">
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <select id="building_name" class="form-control" multiple="multiple"></select>
-                    </div>
+                <div class="col-md-2 form-group">
+                    <select class="form-control" multiple="multiple" id="building_type"></select>
+                </div>
+                <div class="col-md-2 form-group">
+                    <select class="form-control" multiple="multiple" id="crime_tags"></select>
                 </div>
                 <div class="col-md-2">
                     <div id="date_lower" class="btn btn-default">Lower Date Bound</div>
@@ -83,20 +84,14 @@
                     </div>
                 </div>
                 <div class="col-md-2"></div>
-                <div class="col-md-1">
-                    <div id="search-btn" class="btn btn-primary">Search</div>
-                </div>
-                <div class="col-md-1">
-                    <div class="btn btn-primary">Clear</div>
-                </div>
             </div>
             <div class="panel panel-default row-eq-height">
                 <div class="panel-body">
+                    <div class="col-md-2 form-group">
+                        <select id="building_name" class="form-control" multiple="multiple"></select>
+                    </div>
                     <div class="col-md-2" class="form-group">
                         <select class="form-control" multiple="multiple" id="crime_type"></select>
-                    </div>
-                    <div class="col-md-2 form-group">
-                        <select class="form-control" multiple="multiple" id="building_type"></select>
                     </div>
                     <div class="col-md-2 form-group">
                         <select class="form-control" multiple="multiple" id="building_campus"></select>
@@ -106,6 +101,12 @@
                     </div>
                     <div class="col-md-2 form-group">
                         <select class="form-control" multiple="multiple" id="crime_disposition"></select>
+                    </div>
+                    <div class="col-md-1">
+                        <div id="search-btn" class="btn btn-primary">Search</div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="btn btn-primary">Clear</div>
                     </div>
                 </div>
             </div>
