@@ -36,6 +36,7 @@ function executeQuerySearch(e){
     var crime_exterior = $("#crime_exterior").val();
     var crime_disposition = $("#crime_disposition").val();
     var building_campus = $("#building_campus").val();
+    var crime_tags = $("#crime_tags").val();
 
     var pkt = {
         crime_type: crime_type ? crime_type : "null",
@@ -44,6 +45,7 @@ function executeQuerySearch(e){
         crime_exterior: crime_exterior ? crime_exterior : "null",
         crime_disposition: crime_disposition ? crime_disposition : "null",
         building_campus: building_campus ? building_campus : "null",
+        crime_tags: crime_tags ? crime_tags : "null",
         lower_date: bounds.lower,
         upper_date: bounds.upper,
         lower_time: lower_time,

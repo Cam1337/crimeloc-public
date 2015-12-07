@@ -42,4 +42,5 @@ function loadAllMultiSelects(){
     remoteCreateMultiSelect("Building","Campus","Select building campus","#building_campus");
     remoteCreateMultiSelect("Crime","Exterior","Inside/Outside","#crime_exterior");
     remoteCreateMultiSelect("Crime","Disposition","Select a resolution","#crime_disposition");
+    remoteCreateMultiSelect("Crime","Tags","Select crime tags","#crime_tags");
 }
