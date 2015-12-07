@@ -8,9 +8,8 @@ Instructions for running locally:
 	To check, you can type 'node -v' and it will tell you your current version if installed. If it says something like '-bash: node: command not found.' you will need to install node.
 	To install node, visit here: https://nodejs.org/en/download/
 4. Run 'npm install'
-5. Run 'node app.js'
-6. Go the localhost url printed in the command line to visit the web app.
+5. cd into webapp folder
+6. Run 'npm start'
+7. Go the localhost:3000 to visit the web app.
 
-
-Description:
 

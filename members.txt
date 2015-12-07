@@ -2,7 +2,7 @@ Team members and description of progress each made:
 
 Sam Doyle: designed E/R diagram, modified table schemas in project description, started client/server code for basic NodeJS app, implemented table creations, sample data in SQL, wrote Readme. worked on inputs for query parameters in client code, communication between server and client code. updated project description, co-wrote final project description. Co-wrote code for generating data and populating database. Added code to display information on waypoints when clicked. Checked for SQL injection vulnerability using curl requests.
 
-Eli Williams: wrote table declarations, modified project description, wrote sample SQL queries, web app modification with Cam
+Eli Williams: wrote table declarations, modified project description, wrote sample SQL queries, web app modification with Cam, wrote functions to parse JSON data sent by front end to SQL queries, wrote functions to ensure sanitary data before adding it to base SQL query
 
 Cam Wrigley: researched http scraping, implemented Python scraper. SQLite3 preprocessing/loading, web app modification with Eli. Frontend (templating and models), form inputs & functionality, backend nodejs/express app boilerplate
 
