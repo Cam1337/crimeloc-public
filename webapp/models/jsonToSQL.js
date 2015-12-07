@@ -132,7 +132,7 @@ function convertDateTime(column, start, end) {
             }
         }
         
-        if(start !== "null") {
+        if(start !== undefined && start !== "null") {
             statement += " AND ";
         }
         statement += column + " < " + "'" + end + "'";
