@@ -98,6 +98,15 @@
                     <div class="col-md-2 form-group">
                         <select class="form-control" multiple="multiple" id="building_type"></select>
                     </div>
+                    <div class="col-md-2 form-group">
+                        <select class="form-control" multiple="multiple" id="building_campus"></select>
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <select class="form-control" multiple="multiple" id="crime_exterior"></select>
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <select class="form-control" multiple="multiple" id="crime_disposition"></select>
+                    </div>
                 </div>
             </div>
         </div>

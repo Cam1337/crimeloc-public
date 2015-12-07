@@ -6,7 +6,7 @@ var constants = require("./constants.js");
 
 module.exports.convert = function(jsobj){
     console.log(jsobj);
-    
+
     var prefix = "SELECT Crime.Disposition, Crime.Type, Crime.Date, Crime.Time, Crime.Area_Name, Building.Lat, Building.Lon FROM Crime, Building WHERE Building.Name==Crime.Area_Name";
     var suffix = " LIMIT 150";
 
