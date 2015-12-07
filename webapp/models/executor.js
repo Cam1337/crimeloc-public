@@ -55,7 +55,7 @@ function modelResponse(model, req, res, result, next){
 function modelExecute(model, req, res, next){
     model.run(req, function(result){
         next(result)
-    })
+    }, res)
 }
 
 module.exports = function(model, req, res, next){

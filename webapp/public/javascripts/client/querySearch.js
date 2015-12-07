@@ -11,17 +11,7 @@ function renderResults(data) {
         $("#query-search-error").hide();
     }
 
-    var table_opts = {
-        url: "/api/render_table",
-        type: "post",
-        format: "html",
-        methods: {
-            before: function (el) {
-                return data;
-            }
-        }
-    };
-    remoteRequest("#results-table", table_opts);
+    $("#results-table").html(data.result_html);
 
     var locations = [];
     for (var i = 0; i < data.results.length; i++){
