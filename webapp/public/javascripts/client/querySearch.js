@@ -33,11 +33,17 @@ function executeQuerySearch(e){
     var building_name = $("#building_name").val();
     var building_type = $("#building_type").val();
     var crime_type = $("#crime_type").val();
+    var crime_exterior = $("#crime_exterior").val();
+    var crime_disposition = $("#crime_disposition").val();
+    var building_campus = $("#building_campus").val();
 
     var pkt = {
         crime_type: crime_type ? crime_type : "null",
         building_name: building_name ? building_name : "null",
         building_type: building_type ? building_type : "null",
+        crime_exterior: crime_exterior ? crime_exterior : "null",
+        crime_disposition: crime_disposition ? crime_disposition : "null",
+        building_campus: building_campus ? building_campus : "null",
         lower_date: bounds.lower,
         upper_date: bounds.upper,
         lower_time: lower_time,

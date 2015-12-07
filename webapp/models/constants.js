@@ -247,5 +247,14 @@ module.exports = {
         { col: 'West Duke Building' },
         { col: 'White Lecture Hall' },
         { col: 'Wilson Lot' },
-        { col: 'Wilson Residence Hall' } ]
+        { col: 'Wilson Residence Hall' } ],
+    building_campus: [ { col: 'West' }, { col: 'Central' }, { col: 'East' } ],
+    crime_exterior: [ { col: 'outside' }, { col: 'inside' } ],
+    crime_disposition: [ { col: 'Closed' },
+        { col: 'Closed-SC' },
+        { col: 'Exceptionally Cleared' },
+        { col: 'Unfounded' },
+        { col: 'Pending' },
+        { col: 'Arrest' },
+        { col: 'Cleared by Referral' } ]
 }
