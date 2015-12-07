@@ -6,7 +6,7 @@ module.exports.convert = function(jsobj){
     console.log(jsobj);
     
     var prefix = "SELECT Crime.Disposition, Crime.Type, Crime.Date, Crime.Time, Crime.Area_Name, Building.Lat, Building.Lon FROM Crime, Building WHERE Building.Name==Crime.Area_Name";
-    var suffix = " LIMIT 150";
+    var suffix = " LIMIT 500";
     
     var locs = convertToWhereIn("Crime.Area_Name", jsobj.building_name);
     var tags = convertToWhereIn("Crime.Type", jsobj.crime_type);
@@ -19,6 +19,20 @@ module.exports.convert = function(jsobj){
     console.log(prefix + data + suffix);
     return prefix + data + suffix;
     
+}
+
+function checkContains(list, val) {
+    if(list === undefined || list == null) {
+        return false;
+    }
+    
+    for(var i = 0; i < list.length; i++) {
+        if(val === list[i].col) {
+            return true;
+        }
+    }
+    
+    return false;
 }
 
 function sanitaryDate(date) {
@@ -119,27 +133,33 @@ function convertDateTime(column, start, end) {
 
 function conjunctStatements(location, tag, types, date, time) {
     
-    var statement = "";
+    var arr = [location,tag,types,date,time];
+    arr.filter(function(e){
+        return e !== "";
+    })
+    return arr.join(" AND ");
     
-    if(location !== "") {
-        statement += " AND " + location;
-    }
+    // var statement = "";
     
-    if(tag !== "") {
-        statement += " AND " + tag;
-    }
+    // if(location !== "") {
+    //     statement += " AND " + location;
+    // }
     
-    if(types !== "") {
-        statement += " AND " + types;
-    }
+    // if(tag !== "") {
+    //     statement += " AND " + tag;
+    // }
     
-    if(date !== "") {
-        statement += " AND " + date;
-    }
+    // if(types !== "") {
+    //     statement += " AND " + types;
+    // }
     
-    if(time !== "") {
-        statement += " AND " + time;
-    }
+    // if(date !== "") {
+    //     statement += " AND " + date;
+    // }
     
-    return statement;
+    // if(time !== "") {
+    //     statement += " AND " + time;
+    // }
+    
+    // return statement;
 }
