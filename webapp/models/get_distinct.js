@@ -13,6 +13,8 @@ module.exports = {
             var col = req.body.column;
             var query = "SELECT DISTINCT " + col + " col FROM " + table;
             db.all(query, function(err, rows){
+                console.log(table + "." + col);
+                console.log(rows);
                 next({results: rows})
             })
         })
