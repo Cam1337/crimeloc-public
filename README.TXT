@@ -1,3 +1,6 @@
+Deprecated
+
+
 Creating and loading the DB
 
 1)	using vm with postgresql, cd into directory containing TEST-SAMPLE.SQL
