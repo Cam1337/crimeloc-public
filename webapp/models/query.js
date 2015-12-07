@@ -8,13 +8,13 @@ var db = new sqlite3.Database(path.join(__dirname, "db.sqlite"));
 
 module.exports = {
     template: null,
-    run: function(req, next){
+    run: function(req, next, res){
         db.serialize(function() {
             var query = require('./jsonToSQL.js').convert(req.body); // JSONToSQLQuery(req.body);
             db.all(query, function(err, rows){
-                //console.log(rows)
-
-                next({results: rows, error: err, sql_query: query})
+                res.render('query_results', {results: rows, sql_query: query}, function(err, html){
+                    next({result_html: html, results: rows});
+                })
             })
         })
 
