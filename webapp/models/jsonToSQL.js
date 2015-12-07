@@ -11,12 +11,16 @@ module.exports.convert = function(jsobj){
     var suffix = " LIMIT 150";
 
     var locs = convertToWhereIn("Crime.Area_Name", jsobj.building_name, constants.building_name);
-    var tags = convertToWhereIn("Crime.Type", jsobj.crime_type, constants.crime_type);
+    var c_type = convertToWhereIn("Crime.Type", jsobj.crime_type, constants.crime_type);
     var types = convertToWhereIn("Building.Type", jsobj.building_type, constants.building_type);
+    var ext = convertToWhereIn("Crime.Exterior", jsobj.crime_exterior, constants.crime_exterior);
+    var tags = convertToWhereIn("Crime.Tags", jsobj.crime_tags, constants.crime_tags);
+    var campus = convertToWhereIn("Building.Campus", jsobj.building_campus, constants.building_campus);
+    var disp = convertToWhereIn("Crime.Disposition", jsobj.crime_disposition, constants.crime_disposition);
     var date = convertDateTime("Crime.Date", jsobj.lower_date, jsobj.upper_date);
     var time = convertDateTime("Crime.Time", jsobj.lower_time, jsobj.upper_time);
     
-    var data = conjunctStatements(locs, tags, types, date, time);
+    var data = conjunctStatements(locs, c_type, types, date, time, ext, tags, campus, disp);
     
     console.log(prefix + data + suffix);
     return prefix + data + suffix;
@@ -136,9 +140,9 @@ function convertDateTime(column, start, end) {
 }
 
 
-function conjunctStatements(location, tag, types, date, time) {
+function conjunctStatements(location, c_type, types, date, time, ext, tags, campus, disp) {
     
-    var arr = [location,tag,types,date,time];
+    var arr = [location,c_type,types,date,time,ext,tags,campus,disp];
     arr = arr.filter(function(e){
         return e !== "";
     })
